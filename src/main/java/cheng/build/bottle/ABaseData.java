@@ -19,7 +19,7 @@ public class ABaseData {
     protected boolean equieDriver;
 
     // 更新数据
-    public void updateItems(Player player) {
+    public void update(Player player) {
         this.player = player;
         if (player != null) {
             this.mainStack = player.getItemBySlot(EquipmentSlot.MAINHAND);
@@ -43,17 +43,17 @@ public class ABaseData {
             this.equieDriver = false;
         }
     }
-    protected enum ClientMessage{
+    protected enum ClientMessageEnum {
         Organic("key.kamenrider_build.clear_driver.organic_title"),
         Inorganic("key.kamenrider_build.clear_driver.inorganic_title"),
         Air("key.kamenrider_build.clear_driver.air");
         final String string;
-        ClientMessage(String string){
+        ClientMessageEnum(String string){
             this.string = string;
         }
     }
-    protected void ClientMessage(ClientMessage key){
-        ClientMessage(new TranslatableComponent(key.string),true);
+    protected void ClientMessage(ClientMessageEnum key){
+        this.ClientMessage(new TranslatableComponent(key.string),true);
     }
     protected void ClientMessage(Component key, boolean isAction){
         player.displayClientMessage(key,isAction);

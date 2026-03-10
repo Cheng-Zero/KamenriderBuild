@@ -28,7 +28,7 @@ public class DwaTileRenderer extends GeoBlockRenderer<FullbottlePurifierEntity> 
 		ItemRenderer item = Minecraft.getInstance().getItemRenderer();
 		poseStack.pushPose();
 		poseStack.scale(1f,1f,1f);
-		poseStack.translate(0.5f,0.5f,0.55f);
+		poseStack.translate(0.5f,0.45f,0.55f);
 		if (animation.getLevel() != null){
 			item.renderStatic(stackInSlot, ItemTransforms.TransformType.FIXED,
 					packedLight,1,poseStack,bufferSource,1);

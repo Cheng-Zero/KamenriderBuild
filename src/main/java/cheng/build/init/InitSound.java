@@ -8,22 +8,33 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
 import java.util.Map;
+import java.util.Set;
 
 public class InitSound {
     public static final DeferredRegister<SoundEvent> SOUNDS = DeferredRegister.create(ForgeRegistries.SOUND_EVENTS, Build.MODID);
 
-    public static final RegistryObject<SoundEvent> EMPTY = register("null");
-    public static final RegistryObject<SoundEvent> build_driver_equie = register("build_driver_equie");
-    public static final RegistryObject<SoundEvent> best_match = register("best_match");
-    public static final RegistryObject<SoundEvent> rabbat = register("rabbat");
-    public static final RegistryObject<SoundEvent> tank = register("tank");
+    public static final RegistryObject<SoundEvent>
+            EMPTY = register("null"),
+            build_driver_equie = register("build_driver_equie"),
+            best_match = register("best_match"),
+            rabbat = register("rabbat"),
+            tank = register("tank");
 
-    public static final Map<String, String> SOUNDS_FOR_DATAGEN = Map.of(
-            "build_driver_equie", "build_driver_equie",
-            "best_match", "best_match",
-            "rabbat", "rabbat",
-            "tank", "tank"
+    public static final Set<String> Sound_For_Datagen = Set.of(
+            "build_driver_equie",
+            "best_match",
+            "rabbat",
+            "tank"
     );
+
+//    public static final Map<String, String> SOUNDS_FOR_DATAGEN = Map.of(
+//            Sound.forEach((d)->),
+//            "build_driver_equie", "build_driver_equie",
+//            "best_match", "best_match",
+//            "rabbat", "rabbat",
+//            "tank", "tank"
+//    );
+
 
     private static RegistryObject<SoundEvent> register(String name) {
         return SOUNDS.register(name, () -> new SoundEvent(new ResourceLocation(Build.MODID, name)));

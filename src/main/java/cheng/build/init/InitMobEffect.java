@@ -12,6 +12,7 @@ import net.minecraftforge.registries.RegistryObject;
 
 public class InitMobEffect {
     public static final DeferredRegister<MobEffect> register = DeferredRegister.create(ForgeRegistries.MOB_EFFECTS, Build.MODID);
-    public static final RegistryObject<BottleMobEffect> rabbat_effect = register.register("rabbat_bottle",()->new RabbatMobEffect(MobEffectCategory.NEUTRAL,-39271));
-    public static final RegistryObject<BottleMobEffect> tank_effect = register.register("tank_bottle",()->new TankMobEffect(MobEffectCategory.NEUTRAL,-13421569));
+    public static final RegistryObject<BottleMobEffect>
+            rabbat_effect = register.register("rabbat_bottle",()->new RabbatMobEffect(MobEffectCategory.NEUTRAL,-39271)),
+            tank_effect = register.register("tank_bottle",()->new TankMobEffect(MobEffectCategory.NEUTRAL,-13421569));
 }

@@ -1,7 +1,7 @@
 package cheng.build.message;
 
 import cheng.build.Build;
-import cheng.build.animation.SetupAnimationsProcedure;
+import cheng.build.player_animation.SetupAnimationsProcedure;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Player;

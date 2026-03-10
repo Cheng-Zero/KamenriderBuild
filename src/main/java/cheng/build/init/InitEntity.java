@@ -36,6 +36,7 @@ public class InitEntity {
     public static Map<Supplier<EntityType<? extends LivingEntity>>, Supplier<AttributeSupplier>> Attributes_FOR_DATAGEN = Map.of(
             build_up::get, ()->EntityAttributes.build_up
     );
+
     public static <T extends Entity> RegistryObject<EntityType<T>> buildEntity(String name,EntityType.EntityFactory<T> entity,
                                                                                float width, float height) {
         return registry.register(name,

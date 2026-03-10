@@ -1,4 +1,4 @@
-package cheng.build.animation;
+package cheng.build.player_animation;
 
 import cheng.build.Build;
 import cheng.build.message.AnimationMessage;

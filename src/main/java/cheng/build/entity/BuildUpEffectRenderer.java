@@ -33,12 +33,6 @@ import static software.bernie.geckolib3.util.AnimationUtils.getRenderer;
 public class BuildUpEffectRenderer extends GeoEntityRenderer<BuildUpEffectEntity> {
 	public BuildUpEffectRenderer(EntityRendererProvider.Context renderManager) {
 		super(renderManager, new BuildUpEffectEntityModel());
-//		addLayer(new L(this));
-	}
-
-	private void renderStack(PoseStack poseStack){
-		poseStack.translate(0, 1.5, 0);
-		poseStack.scale(-1, -1, 1);
 	}
 
 	@Override

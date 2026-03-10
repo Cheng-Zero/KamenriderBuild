@@ -1,15 +1,13 @@
 package cheng.build.keybingds;
 
 import cheng.build.Build;
-import cheng.build.animation.PlayerAnimationUtil;
+import cheng.build.player_animation.PlayerAnimationUtil;
 import cheng.build.bottle.Bottle;
 import cheng.build.bottle.FullBottle;
-import cheng.build.init.InitItem;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.BottleItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.network.NetworkEvent;

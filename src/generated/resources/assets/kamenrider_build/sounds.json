@@ -1,16 +1,8 @@
 {
-  "best_match": {
+  "build_driver_equie": {
     "sounds": [
       {
-        "name": "kamenrider_build:best_match",
-        "stream": true
-      }
-    ]
-  },
-  "rabbat": {
-    "sounds": [
-      {
-        "name": "kamenrider_build:rabbat",
+        "name": "kamenrider_build:build_driver_equie",
         "stream": true
       }
     ]
@@ -23,10 +15,18 @@
       }
     ]
   },
-  "build_driver_equie": {
+  "rabbat": {
     "sounds": [
       {
-        "name": "kamenrider_build:build_driver_equie",
+        "name": "kamenrider_build:rabbat",
+        "stream": true
+      }
+    ]
+  },
+  "best_match": {
+    "sounds": [
+      {
+        "name": "kamenrider_build:best_match",
         "stream": true
       }
     ]

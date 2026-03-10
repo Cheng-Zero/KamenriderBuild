@@ -46,7 +46,7 @@ public abstract class Bottle extends Item implements IAnimatable {
         // 获取 调用 方法体
         BottleExecute bottleExecute = new BottleExecute();
         // 更新数据
-        bottleExecute.updateItems(pPlayer);
+        bottleExecute.update(pPlayer);
 
         bottleExecute.OnDriver(ar.getObject());
         return ar;

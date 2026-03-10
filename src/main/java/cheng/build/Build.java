@@ -1,6 +1,6 @@
 package cheng.build;
 
-import cheng.build.animation.SetupAnimationsProcedure;
+import cheng.build.player_animation.SetupAnimationsProcedure;
 import cheng.build.block.DwaTileRenderer;
 import cheng.build.init.*;
 import cheng.build.keybingds.ClearDriverKeybingd;
@@ -103,7 +103,9 @@ public class Build {
     private void registerRenderers(final EntityRenderersEvent.RegisterRenderers event) {
         InitEntity.renderer_FOR_DATAGEN.forEach((e,r)->
                 event.registerEntityRenderer(e.get(),r));
-        event.registerBlockEntityRenderer(InitModBlockEntities.fullbottle_purifler.get(), DwaTileRenderer::new);
+        InitModBlockEntities.renderer_FOR_DATAGEN.forEach((blockentity,render)->
+                event.registerBlockEntityRenderer(blockentity.get(), render));
+
     }
     private void registerEntityAttributes(EntityAttributeCreationEvent event) {
         InitEntity.Attributes_FOR_DATAGEN.forEach((e,a)->

@@ -23,12 +23,14 @@ public class InitItem {
     public static final DeferredRegister<Item> register = DeferredRegister.create(ForgeRegistries.ITEMS, MODID);
     public static final RegistryObject<BuildDriver> buildDriver = registry("build_driver", BuildDriver::new);
     public static final RegistryObject<DwaDisplayItem> fullbottle_purifier = registry("fullbottle_purifier", ()-> new DwaDisplayItem(InitBlock.fullbottle_purifier.get(),new Item.Properties()));
-    public static final RegistryObject<BuildBaseArmor> buildBaseArmor = registry("base_armor", BuildBaseArmor::new);
-    public static final RegistryObject<BuildArmor> buildRabbatArmor = registry("rabbat_armor", BuildRabbatArmor::new);
-    public static final RegistryObject<BuildArmor> buildTankArmor = registry("tank_armor", BuildTankArmor::new);
     public static final RegistryObject<EmptyBottle> empty_bottle = bottle("empty",EmptyBottle::new);
     public static final RegistryObject<Rabbat> rabbat = bottle("rabbat", Rabbat::new);
     public static final RegistryObject<Tank> tank = bottle("tank", Tank::new);
+
+    public static final RegistryObject<BuildArmor>
+            buildBaseArmor = registry("base_armor", BuildBaseArmor::new),
+            buildTankArmor = registry("tank_armor", BuildTankArmor::new),
+            buildRabbatArmor = registry("rabbat_armor", BuildRabbatArmor::new);
 
     private static <T extends Item> RegistryObject<T> registry(String name,Supplier<T> supplier){
         try{ return register.register(name,supplier);}
@@ -36,10 +38,11 @@ public class InitItem {
     }
 
     public record Model(ResourceLocation geo,ResourceLocation anima,ResourceLocation texture) {}
-    public static Model BuildDriver = new Model(GeoModel("build_driver"), GeoAnimation("build_driver"), GeoTexture("driver/build_driver"));
-    public static Model BuildBase = new Model(GeoModel("base_armor"),GeoAnimation("base_armor"),GeoTexture("armor/base_armor"));
-    public static Model BuildRabbatArmor = new Model(GeoModel("rabbat_armor"),GeoAnimation("rabbat_armor"),GeoTexture("armor/rabbat_armor"));
-    public static Model BuildTankArmor = new Model(GeoModel("tank_armor"),GeoAnimation("tank_armor"),GeoTexture("armor/tank_armor"));
+    public static Model
+            BuildDriver = new Model(GeoModel("build_driver"), GeoAnimation("build_driver"), GeoTexture("driver/build_driver")),
+            BuildBase = new Model(GeoModel("base_armor"),GeoAnimation("base_armor"),GeoTexture("armor/base_armor")),
+            BuildRabbatArmor = new Model(GeoModel("rabbat_armor"),GeoAnimation("rabbat_armor"),GeoTexture("armor/rabbat_armor")),
+            BuildTankArmor = new Model(GeoModel("tank_armor"),GeoAnimation("tank_armor"),GeoTexture("armor/tank_armor"));
 
     public static Map<Class<? extends ARMOR>, Supplier<GeoArmorRenderer>> renderer_FOR_DATAGEN = Map.of(
             BuildDriver.class, ()->d(BuildDriver),

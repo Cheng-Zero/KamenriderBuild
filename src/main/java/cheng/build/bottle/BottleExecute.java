@@ -6,8 +6,6 @@ import cheng.build.ItemHelper;
 import cheng.build.SoundUtil;
 import cheng.build.armor.BuildDriver;
 import cheng.build.init.BestMatch;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundSource;
@@ -65,7 +63,7 @@ public class BottleExecute extends ABaseData {
         else
             ClientOrganicMessage();
     }
-    /// 特殊类型 空白瓶
+    // 空白瓶
     private void emptybottle(ItemStack itemStack){
         if (player.getUseItem() == player.getItemBySlot(EquipmentSlot.OFFHAND)) {
             if (GetTagisNoEmpty(BuildDriver.organicMatter_item_Name)) {
@@ -101,10 +99,10 @@ public class BottleExecute extends ABaseData {
     }
 
     private void ClientOrganicMessage(){
-        ClientMessage(ClientMessage.Organic);
+        ClientMessage(ClientMessageEnum.Organic);
     }
     private void ClientInorganicMessage(){
-        ClientMessage(ClientMessage.Inorganic);
+        ClientMessage(ClientMessageEnum.Inorganic);
     }
 
     // 摇动手臂

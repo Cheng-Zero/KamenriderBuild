@@ -31,10 +31,12 @@ public abstract class AEntity extends TamableAnimal implements IAnimatable, IAni
     public boolean isInvulnerable() {
         return true;
     }
-    @Override
+
+    // 死亡动画-清除
     protected void tickDeath() {
         this.discard();
     }
+
     // 添加玩家卸载时的处理
     @SubscribeEvent
     public void onPlayerLoggedOut(PlayerEvent.PlayerLoggedOutEvent event) {

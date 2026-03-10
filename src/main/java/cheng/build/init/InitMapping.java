@@ -19,9 +19,10 @@ import org.lwjgl.glfw.GLFW;
         value = {Dist.CLIENT}
 )
 public class InitMapping {
-    public static final KeyMapping ShakeBottle = new KeyMapping("key.kamenrider_build.shake_bottle", GLFW.GLFW_KEY_C,"key.categories.kamenrider_build");
-    public static final KeyMapping VortexLever = new KeyMapping("key.kamenrider_build.vortex_lever", GLFW.GLFW_KEY_R,"key.categories.kamenrider_build");
-    public static final KeyMapping ClearDriver = new KeyMapping("key.kamenrider_build.clear_driver", GLFW.GLFW_KEY_X,"key.categories.kamenrider_build");
+    public static final KeyMapping
+            ShakeBottle = new KeyMapping("key.kamenrider_build.shake_bottle", GLFW.GLFW_KEY_C,"key.categories.kamenrider_build"),
+            VortexLever = new KeyMapping("key.kamenrider_build.vortex_lever", GLFW.GLFW_KEY_R,"key.categories.kamenrider_build"),
+            ClearDriver = new KeyMapping("key.kamenrider_build.clear_driver", GLFW.GLFW_KEY_X,"key.categories.kamenrider_build");
 
     @SubscribeEvent
     public static void registerKeyBindings(FMLClientSetupEvent event) {

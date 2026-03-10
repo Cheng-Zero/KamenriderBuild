@@ -1,22 +1,13 @@
 package cheng.build.keybingds;
 
-import cheng.build.ItemHelper;
-import cheng.build.armor.BuildDriver;
 import cheng.build.bottle.ClearDriver;
-import cheng.build.init.InitItem;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
-import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.network.NetworkEvent;
 
 import java.util.Objects;
 import java.util.function.Supplier;
-
-import static cheng.build.armor.BuildDriver.*;
 
 public class ClearDriverKeybingd {
     private final int type;
@@ -53,7 +44,7 @@ public class ClearDriverKeybingd {
         if (world.hasChunkAt(entity.blockPosition())) {
             ClearDriver clearDriver = new ClearDriver();
             // 数据更新
-            clearDriver.updateItems(entity);
+            clearDriver.update(entity);
             if (type == 0)
                 clearDriver.clear();
         }

@@ -13,8 +13,8 @@ public class ClearDriver extends ABaseData {
     private boolean isUse;
 
     @Override
-    public void updateItems(Player player) {
-        super.updateItems(player);
+    public void update(Player player) {
+        super.update(player);
         if (player!= null){
             isUse = driverTag.getBoolean("isUse");
         }else {
@@ -36,7 +36,7 @@ public class ClearDriver extends ABaseData {
             }else if (!driverTag.getCompound(organicMatter_item_Name).isEmpty()) {
                 setTagAndTagItem(organicMatter_item_Name);
             }else
-                ClientMessage(ClientMessage.Air);
+                ClientMessage(ClientMessageEnum.Air);
         }
         else if (!player.isShiftKeyDown()){
             if (!driverTag.getCompound(organicMatter_item_Name).isEmpty()){
@@ -44,7 +44,7 @@ public class ClearDriver extends ABaseData {
             }else if (!driverTag.getCompound(inorganicMatter_item_Name).isEmpty()) {
                 setTagAndTagItem(inorganicMatter_item_Name);
             }else
-                ClientMessage(ClientMessage.Air);
+                ClientMessage(ClientMessageEnum.Air);
         }
     }
 

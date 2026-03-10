@@ -19,8 +19,7 @@ public class BestMatch {
     public enum bestMatch {
         NULL(Items.AIR,Items.AIR, InitSound.EMPTY),
         RABBAT_TANK(InitItem.rabbat.get(), InitItem.tank.get(), InitSound.best_match);
-        private final Item organicMatter;
-        private final Item inorganicMatter;
+        private final Item organicMatter,inorganicMatter;
         private final Supplier<SoundEvent> sound;
 
         bestMatch(Item organicMatter, Item inorganicMatter, Supplier<SoundEvent> sound) {

@@ -22,8 +22,8 @@ public class SoundProvider extends SoundDefinitionsProvider {
     @Override
     public void registerSounds() {
         // 直接遍历声音名称，不使用 RegistryObject
-        InitSound.SOUNDS_FOR_DATAGEN.forEach((registryName, soundFileName) -> {
-            add(registryName, createSoundDefinition(soundFileName));
+        InitSound.Sound_For_Datagen.forEach((registryName) -> {
+            add(registryName, createSoundDefinition(registryName));
         });
     }
 

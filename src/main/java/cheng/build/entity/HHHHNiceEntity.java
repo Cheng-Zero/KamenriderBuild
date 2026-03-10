@@ -35,8 +35,9 @@ public abstract class HHHHNiceEntity extends AEntity {
     public void tick() {
         super.tick();
 
-        // 检查绑定玩家状态
-        Player player = (Player) this.getOwner();
+        // 检查绑定玩家状态 主人实体非玩家 返回
+        if (!(this.getOwner() instanceof Player player))return;
+
         if (player == null || !player.isAlive() || player.isRemoved()) {
             this.discard(); // 玩家不存在或已死亡时删除实体
             return;
@@ -44,6 +45,7 @@ public abstract class HHHHNiceEntity extends AEntity {
 
         if (player != null) {
 
+            // Pehkui模组的体型实时调整
 //            ScaleData data = ScaleTypes.BASE.getScaleData(player);
 //            float scale = data.getScale();
 //            ScaleTypes.BASE.getScaleData(this).setScale(scale);
@@ -61,6 +63,7 @@ public abstract class HHHHNiceEntity extends AEntity {
         if (player == null || !player.isAlive()) {
             this.discard();
         }
+        // 避免出现 实体乱飞的问题
         if (player instanceof ServerPlayer serverPlayer && serverPlayer.gameMode.getGameModeForPlayer() == GameType.SPECTATOR){
             this.discard();
         }
@@ -70,7 +73,7 @@ public abstract class HHHHNiceEntity extends AEntity {
     @Override
     protected void doPush(Entity entityIn) {
         entityIn.invulnerableTime = 0;
-        entityIn.hurt(DamageSource.LIGHTNING_BOLT,1);
+        entityIn.hurt(DamageSource.LIGHTNING_BOLT,0.1f);
         // 计算排斥方向（从当前实体指向目标实体）
         double dx = entityIn.getX() - this.getX();
         double dz = entityIn.getZ() - this.getZ();
@@ -159,11 +162,13 @@ public abstract class HHHHNiceEntity extends AEntity {
         }
     }
     public static void setAnimation(LevelAccessor world,Player player,String animationName){
-        final Vec3 _center = new Vec3(player.getX(), player.getY(), player.getZ());
-        List<HHHHNiceEntity> _entfound = world.getEntitiesOfClass(HHHHNiceEntity.class, new AABB(_center, _center).inflate(4 / 2d), e -> true).stream().sorted(Comparator.comparingDouble(_entcnd -> _entcnd.distanceToSqr(_center))).toList();
-        for (HHHHNiceEntity entityiterator : _entfound) {
+        for (HHHHNiceEntity entityiterator : getEntity(world, player)) {
             if (entityiterator != null && entityiterator.getOwner() == player)
                 entityiterator.getEntityData().set(HHHHNiceEntity.Animation,animationName);
         }
+    }
+    public static List<HHHHNiceEntity> getEntity(LevelAccessor world,Player player){
+        final Vec3 _center = new Vec3(player.getX(), player.getY(), player.getZ());
+        return world.getEntitiesOfClass(HHHHNiceEntity.class, new AABB(_center, _center).inflate(4 / 2d), e -> true).stream().sorted(Comparator.comparingDouble(_entcnd -> _entcnd.distanceToSqr(_center))).toList();
     }
 }

@@ -5,6 +5,9 @@ import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class InitTab {
     public static CreativeModeTab Kamenrider_Build_Tab;
     public static void load() {
@@ -24,16 +27,16 @@ public class InitTab {
 
         @Override
         public void fillItemList(NonNullList<ItemStack> pItems) {
-            pItems.add(add(InitItem.buildDriver.get()));
-            pItems.add(add(InitItem.buildBaseArmor.get()));
-            pItems.add(add(InitItem.buildRabbatArmor.get()));
-            pItems.add(add(InitItem.buildTankArmor.get()));
-            pItems.add(add(InitItem.empty_bottle.get()));
-            pItems.add(add(InitItem.rabbat.get()));
-            pItems.add(add(InitItem.tank.get()));
-        }
-        ItemStack add(Item item){
-            return new ItemStack(item);
+            List<Item> l = new ArrayList<>();
+            l.add(InitItem.buildDriver.get());
+            l.add(InitItem.buildBaseArmor.get());
+            l.add(InitItem.buildRabbatArmor.get());
+            l.add(InitItem.buildTankArmor.get());
+            l.add(InitItem.empty_bottle.get());
+            l.add(InitItem.rabbat.get());
+            l.add(InitItem.tank.get());
+            for (Item item : l)
+                pItems.add(new ItemStack(item));
         }
     }
 }

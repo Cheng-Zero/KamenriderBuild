@@ -100,6 +100,7 @@ minecraft {
             property 'mixin.env.remapRefMap', 'true'
             property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
 
+            // 这个mods啥的好像是控制datagen输出的
             mods {
                 "${mod_id}" {
                     source sourceSets.main
