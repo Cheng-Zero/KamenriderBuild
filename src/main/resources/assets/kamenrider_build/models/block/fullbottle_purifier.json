@@ -1,0 +1,11 @@
+{
+  "credit": "Made with Blockbench",
+  "parent": "builtin/entity",
+  "textures": {
+    "particle": "kamenrider_build:blocks/fullbottle_purifier"
+  },
+  "texture_size": [
+    256,
+    256
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "item.kamenrider_build.base_armor": "Build系统装甲",
+  "item.kamenrider_build.build_driver": "Build驱动器",
+  "item.kamenrider_build.empty_bottle": "空白满装瓶",
+  "item.kamenrider_build.rabbat_armor": "Build 有机物装甲-Rabbat",
+  "item.kamenrider_build.rabbat_bottle": "满装瓶-兔子",
+  "item.kamenrider_build.tank_bottle": "满装瓶-坦克",
+  "itemGroup.kamenrider_build_tab": "假面骑士Build",
+  "key.categories.kamenrider_build": "假面骑士Build",
+  "key.kamenrider_build.clear_driver.air": "布什戈么，你还想取出啥！？AIR吗？",
+  "key.kamenrider_build.clear_driver.inorganic_title": "你需要清空Build驱动器无机物槽位",
+  "key.kamenrider_build.clear_driver.organic_title": "你需要清空Build驱动器有机物槽位",
+  "key.kamenrider_build.clear_driver.title": "你需要清空Build驱动器槽位",
+  "key.kamenrider_build.shake_bottle": "摇晃瓶子"
+}

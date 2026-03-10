@@ -1,0 +1,16 @@
+{
+  "item.kamenrider_build.base_armor": "Base Build Armor",
+  "item.kamenrider_build.build_driver": "Build Driver",
+  "item.kamenrider_build.empty_bottle": "Empty Bottle",
+  "item.kamenrider_build.rabbat_armor": "Build-Rabbat-Armor",
+  "item.kamenrider_build.rabbat_bottle": "Rabbat FullBottle",
+  "item.kamenrider_build.tank_armor": "Build-Tank-Armor",
+  "item.kamenrider_build.tank_bottle": "Tank FullBottle",
+  "itemGroup.kamenrider_build_tab": "KamenRider Build",
+  "key.categories.kamenrider_build": "KamenRider Build",
+  "key.kamenrider_build.clear_driver.air": "Not Bro, what else do you want to take out, AIR?",
+  "key.kamenrider_build.clear_driver.inorganic_title": "You need Clear Build Driver InorganicMatter Slot",
+  "key.kamenrider_build.clear_driver.organic_title": "You need Clear Build Driver OrganicMatter Slot",
+  "key.kamenrider_build.clear_driver.title": "You need Clear Build Driver Slot",
+  "key.kamenrider_build.shake_bottle": "Shake Bottle"
+}

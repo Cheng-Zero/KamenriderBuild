@@ -1,0 +1,266 @@
+---- Minecraft Crash Report ----
+// Hey, that tickles! Hehehe!
+
+Time: 2026/2/15 上午11:30
+Description: Rendering entity in world
+
+java.lang.IllegalStateException: Registry is already frozen
+	at net.minecraftforge.registries.NamespacedHolderHelper.createIntrusiveHolder(NamespacedHolderHelper.java:177) ~[forge-1.18.2-40.2.21_mapped_official_1.18.2.jar%2379%2386!/:?] {re:classloading}
+	at net.minecraftforge.registries.NamespacedDefaultedWrapper.createIntrusiveHolder(NamespacedDefaultedWrapper.java:205) ~[forge-1.18.2-40.2.21_mapped_official_1.18.2.jar%2379%2386!/:?] {re:classloading}
+	at net.minecraftforge.registries.NamespacedDefaultedWrapper.createIntrusiveHolder(NamespacedDefaultedWrapper.java:33) ~[forge-1.18.2-40.2.21_mapped_official_1.18.2.jar%2379%2386!/:?] {re:classloading}
+	at net.minecraft.world.item.Item.<init>(Item.java:58) ~[forge-1.18.2-40.2.21_mapped_official_1.18.2.jar%2380!/:?] {re:classloading}
+	at net.minecraft.world.item.ArmorItem.<init>(ArmorItem.java:63) ~[forge-1.18.2-40.2.21_mapped_official_1.18.2.jar%2380!/:?] {re:classloading}
+	at software.bernie.geckolib3.item.GeoArmorItem.<init>(GeoArmorItem.java:19) ~[geckolib-forge-1.18-3.0.57_mapped_official_1.18.2.jar%2387!/:3.0.57] {re:classloading}
+	at cheng.build.armor.ARMOR.<init>(ARMOR.java:18) ~[%2385!/:?] {re:classloading}
+	at cheng.build.armor.BuildDriver.<init>(BuildDriver.java:26) ~[%2385!/:?] {re:classloading}
+	at cheng.build.model.BuildDriverModel.<init>(BuildDriverModel.java:7) ~[%2385!/:?] {re:classloading}
+	at cheng.build.render.BuildDriverRenderer.<init>(BuildDriverRenderer.java:7) ~[%2385!/:?] {re:classloading}
+	at software.bernie.geckolib3.renderers.geo.GeoArmorRenderer.getRenderer(GeoArmorRenderer.java:146) ~[geckolib-forge-1.18-3.0.57_mapped_official_1.18.2.jar%2387!/:3.0.57] {re:classloading}
+	at software.bernie.geckolib3.item.GeoArmorItem$1.getArmorModel(GeoArmorItem.java:29) ~[geckolib-forge-1.18-3.0.57_mapped_official_1.18.2.jar%2387!/:3.0.57] {re:classloading}
+	at net.minecraftforge.client.IItemRenderProperties.getBaseArmorModel(IItemRenderProperties.java:71) ~[forge-1.18.2-40.2.21_mapped_official_1.18.2.jar%2379%2386!/:?] {re:classloading}
+	at net.minecraftforge.client.ForgeHooksClient.getArmorModel(ForgeHooksClient.java:293) ~[forge-1.18.2-40.2.21_mapped_official_1.18.2.jar%2379%2386!/:?] {re:classloading}
+	at net.minecraft.client.renderer.entity.layers.HumanoidArmorLayer.getArmorModelHook(HumanoidArmorLayer.java:119) ~[forge-1.18.2-40.2.21_mapped_official_1.18.2.jar%2380!/:?] {re:mixin,pl:runtimedistcleaner:A,re:classloading,pl:mixin:APP:playerAnimator-common.mixins.json:ArmorFeatureRendererMixin,pl:mixin:A,pl:runtimedistcleaner:A}
+	at net.minecraft.client.renderer.entity.layers.HumanoidArmorLayer.renderArmorPiece(HumanoidArmorLayer.java:49) ~[forge-1.18.2-40.2.21_mapped_official_1.18.2.jar%2380!/:?] {re:mixin,pl:runtimedistcleaner:A,re:classloading,pl:mixin:APP:playerAnimator-common.mixins.json:ArmorFeatureRendererMixin,pl:mixin:A,pl:runtimedistcleaner:A}
+	at net.minecraft.client.renderer.entity.layers.HumanoidArmorLayer.render(HumanoidArmorLayer.java:37) ~[forge-1.18.2-40.2.21_mapped_official_1.18.2.jar%2380!/:?] {re:mixin,pl:runtimedistcleaner:A,re:classloading,pl:mixin:APP:playerAnimator-common.mixins.json:ArmorFeatureRendererMixin,pl:mixin:A,pl:runtimedistcleaner:A}
+	at net.minecraft.client.renderer.entity.layers.HumanoidArmorLayer.render(HumanoidArmorLayer.java:23) ~[forge-1.18.2-40.2.21_mapped_official_1.18.2.jar%2380!/:?] {re:mixin,pl:runtimedistcleaner:A,re:classloading,pl:mixin:APP:playerAnimator-common.mixins.json:ArmorFeatureRendererMixin,pl:mixin:A,pl:runtimedistcleaner:A}
+	at net.minecraft.client.renderer.entity.LivingEntityRenderer.render(LivingEntityRenderer.java:131) ~[forge-1.18.2-40.2.21_mapped_official_1.18.2.jar%2380!/:?] {re:mixin,pl:accesstransformer:B,pl:runtimedistcleaner:A,re:classloading,pl:accesstransformer:B,pl:mixin:APP:playerAnimator-common.mixins.json:firstPerson.LivingEntityRendererMixin,pl:mixin:A,pl:runtimedistcleaner:A}
+	at net.minecraft.client.renderer.entity.player.PlayerRenderer.render(PlayerRenderer.java:62) ~[forge-1.18.2-40.2.21_mapped_official_1.18.2.jar%2380!/:?] {re:mixin,pl:runtimedistcleaner:A,re:classloading,pl:mixin:APP:playerAnimator-common.mixins.json:PlayerRendererMixin,pl:mixin:A,pl:runtimedistcleaner:A}
+	at net.minecraft.client.renderer.entity.player.PlayerRenderer.render(PlayerRenderer.java:43) ~[forge-1.18.2-40.2.21_mapped_official_1.18.2.jar%2380!/:?] {re:mixin,pl:runtimedistcleaner:A,re:classloading,pl:mixin:APP:playerAnimator-common.mixins.json:PlayerRendererMixin,pl:mixin:A,pl:runtimedistcleaner:A}
+	at net.minecraft.client.renderer.entity.EntityRenderDispatcher.render(EntityRenderDispatcher.java:129) ~[forge-1.18.2-40.2.21_mapped_official_1.18.2.jar%2380!/:?] {re:mixin,pl:accesstransformer:B,pl:runtimedistcleaner:A,re:classloading,pl:accesstransformer:B,pl:mixin:APP:playerAnimator-common.mixins.json:firstPerson.EntityRenderDispatcherMixin,pl:mixin:A,pl:runtimedistcleaner:A}
+	at net.minecraft.client.renderer.LevelRenderer.renderEntity(LevelRenderer.java:1428) ~[forge-1.18.2-40.2.21_mapped_official_1.18.2.jar%2380!/:?] {re:mixin,pl:runtimedistcleaner:A,re:classloading,pl:mixin:APP:playerAnimator-common.mixins.json:firstPerson.LevelRendererMixin,pl:mixin:A,pl:runtimedistcleaner:A}
+	at net.minecraft.client.renderer.LevelRenderer.renderLevel(LevelRenderer.java:1219) ~[forge-1.18.2-40.2.21_mapped_official_1.18.2.jar%2380!/:?] {re:mixin,pl:runtimedistcleaner:A,re:classloading,pl:mixin:APP:playerAnimator-common.mixins.json:firstPerson.LevelRendererMixin,pl:mixin:A,pl:runtimedistcleaner:A}
+	at net.minecraft.client.renderer.GameRenderer.renderLevel(GameRenderer.java:1061) ~[forge-1.18.2-40.2.21_mapped_official_1.18.2.jar%2380!/:?] {re:classloading,pl:accesstransformer:B,pl:runtimedistcleaner:A,re:mixin,pl:accesstransformer:B,pl:runtimedistcleaner:A}
+	at net.minecraft.client.renderer.GameRenderer.render(GameRenderer.java:835) ~[forge-1.18.2-40.2.21_mapped_official_1.18.2.jar%2380!/:?] {re:classloading,pl:accesstransformer:B,pl:runtimedistcleaner:A,re:mixin,pl:accesstransformer:B,pl:runtimedistcleaner:A}
+	at net.minecraft.client.Minecraft.runTick(Minecraft.java:1046) ~[forge-1.18.2-40.2.21_mapped_official_1.18.2.jar%2380!/:?] {re:classloading,pl:accesstransformer:B,pl:runtimedistcleaner:A,re:mixin,pl:accesstransformer:B,pl:runtimedistcleaner:A}
+	at net.minecraft.client.Minecraft.run(Minecraft.java:665) ~[forge-1.18.2-40.2.21_mapped_official_1.18.2.jar%2380!/:?] {re:classloading,pl:accesstransformer:B,pl:runtimedistcleaner:A,re:mixin,pl:accesstransformer:B,pl:runtimedistcleaner:A}
+	at net.minecraft.client.main.Main.main(Main.java:205) ~[forge-1.18.2-40.2.21_mapped_official_1.18.2.jar%2380!/:?] {re:classloading,pl:runtimedistcleaner:A}
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:?] {}
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[?:?] {}
+	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?] {}
+	at java.lang.reflect.Method.invoke(Method.java:569) ~[?:?] {}
+	at net.minecraftforge.fml.loading.targets.ForgeClientUserdevLaunchHandler.lambda$launchService$0(ForgeClientUserdevLaunchHandler.java:24) ~[fmlloader-1.18.2-40.2.21.jar%230!/:?] {}
+	at cpw.mods.modlauncher.LaunchServiceHandlerDecorator.launch(LaunchServiceHandlerDecorator.java:37) [modlauncher-9.1.3.jar%2317!/:?] {}
+	at cpw.mods.modlauncher.LaunchServiceHandler.launch(LaunchServiceHandler.java:53) [modlauncher-9.1.3.jar%2317!/:?] {}
+	at cpw.mods.modlauncher.LaunchServiceHandler.launch(LaunchServiceHandler.java:71) [modlauncher-9.1.3.jar%2317!/:?] {}
+	at cpw.mods.modlauncher.Launcher.run(Launcher.java:106) [modlauncher-9.1.3.jar%2317!/:?] {}
+	at cpw.mods.modlauncher.Launcher.main(Launcher.java:77) [modlauncher-9.1.3.jar%2317!/:?] {}
+	at cpw.mods.modlauncher.BootstrapLaunchConsumer.accept(BootstrapLaunchConsumer.java:26) [modlauncher-9.1.3.jar%2317!/:?] {}
+	at cpw.mods.modlauncher.BootstrapLaunchConsumer.accept(BootstrapLaunchConsumer.java:23) [modlauncher-9.1.3.jar%2317!/:?] {}
+	at cpw.mods.bootstraplauncher.BootstrapLauncher.main(BootstrapLauncher.java:149) [bootstraplauncher-1.0.0.jar:?] {}
+
+
+A detailed walkthrough of the error, its code path and all known details is as follows:
+---------------------------------------------------------------------------------------
+
+-- Head --
+Thread: Render thread
+Suspected Mods: 
+	Build (kamenrider_build), Version: 1.0
+		at TRANSFORMER/kamenrider_build@1.0/cheng.build.armor.ARMOR.<init>(ARMOR.java:18)
+
+	GeckoLib (geckolib3), Version: 3.0.57
+		Issue tracker URL: https://github.com/bernie-g/geckolib/issues
+		at TRANSFORMER/geckolib3@3.0.57/software.bernie.geckolib3.item.GeoArmorItem.<init>(GeoArmorItem.java:19)
+Stacktrace:
+	at net.minecraftforge.registries.NamespacedHolderHelper.createIntrusiveHolder(NamespacedHolderHelper.java:177) ~[forge-1.18.2-40.2.21_mapped_official_1.18.2.jar%2379%2386!/:?] {re:classloading}
+	at net.minecraftforge.registries.NamespacedDefaultedWrapper.createIntrusiveHolder(NamespacedDefaultedWrapper.java:205) ~[forge-1.18.2-40.2.21_mapped_official_1.18.2.jar%2379%2386!/:?] {re:classloading}
+	at net.minecraftforge.registries.NamespacedDefaultedWrapper.createIntrusiveHolder(NamespacedDefaultedWrapper.java:33) ~[forge-1.18.2-40.2.21_mapped_official_1.18.2.jar%2379%2386!/:?] {re:classloading}
+	at net.minecraft.world.item.Item.<init>(Item.java:58) ~[forge-1.18.2-40.2.21_mapped_official_1.18.2.jar%2380!/:?] {re:classloading}
+	at net.minecraft.world.item.ArmorItem.<init>(ArmorItem.java:63) ~[forge-1.18.2-40.2.21_mapped_official_1.18.2.jar%2380!/:?] {re:classloading}
+	at software.bernie.geckolib3.item.GeoArmorItem.<init>(GeoArmorItem.java:19) ~[geckolib-forge-1.18-3.0.57_mapped_official_1.18.2.jar%2387!/:3.0.57] {re:classloading}
+	at cheng.build.armor.ARMOR.<init>(ARMOR.java:18) ~[%2385!/:?] {re:classloading}
+	at cheng.build.armor.BuildDriver.<init>(BuildDriver.java:26) ~[%2385!/:?] {re:classloading}
+	at cheng.build.model.BuildDriverModel.<init>(BuildDriverModel.java:7) ~[%2385!/:?] {re:classloading}
+	at cheng.build.render.BuildDriverRenderer.<init>(BuildDriverRenderer.java:7) ~[%2385!/:?] {re:classloading}
+	at software.bernie.geckolib3.renderers.geo.GeoArmorRenderer.getRenderer(GeoArmorRenderer.java:146) ~[geckolib-forge-1.18-3.0.57_mapped_official_1.18.2.jar%2387!/:3.0.57] {re:classloading}
+	at software.bernie.geckolib3.item.GeoArmorItem$1.getArmorModel(GeoArmorItem.java:29) ~[geckolib-forge-1.18-3.0.57_mapped_official_1.18.2.jar%2387!/:3.0.57] {re:classloading}
+	at net.minecraftforge.client.IItemRenderProperties.getBaseArmorModel(IItemRenderProperties.java:71) ~[forge-1.18.2-40.2.21_mapped_official_1.18.2.jar%2379%2386!/:?] {re:classloading}
+	at net.minecraftforge.client.ForgeHooksClient.getArmorModel(ForgeHooksClient.java:293) ~[forge-1.18.2-40.2.21_mapped_official_1.18.2.jar%2379%2386!/:?] {re:classloading}
+	at net.minecraft.client.renderer.entity.layers.HumanoidArmorLayer.getArmorModelHook(HumanoidArmorLayer.java:119) ~[forge-1.18.2-40.2.21_mapped_official_1.18.2.jar%2380!/:?] {re:mixin,pl:runtimedistcleaner:A,re:classloading,pl:mixin:APP:playerAnimator-common.mixins.json:ArmorFeatureRendererMixin,pl:mixin:A,pl:runtimedistcleaner:A}
+	at net.minecraft.client.renderer.entity.layers.HumanoidArmorLayer.renderArmorPiece(HumanoidArmorLayer.java:49) ~[forge-1.18.2-40.2.21_mapped_official_1.18.2.jar%2380!/:?] {re:mixin,pl:runtimedistcleaner:A,re:classloading,pl:mixin:APP:playerAnimator-common.mixins.json:ArmorFeatureRendererMixin,pl:mixin:A,pl:runtimedistcleaner:A}
+	at net.minecraft.client.renderer.entity.layers.HumanoidArmorLayer.render(HumanoidArmorLayer.java:37) ~[forge-1.18.2-40.2.21_mapped_official_1.18.2.jar%2380!/:?] {re:mixin,pl:runtimedistcleaner:A,re:classloading,pl:mixin:APP:playerAnimator-common.mixins.json:ArmorFeatureRendererMixin,pl:mixin:A,pl:runtimedistcleaner:A}
+	at net.minecraft.client.renderer.entity.layers.HumanoidArmorLayer.render(HumanoidArmorLayer.java:23) ~[forge-1.18.2-40.2.21_mapped_official_1.18.2.jar%2380!/:?] {re:mixin,pl:runtimedistcleaner:A,re:classloading,pl:mixin:APP:playerAnimator-common.mixins.json:ArmorFeatureRendererMixin,pl:mixin:A,pl:runtimedistcleaner:A}
+	at net.minecraft.client.renderer.entity.LivingEntityRenderer.render(LivingEntityRenderer.java:131) ~[forge-1.18.2-40.2.21_mapped_official_1.18.2.jar%2380!/:?] {re:mixin,pl:accesstransformer:B,pl:runtimedistcleaner:A,re:classloading,pl:accesstransformer:B,pl:mixin:APP:playerAnimator-common.mixins.json:firstPerson.LivingEntityRendererMixin,pl:mixin:A,pl:runtimedistcleaner:A}
+	at net.minecraft.client.renderer.entity.player.PlayerRenderer.render(PlayerRenderer.java:62) ~[forge-1.18.2-40.2.21_mapped_official_1.18.2.jar%2380!/:?] {re:mixin,pl:runtimedistcleaner:A,re:classloading,pl:mixin:APP:playerAnimator-common.mixins.json:PlayerRendererMixin,pl:mixin:A,pl:runtimedistcleaner:A}
+	at net.minecraft.client.renderer.entity.player.PlayerRenderer.render(PlayerRenderer.java:43) ~[forge-1.18.2-40.2.21_mapped_official_1.18.2.jar%2380!/:?] {re:mixin,pl:runtimedistcleaner:A,re:classloading,pl:mixin:APP:playerAnimator-common.mixins.json:PlayerRendererMixin,pl:mixin:A,pl:runtimedistcleaner:A}
+	at net.minecraft.client.renderer.entity.EntityRenderDispatcher.render(EntityRenderDispatcher.java:129) ~[forge-1.18.2-40.2.21_mapped_official_1.18.2.jar%2380!/:?] {re:mixin,pl:accesstransformer:B,pl:runtimedistcleaner:A,re:classloading,pl:accesstransformer:B,pl:mixin:APP:playerAnimator-common.mixins.json:firstPerson.EntityRenderDispatcherMixin,pl:mixin:A,pl:runtimedistcleaner:A}
+	at net.minecraft.client.renderer.LevelRenderer.renderEntity(LevelRenderer.java:1428) ~[forge-1.18.2-40.2.21_mapped_official_1.18.2.jar%2380!/:?] {re:mixin,pl:runtimedistcleaner:A,re:classloading,pl:mixin:APP:playerAnimator-common.mixins.json:firstPerson.LevelRendererMixin,pl:mixin:A,pl:runtimedistcleaner:A}
+	at net.minecraft.client.renderer.LevelRenderer.renderLevel(LevelRenderer.java:1219) ~[forge-1.18.2-40.2.21_mapped_official_1.18.2.jar%2380!/:?] {re:mixin,pl:runtimedistcleaner:A,re:classloading,pl:mixin:APP:playerAnimator-common.mixins.json:firstPerson.LevelRendererMixin,pl:mixin:A,pl:runtimedistcleaner:A}
+	at net.minecraft.client.renderer.GameRenderer.renderLevel(GameRenderer.java:1061) ~[forge-1.18.2-40.2.21_mapped_official_1.18.2.jar%2380!/:?] {re:classloading,pl:accesstransformer:B,pl:runtimedistcleaner:A,re:mixin,pl:accesstransformer:B,pl:runtimedistcleaner:A}
+-- Entity being rendered --
+Details:
+	Entity Type: minecraft:player (net.minecraft.client.player.LocalPlayer)
+	Entity ID: 93
+	Entity Name: Dev
+	Entity's Exact location: -3.50, -60.00, 7.50
+	Entity's Block location: World: (-4,-60,7), Section: (at 12,4,7 in -1,-4,0; chunk contains blocks -16,-64,0 to -1,319,15), Region: (-1,0; contains chunks -32,0 to -1,31, blocks -512,-64,0 to -1,319,511)
+	Entity's Momentum: 0.00, -0.08, 0.00
+	Entity's Passengers: []
+	Entity's Vehicle: null
+Stacktrace:
+	at net.minecraft.client.renderer.entity.EntityRenderDispatcher.render(EntityRenderDispatcher.java:129) ~[forge-1.18.2-40.2.21_mapped_official_1.18.2.jar%2380!/:?] {re:mixin,pl:accesstransformer:B,pl:runtimedistcleaner:A,re:classloading,pl:accesstransformer:B,pl:mixin:APP:playerAnimator-common.mixins.json:firstPerson.EntityRenderDispatcherMixin,pl:mixin:A,pl:runtimedistcleaner:A}
+	at net.minecraft.client.renderer.LevelRenderer.renderEntity(LevelRenderer.java:1428) ~[forge-1.18.2-40.2.21_mapped_official_1.18.2.jar%2380!/:?] {re:mixin,pl:runtimedistcleaner:A,re:classloading,pl:mixin:APP:playerAnimator-common.mixins.json:firstPerson.LevelRendererMixin,pl:mixin:A,pl:runtimedistcleaner:A}
+	at net.minecraft.client.renderer.LevelRenderer.renderLevel(LevelRenderer.java:1219) ~[forge-1.18.2-40.2.21_mapped_official_1.18.2.jar%2380!/:?] {re:mixin,pl:runtimedistcleaner:A,re:classloading,pl:mixin:APP:playerAnimator-common.mixins.json:firstPerson.LevelRendererMixin,pl:mixin:A,pl:runtimedistcleaner:A}
+	at net.minecraft.client.renderer.GameRenderer.renderLevel(GameRenderer.java:1061) ~[forge-1.18.2-40.2.21_mapped_official_1.18.2.jar%2380!/:?] {re:classloading,pl:accesstransformer:B,pl:runtimedistcleaner:A,re:mixin,pl:accesstransformer:B,pl:runtimedistcleaner:A}
+	at net.minecraft.client.renderer.GameRenderer.render(GameRenderer.java:835) ~[forge-1.18.2-40.2.21_mapped_official_1.18.2.jar%2380!/:?] {re:classloading,pl:accesstransformer:B,pl:runtimedistcleaner:A,re:mixin,pl:accesstransformer:B,pl:runtimedistcleaner:A}
+	at net.minecraft.client.Minecraft.runTick(Minecraft.java:1046) ~[forge-1.18.2-40.2.21_mapped_official_1.18.2.jar%2380!/:?] {re:classloading,pl:accesstransformer:B,pl:runtimedistcleaner:A,re:mixin,pl:accesstransformer:B,pl:runtimedistcleaner:A}
+	at net.minecraft.client.Minecraft.run(Minecraft.java:665) ~[forge-1.18.2-40.2.21_mapped_official_1.18.2.jar%2380!/:?] {re:classloading,pl:accesstransformer:B,pl:runtimedistcleaner:A,re:mixin,pl:accesstransformer:B,pl:runtimedistcleaner:A}
+	at net.minecraft.client.main.Main.main(Main.java:205) ~[forge-1.18.2-40.2.21_mapped_official_1.18.2.jar%2380!/:?] {re:classloading,pl:runtimedistcleaner:A}
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:?] {}
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[?:?] {}
+	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?] {}
+	at java.lang.reflect.Method.invoke(Method.java:569) ~[?:?] {}
+	at net.minecraftforge.fml.loading.targets.ForgeClientUserdevLaunchHandler.lambda$launchService$0(ForgeClientUserdevLaunchHandler.java:24) ~[fmlloader-1.18.2-40.2.21.jar%230!/:?] {}
+	at cpw.mods.modlauncher.LaunchServiceHandlerDecorator.launch(LaunchServiceHandlerDecorator.java:37) [modlauncher-9.1.3.jar%2317!/:?] {}
+	at cpw.mods.modlauncher.LaunchServiceHandler.launch(LaunchServiceHandler.java:53) [modlauncher-9.1.3.jar%2317!/:?] {}
+	at cpw.mods.modlauncher.LaunchServiceHandler.launch(LaunchServiceHandler.java:71) [modlauncher-9.1.3.jar%2317!/:?] {}
+	at cpw.mods.modlauncher.Launcher.run(Launcher.java:106) [modlauncher-9.1.3.jar%2317!/:?] {}
+	at cpw.mods.modlauncher.Launcher.main(Launcher.java:77) [modlauncher-9.1.3.jar%2317!/:?] {}
+	at cpw.mods.modlauncher.BootstrapLaunchConsumer.accept(BootstrapLaunchConsumer.java:26) [modlauncher-9.1.3.jar%2317!/:?] {}
+	at cpw.mods.modlauncher.BootstrapLaunchConsumer.accept(BootstrapLaunchConsumer.java:23) [modlauncher-9.1.3.jar%2317!/:?] {}
+	at cpw.mods.bootstraplauncher.BootstrapLauncher.main(BootstrapLauncher.java:149) [bootstraplauncher-1.0.0.jar:?] {}
+
+
+-- Renderer details --
+Details:
+	Assigned renderer: net.minecraft.client.renderer.entity.player.PlayerRenderer@194e116d
+	Location: 2.13,-4.05,2.36 - World: (2,-5,2), Section: (at 2,11,2 in 0,-1,0; chunk contains blocks 0,-64,0 to 15,319,15), Region: (0,0; contains chunks 0,0 to 31,31, blocks 0,-64,0 to 511,319,511)
+	Rotation: -41.999996
+	Delta: 0.13999963
+Stacktrace:
+	at net.minecraft.client.renderer.entity.EntityRenderDispatcher.render(EntityRenderDispatcher.java:129) ~[forge-1.18.2-40.2.21_mapped_official_1.18.2.jar%2380!/:?] {re:mixin,pl:accesstransformer:B,pl:runtimedistcleaner:A,re:classloading,pl:accesstransformer:B,pl:mixin:APP:playerAnimator-common.mixins.json:firstPerson.EntityRenderDispatcherMixin,pl:mixin:A,pl:runtimedistcleaner:A}
+	at net.minecraft.client.renderer.LevelRenderer.renderEntity(LevelRenderer.java:1428) ~[forge-1.18.2-40.2.21_mapped_official_1.18.2.jar%2380!/:?] {re:mixin,pl:runtimedistcleaner:A,re:classloading,pl:mixin:APP:playerAnimator-common.mixins.json:firstPerson.LevelRendererMixin,pl:mixin:A,pl:runtimedistcleaner:A}
+	at net.minecraft.client.renderer.LevelRenderer.renderLevel(LevelRenderer.java:1219) ~[forge-1.18.2-40.2.21_mapped_official_1.18.2.jar%2380!/:?] {re:mixin,pl:runtimedistcleaner:A,re:classloading,pl:mixin:APP:playerAnimator-common.mixins.json:firstPerson.LevelRendererMixin,pl:mixin:A,pl:runtimedistcleaner:A}
+	at net.minecraft.client.renderer.GameRenderer.renderLevel(GameRenderer.java:1061) ~[forge-1.18.2-40.2.21_mapped_official_1.18.2.jar%2380!/:?] {re:classloading,pl:accesstransformer:B,pl:runtimedistcleaner:A,re:mixin,pl:accesstransformer:B,pl:runtimedistcleaner:A}
+	at net.minecraft.client.renderer.GameRenderer.render(GameRenderer.java:835) ~[forge-1.18.2-40.2.21_mapped_official_1.18.2.jar%2380!/:?] {re:classloading,pl:accesstransformer:B,pl:runtimedistcleaner:A,re:mixin,pl:accesstransformer:B,pl:runtimedistcleaner:A}
+	at net.minecraft.client.Minecraft.runTick(Minecraft.java:1046) ~[forge-1.18.2-40.2.21_mapped_official_1.18.2.jar%2380!/:?] {re:classloading,pl:accesstransformer:B,pl:runtimedistcleaner:A,re:mixin,pl:accesstransformer:B,pl:runtimedistcleaner:A}
+	at net.minecraft.client.Minecraft.run(Minecraft.java:665) ~[forge-1.18.2-40.2.21_mapped_official_1.18.2.jar%2380!/:?] {re:classloading,pl:accesstransformer:B,pl:runtimedistcleaner:A,re:mixin,pl:accesstransformer:B,pl:runtimedistcleaner:A}
+	at net.minecraft.client.main.Main.main(Main.java:205) ~[forge-1.18.2-40.2.21_mapped_official_1.18.2.jar%2380!/:?] {re:classloading,pl:runtimedistcleaner:A}
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:?] {}
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[?:?] {}
+	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?] {}
+	at java.lang.reflect.Method.invoke(Method.java:569) ~[?:?] {}
+	at net.minecraftforge.fml.loading.targets.ForgeClientUserdevLaunchHandler.lambda$launchService$0(ForgeClientUserdevLaunchHandler.java:24) ~[fmlloader-1.18.2-40.2.21.jar%230!/:?] {}
+	at cpw.mods.modlauncher.LaunchServiceHandlerDecorator.launch(LaunchServiceHandlerDecorator.java:37) [modlauncher-9.1.3.jar%2317!/:?] {}
+	at cpw.mods.modlauncher.LaunchServiceHandler.launch(LaunchServiceHandler.java:53) [modlauncher-9.1.3.jar%2317!/:?] {}
+	at cpw.mods.modlauncher.LaunchServiceHandler.launch(LaunchServiceHandler.java:71) [modlauncher-9.1.3.jar%2317!/:?] {}
+	at cpw.mods.modlauncher.Launcher.run(Launcher.java:106) [modlauncher-9.1.3.jar%2317!/:?] {}
+	at cpw.mods.modlauncher.Launcher.main(Launcher.java:77) [modlauncher-9.1.3.jar%2317!/:?] {}
+	at cpw.mods.modlauncher.BootstrapLaunchConsumer.accept(BootstrapLaunchConsumer.java:26) [modlauncher-9.1.3.jar%2317!/:?] {}
+	at cpw.mods.modlauncher.BootstrapLaunchConsumer.accept(BootstrapLaunchConsumer.java:23) [modlauncher-9.1.3.jar%2317!/:?] {}
+	at cpw.mods.bootstraplauncher.BootstrapLauncher.main(BootstrapLauncher.java:149) [bootstraplauncher-1.0.0.jar:?] {}
+
+
+-- Affected level --
+Details:
+	All players: 1 total; [LocalPlayer['Dev'/93, l='ClientLevel', x=-3.50, y=-60.00, z=7.50]]
+	Chunk stats: 961, 609
+	Level dimension: minecraft:overworld
+	Level spawn location: World: (0,-60,0), Section: (at 0,4,0 in 0,-4,0; chunk contains blocks 0,-64,0 to 15,319,15), Region: (0,0; contains chunks 0,0 to 31,31, blocks 0,-64,0 to 511,319,511)
+	Level time: 866 game time, 866 day time
+	Server brand: forge
+	Server type: Integrated singleplayer server
+Stacktrace:
+	at net.minecraft.client.multiplayer.ClientLevel.fillReportDetails(ClientLevel.java:407) ~[forge-1.18.2-40.2.21_mapped_official_1.18.2.jar%2380!/:?] {re:classloading,pl:runtimedistcleaner:A}
+	at net.minecraft.client.Minecraft.fillReport(Minecraft.java:2264) ~[forge-1.18.2-40.2.21_mapped_official_1.18.2.jar%2380!/:?] {re:classloading,pl:accesstransformer:B,pl:runtimedistcleaner:A,re:mixin,pl:accesstransformer:B,pl:runtimedistcleaner:A}
+	at net.minecraft.client.Minecraft.run(Minecraft.java:682) ~[forge-1.18.2-40.2.21_mapped_official_1.18.2.jar%2380!/:?] {re:classloading,pl:accesstransformer:B,pl:runtimedistcleaner:A,re:mixin,pl:accesstransformer:B,pl:runtimedistcleaner:A}
+	at net.minecraft.client.main.Main.main(Main.java:205) ~[forge-1.18.2-40.2.21_mapped_official_1.18.2.jar%2380!/:?] {re:classloading,pl:runtimedistcleaner:A}
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:?] {}
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[?:?] {}
+	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?] {}
+	at java.lang.reflect.Method.invoke(Method.java:569) ~[?:?] {}
+	at net.minecraftforge.fml.loading.targets.ForgeClientUserdevLaunchHandler.lambda$launchService$0(ForgeClientUserdevLaunchHandler.java:24) ~[fmlloader-1.18.2-40.2.21.jar%230!/:?] {}
+	at cpw.mods.modlauncher.LaunchServiceHandlerDecorator.launch(LaunchServiceHandlerDecorator.java:37) [modlauncher-9.1.3.jar%2317!/:?] {}
+	at cpw.mods.modlauncher.LaunchServiceHandler.launch(LaunchServiceHandler.java:53) [modlauncher-9.1.3.jar%2317!/:?] {}
+	at cpw.mods.modlauncher.LaunchServiceHandler.launch(LaunchServiceHandler.java:71) [modlauncher-9.1.3.jar%2317!/:?] {}
+	at cpw.mods.modlauncher.Launcher.run(Launcher.java:106) [modlauncher-9.1.3.jar%2317!/:?] {}
+	at cpw.mods.modlauncher.Launcher.main(Launcher.java:77) [modlauncher-9.1.3.jar%2317!/:?] {}
+	at cpw.mods.modlauncher.BootstrapLaunchConsumer.accept(BootstrapLaunchConsumer.java:26) [modlauncher-9.1.3.jar%2317!/:?] {}
+	at cpw.mods.modlauncher.BootstrapLaunchConsumer.accept(BootstrapLaunchConsumer.java:23) [modlauncher-9.1.3.jar%2317!/:?] {}
+	at cpw.mods.bootstraplauncher.BootstrapLauncher.main(BootstrapLauncher.java:149) [bootstraplauncher-1.0.0.jar:?] {}
+
+
+-- Last reload --
+Details:
+	Reload number: 1
+	Reload reason: initial
+	Finished: Yes
+	Packs: Default, Mod Resources
+
+-- System Details --
+Details:
+	Minecraft Version: 1.18.2
+	Minecraft Version ID: 1.18.2
+	Operating System: Windows 10 (amd64) version 10.0
+	Java Version: 17.0.15, Microsoft
+	Java VM Version: OpenJDK 64-Bit Server VM (mixed mode, sharing), Microsoft
+	Memory: 1096034328 bytes (1045 MiB) / 2776629248 bytes (2648 MiB) up to 8568963072 bytes (8172 MiB)
+	CPUs: 16
+	Processor Vendor: GenuineIntel
+	Processor Name: Intel(R) Core(TM) i7-10700 CPU @ 2.90GHz
+	Identifier: Intel64 Family 6 Model 165 Stepping 5
+	Microarchitecture: unknown
+	Frequency (GHz): 2.90
+	Number of physical packages: 1
+	Number of physical CPUs: 8
+	Number of logical CPUs: 16
+	Graphics card #0 name: NVIDIA GeForce GTX 1660 SUPER
+	Graphics card #0 vendor: NVIDIA (0x10de)
+	Graphics card #0 VRAM (MB): 4095.00
+	Graphics card #0 deviceId: 0x21c4
+	Graphics card #0 versionInfo: DriverVersion=31.0.15.5244
+	Memory slot #0 capacity (MB): 16384.00
+	Memory slot #0 clockSpeed (GHz): 2.93
+	Memory slot #0 type: DDR4
+	Memory slot #1 capacity (MB): 16384.00
+	Memory slot #1 clockSpeed (GHz): 2.93
+	Memory slot #1 type: DDR4
+	Virtual memory max (MB): 32679.52
+	Virtual memory used (MB): 21203.19
+	Swap memory total (MB): 0.00
+	Swap memory used (MB): 0.00
+	JVM Flags: 1 total; -XX:HeapDumpPath=MojangTricksIntelDriversForPerformance_javaw.exe_minecraft.exe.heapdump
+	Launched Version: MOD_DEV
+	Backend library: LWJGL version 3.2.2 SNAPSHOT
+	Backend API: NVIDIA GeForce GTX 1660 SUPER/PCIe/SSE2 GL version 3.2.0 NVIDIA 552.44, NVIDIA Corporation
+	Window size: 854x480
+	GL Caps: Using framebuffer using OpenGL 3.2
+	GL debug messages: 
+	Using VBOs: Yes
+	Is Modded: Definitely; Client brand changed to 'forge'; Server brand changed to 'forge'
+	Type: Integrated Server (map_client.txt)
+	Graphics mode: fancy
+	Resource Packs: 
+	Current Language: English (US)
+	CPU: 16x Intel(R) Core(TM) i7-10700 CPU @ 2.90GHz
+	Server Running: true
+	Player Count: 1 / 8; [ServerPlayer['Dev'/93, l='ServerLevel[New World]', x=-3.50, y=-60.00, z=7.50]]
+	Data Packs: vanilla, mod:kamenrider_build, mod:forge, mod:geckolib3 (incompatible), mod:playeranimator
+	World Generation: Stable
+	ModLauncher: 9.1.3+9.1.3+main.9b69c82a
+	ModLauncher launch target: forgeclientuserdev
+	ModLauncher naming: mcp
+	ModLauncher services: 
+		 mixin PLUGINSERVICE 
+		 eventbus PLUGINSERVICE 
+		 slf4jfixer PLUGINSERVICE 
+		 object_holder_definalize PLUGINSERVICE 
+		 runtime_enum_extender PLUGINSERVICE 
+		 capability_token_subclass PLUGINSERVICE 
+		 accesstransformer PLUGINSERVICE 
+		 runtimedistcleaner PLUGINSERVICE 
+		 mixin TRANSFORMATIONSERVICE 
+		 fml TRANSFORMATIONSERVICE 
+	FML Language Providers: 
+		minecraft@1.0
+		lowcodefml@null
+		javafml@null
+	Mod List: 
+		forge-1.18.2-40.2.21_mapped_official_1.18.2.jar   |Minecraft                     |minecraft                     |1.18.2              |DONE      |Manifest: a1:d4:5e:04:4f:d3:d6:e0:7b:37:97:cf:77:b0:de:ad:4a:47:ce:8c:96:49:5f:0a:cf:8c:ae:b2:6d:4b:8a:3f
+		main                                              |Build                         |kamenrider_build              |1.0                 |DONE      |Manifest: NOSIGNATURE
+		                                                  |Forge                         |forge                         |40.2.21             |DONE      |Manifest: NOSIGNATURE
+		geckolib-forge-1.18-3.0.57_mapped_official_1.18.2.|GeckoLib                      |geckolib3                     |3.0.57              |DONE      |Manifest: NOSIGNATURE
+		player-animation-lib-forge-1.0.2+1.18_mapped_offic|Player Animator               |playeranimator                |1.0.2+1.18          |DONE      |Manifest: NOSIGNATURE
+	Crash Report UUID: fc249879-706f-485a-aebe-1a422822769e
+	FML: 40.2
+	Forge: net.minecraftforge:40.2.21
