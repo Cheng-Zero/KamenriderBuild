@@ -1,7 +1,7 @@
 package cheng.build.model;
 
 import cheng.build.GeoModelPath;
-import cheng.build.bottle.EmptyBottle;
+import cheng.build.bottle.bottles.EmptyBottle;
 import net.minecraft.resources.ResourceLocation;
 import software.bernie.geckolib3.model.AnimatedGeoModel;
 

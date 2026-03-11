@@ -1,6 +1,6 @@
 package cheng.build.render;
 
-import cheng.build.bottle.Bottle;
+import cheng.build.bottle.bottles.Bottle;
 import net.minecraft.client.model.geom.EntityModelSet;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderDispatcher;
 import software.bernie.geckolib3.model.AnimatedGeoModel;

@@ -7,18 +7,16 @@ import static cheng.build.Build.MODID;
 public class GeoModelPath {
     public record model(ResourceLocation model, ResourceLocation animation, ResourceLocation texture) {}
 
-    public static final ResourceLocation RabbatBottleTexture = BottleGeoTexture("rabbat_bottle");
-    public static final ResourceLocation TankBottleTexture = BottleGeoTexture("tank_bottle");
-    public static final model empty_bottle = bottle("empty_bottle", "empty_bottle", "empty_bottle");
-    public static final model build_up = render("build_up_effect_entity", "build_up_effect_entity", "entity/build_up_effect_entity");
-    public static final model fullbottle_purifier = render("fullbottle_purifier", "fullbottle_purifier", "blocks/fullbottle_purifier");
+    public static final model
+            empty_bottle = bottle("empty_bottle"),
+            smash_bottle = bottle("smash_bottle","smash_bottle","smash_bottle"),
+            RabbatBottle = bottle("rabbat_bottle"),
+            TankBottle = bottle("tank_bottle"),
+            build_up = render("build_up_effect_entity", "build_up_effect_entity", "entity/build_up_effect_entity"),
+            fullbottle_purifier = render("fullbottle_purifier", "fullbottle_purifier", "blocks/fullbottle_purifier");
 
-    public static model OrganicMatter(ResourceLocation texture) {
-        return new model(BottleGeoModel("organic_matter_bottle"), BottleGeoAnimation("organic_matter_bottle"), texture);
-    }
-
-    public static model InorganicMatter(ResourceLocation texture) {
-        return new model(BottleGeoModel("inorganic_matter_bottle"), BottleGeoAnimation("inorganic_matter_bottle"), texture);
+    public static model bottle(String texture) {
+        return bottle("bottle", "bottle", texture);
     }
 
     private static model bottle(String model, String animation, String texture) {

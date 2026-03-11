@@ -2,7 +2,7 @@ package cheng.build.keybingds;
 
 import cheng.build.Build;
 import cheng.build.player_animation.PlayerAnimationUtil;
-import cheng.build.bottle.Bottle;
+import cheng.build.bottle.bottles.Bottle;
 import cheng.build.bottle.FullBottle;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.level.ServerPlayer;

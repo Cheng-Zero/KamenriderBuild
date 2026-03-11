@@ -18,6 +18,7 @@ public class ModModelsProvider extends ItemModelProvider {
     @Override
     protected void registerModels() {
         basicItem(InitItem.buildDriver.get());
+        itemModelBuilder(InitItem.smash_bottle.get());
         itemModelBuilder(InitItem.empty_bottle.get());
         itemModelBuilder(InitItem.rabbat.get());
         itemModelBuilder(InitItem.tank.get());

@@ -32,6 +32,7 @@ public class InitTab {
             l.add(InitItem.buildBaseArmor.get());
             l.add(InitItem.buildRabbatArmor.get());
             l.add(InitItem.buildTankArmor.get());
+            l.add(InitItem.smash_bottle.get());
             l.add(InitItem.empty_bottle.get());
             l.add(InitItem.rabbat.get());
             l.add(InitItem.tank.get());

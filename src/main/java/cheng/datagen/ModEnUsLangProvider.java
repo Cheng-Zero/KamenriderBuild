@@ -24,6 +24,7 @@ public class ModEnUsLangProvider extends LanguageProvider {
         add(InitItem.buildBaseArmor.get(),"Base Build Armor");
         add(InitItem.buildRabbatArmor.get(),"Build-Rabbat-Armor");
         add(InitItem.buildTankArmor.get(),"Build-Tank-Armor");
+        add(InitItem.smash_bottle.get(),"Smash Bottle");
         add(InitItem.empty_bottle.get(),"Empty Bottle");
         add(InitItem.rabbat.get(),"Rabbat FullBottle");
         add(InitItem.tank.get(),"Tank FullBottle");

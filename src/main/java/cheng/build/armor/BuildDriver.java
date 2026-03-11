@@ -4,13 +4,8 @@ import cheng.build.init.InitSound;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraftforge.common.capabilities.ICapabilityProvider;
-import net.minecraftforge.items.ItemStackHandler;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
@@ -24,8 +19,6 @@ import software.bernie.geckolib3.util.GeckoLibUtil;
 
 public class BuildDriver extends ARMOR {
     private final AnimationFactory factory = GeckoLibUtil.createFactory(this);
-    public static final String organicMatter = "organicMatter";
-    public static final String inorganicMatter = "inorganicMatter";
     public static final String trigger = "trigger";
     public static final ItemStack organicMatter_item = ItemStack.EMPTY;
     public static final ItemStack inorganicMatter_item = ItemStack.EMPTY;
@@ -101,7 +94,7 @@ public class BuildDriver extends ARMOR {
     }
 
 
-    public CompoundTag savePiece(ItemStack item) {
+    public static CompoundTag savePiece(ItemStack item) {
         CompoundTag tag = new CompoundTag();
         if (!item.isEmpty()) {
             item.save(tag);

@@ -1,6 +1,7 @@
 package cheng.build.bottle;
 
 import cheng.build.bottle.bottle_effect.BottleMobEffect;
+import cheng.build.bottle.bottles.Bottle;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -11,13 +12,13 @@ import software.bernie.geckolib3.util.GeckoLibUtil;
 
 import java.util.function.Supplier;
 
-public abstract class FullBottle extends Bottle{
+public abstract class FullBottle extends Bottle {
     private final AnimationFactory factory = GeckoLibUtil.createFactory(this);
     private final Supplier<BottleMobEffect> effect;
     private final Supplier<SoundEvent> soundEvent;
 
-    public FullBottle(Properties pProperties, Supplier<BottleMobEffect> effect,Supplier<SoundEvent> soundEvent) {
-        super(pProperties);
+    public FullBottle(Properties pProperties, BottleType fullBottleType , Supplier<BottleMobEffect> effect, Supplier<SoundEvent> soundEvent) {
+        super(pProperties,fullBottleType);
         this.effect = effect;
         this.soundEvent = soundEvent;
     }

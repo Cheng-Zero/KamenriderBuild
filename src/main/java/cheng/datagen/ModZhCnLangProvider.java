@@ -23,6 +23,7 @@ public class ModZhCnLangProvider extends BaseUtf8LanguageProvider {
         add(InitItem.buildDriver.get(),"Build驱动器");
         add(InitItem.buildBaseArmor.get(),"Build系统装甲");
         add(InitItem.buildRabbatArmor.get(),"Build 有机物装甲-Rabbat");
+        add(InitItem.smash_bottle.get(),"猛击者满装瓶");
         add(InitItem.empty_bottle.get(),"空白满装瓶");
         add(InitItem.rabbat.get(),"满装瓶-兔子");
         add(InitItem.tank.get(),"满装瓶-坦克");

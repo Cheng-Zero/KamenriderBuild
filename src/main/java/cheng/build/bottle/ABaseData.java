@@ -9,8 +9,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 
-import java.util.Objects;
-
 public class ABaseData {
     protected Player player;
     protected ItemStack mainStack, offStack,leggingsStack;
@@ -20,8 +18,8 @@ public class ABaseData {
 
     // 更新数据
     public void update(Player player) {
-        this.player = player;
         if (player != null) {
+            this.player = player;
             this.mainStack = player.getItemBySlot(EquipmentSlot.MAINHAND);
             this.offStack = player.getItemBySlot(EquipmentSlot.OFFHAND);
             this.leggingsStack = player.getItemBySlot(EquipmentSlot.LEGS);
@@ -29,7 +27,7 @@ public class ABaseData {
             this.off = player.getItemBySlot(EquipmentSlot.OFFHAND).getItem();
             this.leggings = player.getItemBySlot(EquipmentSlot.LEGS).getItem();
             this.driver = InitItem.buildDriver.get();
-            this.driverTag = Objects.requireNonNull(leggingsStack.getTag());
+            this.driverTag = leggingsStack.getOrCreateTag();
             this.equieDriver = leggings.equals(driver);
         }else{
             this.mainStack = ItemStack.EMPTY;

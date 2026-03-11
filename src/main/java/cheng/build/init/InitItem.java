@@ -1,10 +1,11 @@
 package cheng.build.init;
 
 import cheng.build.armor.*;
-import cheng.build.block.DwaDisplayItem;
-import cheng.build.bottle.EmptyBottle;
-import cheng.build.bottle.bottle_item.Rabbat;
-import cheng.build.bottle.bottle_item.Tank;
+import cheng.build.block.FullbottlePurifierBlockItem;
+import cheng.build.bottle.bottles.EmptyBottle;
+import cheng.build.bottle.bottles.Rabbat;
+import cheng.build.bottle.bottles.SmashBottle;
+import cheng.build.bottle.bottles.Tank;
 import cheng.build.render.BuildARMORRenderer;
 import cheng.build.render.BuildDriverRenderer;
 import net.minecraft.resources.ResourceLocation;
@@ -22,10 +23,19 @@ import static cheng.build.Build.MODID;
 public class InitItem {
     public static final DeferredRegister<Item> register = DeferredRegister.create(ForgeRegistries.ITEMS, MODID);
     public static final RegistryObject<BuildDriver> buildDriver = registry("build_driver", BuildDriver::new);
-    public static final RegistryObject<DwaDisplayItem> fullbottle_purifier = registry("fullbottle_purifier", ()-> new DwaDisplayItem(InitBlock.fullbottle_purifier.get(),new Item.Properties()));
-    public static final RegistryObject<EmptyBottle> empty_bottle = bottle("empty",EmptyBottle::new);
-    public static final RegistryObject<Rabbat> rabbat = bottle("rabbat", Rabbat::new);
-    public static final RegistryObject<Tank> tank = bottle("tank", Tank::new);
+    public static final RegistryObject<FullbottlePurifierBlockItem> fullbottle_purifier = registry("fullbottle_purifier", ()-> new FullbottlePurifierBlockItem(InitBlock.fullbottle_purifier.get(),new Item.Properties()));
+
+    public static final RegistryObject<EmptyBottle>
+            empty_bottle = bottle("empty",EmptyBottle::new);
+
+    public static final RegistryObject<SmashBottle>
+            smash_bottle = bottle("smash",SmashBottle::new);
+
+    public static final RegistryObject<Rabbat>
+            rabbat = bottle("rabbat", Rabbat::new);
+
+    public static final RegistryObject<Tank>
+            tank = bottle("tank", Tank::new);
 
     public static final RegistryObject<BuildArmor>
             buildBaseArmor = registry("base_armor", BuildBaseArmor::new),
