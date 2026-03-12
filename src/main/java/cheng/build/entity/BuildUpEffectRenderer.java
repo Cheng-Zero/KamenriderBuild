@@ -48,10 +48,12 @@ public class BuildUpEffectRenderer extends GeoEntityRenderer<BuildUpEffectEntity
 		poseStack.pushPose();
 		poseStack.scale(1.0f, 1.0f, 1.0f);
 		poseStack.translate(0.0d, 0.0d, 0.0d);
-		super.render(this.getGeoModelProvider().getModel(GeoModelPath.build_up.model()),
-				animatable, partialTick, cameo, poseStack, bufferSource, bufferSource.getBuffer(cameo), packedLight,
-				OverlayTexture.NO_OVERLAY, 1, 1, 1, alpha);
-		poseStack.popPose();
+        if (bufferSource != null) {
+            super.render(this.getGeoModelProvider().getModel(GeoModelPath.build_up.model()),
+                    animatable, partialTick, cameo, poseStack, bufferSource, bufferSource.getBuffer(cameo), packedLight,
+                    OverlayTexture.NO_OVERLAY, red, green, blue, alpha);
+        }
+        poseStack.popPose();
 	}
 
 	private static class BuildUpEffectEntityModel extends AnimatedTickingGeoModel<BuildUpEffectEntity> {
@@ -68,16 +70,6 @@ public class BuildUpEffectRenderer extends GeoEntityRenderer<BuildUpEffectEntity
 		@Override
 		public ResourceLocation getAnimationFileLocation(BuildUpEffectEntity animatable) {
 			return GeoModelPath.build_up.animation();
-		}
-	}
-	private static class L extends GeoLayerRenderer<BuildUpEffectEntity> {
-		public L(IGeoRenderer<BuildUpEffectEntity> entityRendererIn) {
-			super(entityRendererIn);
-		}
-
-		@Override
-		public void render(PoseStack matrixStackIn, MultiBufferSource bufferIn, int packedLightIn, BuildUpEffectEntity entityLivingBaseIn, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
-
 		}
 	}
 }

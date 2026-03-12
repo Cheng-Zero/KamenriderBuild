@@ -17,6 +17,9 @@ import net.minecraftforge.network.simple.SimpleChannel;
 
 import java.util.Optional;
 
+/**
+ * @author 千云亦（YunYi-Qian）
+ */
 @Mod.EventBusSubscriber(modid = Build.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public final class NetworkHandler {
     private static final String PROTOCOL = "1";

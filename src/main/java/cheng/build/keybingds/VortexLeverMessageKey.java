@@ -45,9 +45,9 @@ public class VortexLeverMessageKey {
             VortexLever vortexLever = new VortexLever();
             vortexLever.update(entity);
             if (type == 0)
-                vortexLever.on(world);
+                vortexLever.on();
             if (type==1)
-                vortexLever.off(world);
+                vortexLever.off();
         }
     }
 }

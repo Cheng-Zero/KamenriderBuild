@@ -28,5 +28,8 @@ public class ModEnUsLangProvider extends LanguageProvider {
         add(InitItem.empty_bottle.get(),"Empty Bottle");
         add(InitItem.rabbat.get(),"Rabbat FullBottle");
         add(InitItem.tank.get(),"Tank FullBottle");
+        add(InitItem.fullbottle_purifier.get(),"FullBottlePurifier");
+        add("block.kamenrider_build.fullbottle_purifier.start","Purification started");
+        add("block.kamenrider_build.fullbottle_purifier.stop","Purification stopped");
     }
 }

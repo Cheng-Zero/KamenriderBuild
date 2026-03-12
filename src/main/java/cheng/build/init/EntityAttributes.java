@@ -8,4 +8,7 @@ public class EntityAttributes {
     public static final AttributeSupplier build_up = PathfinderMob.createMobAttributes()
             .add(Attributes.MAX_HEALTH, 16.0D)
             .build();
+    public static final AttributeSupplier effect_entity = PathfinderMob.createMobAttributes()
+            .add(Attributes.MAX_HEALTH, 16.0D)
+            .build();
 }

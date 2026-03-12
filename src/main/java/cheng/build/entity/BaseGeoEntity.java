@@ -9,11 +9,9 @@ import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.IAnimationTickable;
-import software.bernie.geckolib3.core.manager.AnimationFactory;
-import software.bernie.geckolib3.util.GeckoLibUtil;
 
-public abstract class AEntity extends TamableAnimal implements IAnimatable, IAnimationTickable {
-    protected AEntity(EntityType<? extends TamableAnimal> pEntityType, Level pLevel) {
+public abstract class BaseGeoEntity extends TamableAnimal implements IAnimatable, IAnimationTickable {
+    protected BaseGeoEntity(EntityType<? extends TamableAnimal> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
     }
 

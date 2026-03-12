@@ -5,6 +5,9 @@ import net.minecraftforge.network.NetworkEvent;
 
 import java.util.function.Supplier;
 
+/**
+ * @author 千云亦（YunYi-Qian）
+ */
 public interface IMessage {
     /**
      * 编码消息到字节缓冲区

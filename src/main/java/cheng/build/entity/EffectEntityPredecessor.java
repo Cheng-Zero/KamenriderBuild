@@ -1,9 +1,5 @@
 package cheng.build.entity;
 
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.syncher.EntityDataAccessor;
-import net.minecraft.network.syncher.EntityDataSerializers;
-import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.damagesource.DamageSource;
@@ -12,23 +8,14 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.GameType;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
-import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 import org.jetbrains.annotations.Nullable;
-import software.bernie.geckolib3.core.IAnimatable;
-import software.bernie.geckolib3.core.IAnimationTickable;
 
-import java.util.Comparator;
 import java.util.List;
-import java.util.Objects;
 
-public abstract class HHHHNiceEntity extends AEntity {
-    public static final EntityDataAccessor<String> Animation = SynchedEntityData.defineId(HHHHNiceEntity.class, EntityDataSerializers.STRING); ;
-    protected HHHHNiceEntity(EntityType<? extends TamableAnimal> pEntityType, Level pLevel) {
+public abstract class EffectEntityPredecessor extends BaseGeoEntity {
+    protected EffectEntityPredecessor(EntityType<? extends TamableAnimal> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
-        this.setAnimation("idle");
     }
 
     @Override
@@ -121,31 +108,10 @@ public abstract class HHHHNiceEntity extends AEntity {
     }
 
     @Override
-    public void addAdditionalSaveData(CompoundTag pCompound) {
-        super.addAdditionalSaveData(pCompound);
-        pCompound.putString("Animation",this.getAnimation());
-    }
-    public void readAdditionalSaveData(CompoundTag pCompound) {
-        super.readAdditionalSaveData(pCompound);
-        if (pCompound.contains("Animation"))
-            this.setAnimation(pCompound.getString("Animation"));
-    }
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        this.entityData.define(Animation, "idle");
-    }
-    public void setAnimation(String name){
-        this.entityData.set(Animation,name);
-    }
-    public String getAnimation(){
-        return this.entityData.get(Animation);
-    }
-
-    @Override
     public @Nullable AgeableMob getBreedOffspring(ServerLevel pLevel, AgeableMob pOtherParent) {
         return null;
     }
-    public static <T extends HHHHNiceEntity> void addEntity(T entity,Player player){
+    public static <T extends EffectEntityPredecessor> void addEntity(T entity, Player player){
         if (entity == null || player == null) return;
         LevelAccessor world = player.level;
         if (world instanceof ServerLevel serverLevel) {
@@ -160,15 +126,5 @@ public abstract class HHHHNiceEntity extends AEntity {
             entity.setNoGravity(true);
             serverLevel.addFreshEntity(entity);
         }
-    }
-    public static void setAnimation(LevelAccessor world,Player player,String animationName){
-        for (HHHHNiceEntity entityiterator : getEntity(world, player)) {
-            if (entityiterator != null && entityiterator.getOwner() == player)
-                entityiterator.getEntityData().set(HHHHNiceEntity.Animation,animationName);
-        }
-    }
-    public static List<HHHHNiceEntity> getEntity(LevelAccessor world,Player player){
-        final Vec3 _center = new Vec3(player.getX(), player.getY(), player.getZ());
-        return world.getEntitiesOfClass(HHHHNiceEntity.class, new AABB(_center, _center).inflate(4 / 2d), e -> true).stream().sorted(Comparator.comparingDouble(_entcnd -> _entcnd.distanceToSqr(_center))).toList();
     }
 }

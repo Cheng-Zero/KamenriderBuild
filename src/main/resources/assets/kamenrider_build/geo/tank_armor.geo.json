@@ -12,7 +12,12 @@
 			},
 			"bones": [
 				{
+					"name": "inorganic",
+					"pivot": [0, 0, 0]
+				},
+				{
 					"name": "tank",
+					"parent": "inorganic",
 					"pivot": [0, 0, 0]
 				},
 				{

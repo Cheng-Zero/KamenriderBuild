@@ -9,6 +9,7 @@ import cheng.build.init.InitModBlockEntities;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -125,6 +126,8 @@ public class FullbottlePurifierBlockEntity extends BlockEntity implements IAnima
                         if (!currentStack.isEmpty() && currentStack.getItem() instanceof SmashBottle) {
                             this.Processing = true;
                             this.Progress = 0;
+                            player.displayClientMessage(new TranslatableComponent("block.kamenrider_build.fullbottle_purifier.start"),true);
+                            Build.LOGGER.info("玩家:{}UUID:{}启动坐标{}的满瓶净化器",player.getName().getString(),player.getUUID(),this.worldPosition);
                         }
                     }
                     else {
@@ -142,6 +145,10 @@ public class FullbottlePurifierBlockEntity extends BlockEntity implements IAnima
                         setAnimation("open");
                         this.Processing = false;
                         this.Progress = 0;
+                        if (currentStack.getItem() instanceof SmashBottle) {
+                            player.displayClientMessage(new TranslatableComponent("block.kamenrider_build.fullbottle_purifier.stop"), true);
+                            Build.LOGGER.info("玩家{}UUID:{}停止坐标{}的满瓶净化器", player.getName().getString(), player.getUUID(), this.worldPosition);
+                        }
                     }
                     break;
                 }

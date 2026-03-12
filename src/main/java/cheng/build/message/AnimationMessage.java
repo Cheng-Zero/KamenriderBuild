@@ -12,6 +12,9 @@ import net.minecraftforge.network.NetworkEvent;
 
 import java.util.UUID;
 
+/**
+ * @author 千云亦（YunYi-Qian）
+ */
 public class AnimationMessage implements IMessage {
     private static final int MAX_ANIMATION_NAME_LENGTH = 256;
 

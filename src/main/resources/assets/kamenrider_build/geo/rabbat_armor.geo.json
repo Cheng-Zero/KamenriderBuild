@@ -12,7 +12,12 @@
 			},
 			"bones": [
 				{
+					"name": "organic",
+					"pivot": [0, 0, 0]
+				},
+				{
 					"name": "rabbat",
+					"parent": "organic",
 					"pivot": [0, 0, 0]
 				},
 				{

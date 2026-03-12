@@ -1,5 +1,6 @@
 package cheng.build.init;
 
+import cheng.build.GeoModelPath;
 import cheng.build.armor.*;
 import cheng.build.block.FullbottlePurifierBlockItem;
 import cheng.build.bottle.bottles.EmptyBottle;
@@ -47,34 +48,18 @@ public class InitItem {
         catch (Exception e) {throw new RuntimeException(e);}
     }
 
-    public record Model(ResourceLocation geo,ResourceLocation anima,ResourceLocation texture) {}
-    public static Model
-            BuildDriver = new Model(GeoModel("build_driver"), GeoAnimation("build_driver"), GeoTexture("driver/build_driver")),
-            BuildBase = new Model(GeoModel("base_armor"),GeoAnimation("base_armor"),GeoTexture("armor/base_armor")),
-            BuildRabbatArmor = new Model(GeoModel("rabbat_armor"),GeoAnimation("rabbat_armor"),GeoTexture("armor/rabbat_armor")),
-            BuildTankArmor = new Model(GeoModel("tank_armor"),GeoAnimation("tank_armor"),GeoTexture("armor/tank_armor"));
-
     public static Map<Class<? extends ARMOR>, Supplier<GeoArmorRenderer>> renderer_FOR_DATAGEN = Map.of(
-            BuildDriver.class, ()->d(BuildDriver),
-            BuildBaseArmor.class, ()->a(BuildBase),
-            BuildRabbatArmor.class, ()->a(BuildRabbatArmor),
-            BuildTankArmor.class, ()->a(BuildTankArmor)
+            BuildDriver.class, ()->driver(GeoModelPath.BuildDriver),
+            BuildBaseArmor.class, ()->armor(GeoModelPath.BuildBase),
+            BuildRabbatArmor.class, ()->armor(GeoModelPath.BuildRabbatArmor),
+            BuildTankArmor.class, ()->armor(GeoModelPath.BuildTankArmor)
     );
 
-    private static BuildARMORRenderer a(Model model){
-        return new BuildARMORRenderer(model.geo,model.texture,model.anima);
+    private static BuildARMORRenderer armor(GeoModelPath.model model){
+        return new BuildARMORRenderer(model.model(),model.texture(),model.animation());
     }
-    private static BuildDriverRenderer d(Model model){
-        return new BuildDriverRenderer(model.geo,model.texture,model.anima);
-    }
-    private static ResourceLocation GeoModel(String path){
-        return new ResourceLocation(MODID,"geo/"+path+".geo.json");
-    }
-    private static ResourceLocation GeoAnimation(String path){
-        return new ResourceLocation(MODID,"animations/"+path+".animation.json");
-    }
-    private static ResourceLocation GeoTexture(String path){
-        return new ResourceLocation(MODID,"textures/"+path+".png");
+    private static BuildDriverRenderer driver(GeoModelPath.model model){
+        return new BuildDriverRenderer(model.model(),model.texture(),model.animation());
     }
     private static <T extends Item> RegistryObject<T> bottle(String name,Supplier<T> supplier){
         return registry(name+"_bottle",supplier);

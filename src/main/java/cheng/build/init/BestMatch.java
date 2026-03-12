@@ -1,5 +1,6 @@
 package cheng.build.init;
 
+import cheng.build.Build;
 import cheng.build.SoundUtil;
 import cheng.build.armor.BuildDriver;
 import net.minecraft.nbt.CompoundTag;
@@ -12,21 +13,34 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 
-import java.util.Objects;
+import java.util.*;
 import java.util.function.Supplier;
 
-public class BestMatch {
-    public enum bestMatch {
-        NULL(Items.AIR,Items.AIR, InitSound.EMPTY),
-        RABBAT_TANK(InitItem.rabbat.get(), InitItem.tank.get(), InitSound.best_match);
-        private final Item organicMatter,inorganicMatter;
-        private final Supplier<SoundEvent> sound;
+public record BestMatch(Item organicMatter, Item inorganicMatter, Supplier<SoundEvent> sound) {
+    private static final Map<Item,BestMatch> BestMatch_Organic = new HashMap<>();
+    private static final Map<Item,BestMatch> BestMatch_Inorganic = new HashMap<>();
+    private static final Map<Supplier<SoundEvent>,BestMatch> BestMatch_Sound = new HashMap<>();
+    private static final List<BestMatch> bestMatch = new ArrayList<>();
+    static {
+        registryBestMatch(Items.AIR,Items.AIR, InitSound.EMPTY);
+        registryBestMatch(InitItem.rabbat.get(), InitItem.tank.get(), InitSound.best_match);
+    }
 
-        bestMatch(Item organicMatter, Item inorganicMatter, Supplier<SoundEvent> sound) {
-            this.organicMatter = organicMatter;
-            this.inorganicMatter = inorganicMatter;
-            this.sound = sound;
+    public static void registryBestMatch(Item organicMatter, Item inorganicMatter,Supplier<SoundEvent> sound){
+        if (BestMatch_Organic.containsKey(organicMatter) || BestMatch_Inorganic.containsKey(inorganicMatter)) {
+            // 可以添加日志警告
+            Build.LOGGER.debug("出现重复注册");
+            return;
         }
+        BestMatch b = new BestMatch(organicMatter, inorganicMatter, sound);
+        BestMatch_Organic.put(organicMatter,b);
+        BestMatch_Inorganic.put(inorganicMatter,b);
+        BestMatch_Sound.put(sound,b);
+        bestMatch.add(b);
+    }
+
+    public static List<BestMatch> getAllBestMatch(){
+        return bestMatch;
     }
 
     public static boolean isBestMatch(Player player) {
@@ -51,29 +65,30 @@ public class BestMatch {
     }
 
     // 根据物品判断当前是什么BestMatch
-    public static bestMatch getCurrentMatch(ItemStack legItem) {
-        if (legItem.isEmpty() || legItem.getTag() == null) return bestMatch.NULL;
+    public static BestMatch getCurrentMatch(ItemStack legItem) {
+        if (legItem.isEmpty() || legItem.getTag() == null) return bestMatch.get(0);
 
         CompoundTag tag = legItem.getTag();
 
         ItemStack
-                organicMatter_item = BuildDriver.loadItem(tag, "organicMatter_item"),
-                inorganicMatter_item = BuildDriver.loadItem(tag, "inorganicMatter_item");
+                organicMatter_item = BuildDriver.loadItem(tag, BuildDriver.organicMatter_item_Name),
+                inorganicMatter_item = BuildDriver.loadItem(tag, BuildDriver.inorganicMatter_item_Name);
         Item
                 organic = organicMatter_item.getItem(),
                 inorganic = inorganicMatter_item.getItem();
 
-        for (bestMatch batch : bestMatch.values()) {
-            if (batch == bestMatch.NULL)
+        for (BestMatch batch : getAllBestMatch()) {
+            if (batch == bestMatch.get(0))
                 continue;
             if (batch.organicMatter.equals(organic) && batch.inorganicMatter.equals(inorganic)) {
                 return batch;
             }
         }
-        return bestMatch.NULL;
+        return bestMatch.get(0);
     }
 
     public static void playSound(Player player) {
-        SoundUtil.playSound(player.level, (ServerPlayer) player, getCurrentMatch(player.getItemBySlot(EquipmentSlot.LEGS)).sound.get(), SoundSource.PLAYERS);
+        ItemStack itemBySlot = player.getItemBySlot(EquipmentSlot.LEGS);
+        SoundUtil.playSound(player.level, (ServerPlayer) player, getCurrentMatch(itemBySlot).sound.get(), SoundSource.PLAYERS);
     }
 }

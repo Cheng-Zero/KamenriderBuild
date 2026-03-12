@@ -8,6 +8,7 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
 
 public class ABaseData {
     protected Player player;
@@ -27,7 +28,7 @@ public class ABaseData {
             this.off = player.getItemBySlot(EquipmentSlot.OFFHAND).getItem();
             this.leggings = player.getItemBySlot(EquipmentSlot.LEGS).getItem();
             this.driver = InitItem.buildDriver.get();
-            this.driverTag = leggingsStack.getOrCreateTag();
+            updateTag();
             this.equieDriver = leggings.equals(driver);
         }else{
             this.mainStack = ItemStack.EMPTY;
@@ -37,10 +38,10 @@ public class ABaseData {
             this.off = null;
             this.leggings = null;
             this.driver = null;
-            this.driverTag = new CompoundTag();
             this.equieDriver = false;
         }
     }
+
     protected enum ClientMessageEnum {
         Organic("key.kamenrider_build.clear_driver.organic_title"),
         Inorganic("key.kamenrider_build.clear_driver.inorganic_title"),
@@ -49,6 +50,11 @@ public class ABaseData {
         ClientMessageEnum(String string){
             this.string = string;
         }
+    }
+    private void updateTag(){
+        this.driverTag = leggingsStack.getTag();
+        if (driverTag == null)
+            this.driverTag = leggingsStack.getOrCreateTag();
     }
     protected void ClientMessage(ClientMessageEnum key){
         this.ClientMessage(new TranslatableComponent(key.string),true);
