@@ -1,9 +1,9 @@
 package cheng.build.init;
 
-import cheng.build.bottle.bottle_effect.BottleMobEffect;
+import cheng.build.item.bottle.bottle_effect.BottleMobEffect;
 import cheng.build.Build;
-import cheng.build.bottle.bottle_effect.RabbatMobEffect;
-import cheng.build.bottle.bottle_effect.TankMobEffect;
+import cheng.build.item.bottle.bottle_effect.RabbatMobEffect;
+import cheng.build.item.bottle.bottle_effect.TankMobEffect;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraftforge.registries.DeferredRegister;

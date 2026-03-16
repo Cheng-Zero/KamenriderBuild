@@ -168,7 +168,7 @@ public class ItemHelper {
     }
 
     /**
-     * 清除 玩家实例 背包中 物品实例 自定义数量 个
+     * 清除 玩家实例 背包中 物品实例 {@code count} 个
      *
      * @param player 玩家实例
      * @param item   物品实例
@@ -266,10 +266,6 @@ public class ItemHelper {
 
     // =====================兼容性使用============================
 
-    public static ItemStack modItem(String modId, String itemId) {
-        return new ItemStack(ForgeRegistries.ITEMS.getValue(new ResourceLocation(modId + ":" + itemId)));
-    }
-
     // =================================================
 
     /**
@@ -307,50 +303,5 @@ public class ItemHelper {
      */
     public static boolean containsItem(@NotNull Player player, Item item) {
         return player.getInventory().contains(new ItemStack(item));
-    }
-
-    /**
-     * 检测是否是目标盔甲(头->身->腿->鞋)
-     *
-     * @param entity 实体实例
-     * @param items  物品实例
-     * @return 是否穿戴目标物品，返回值true或false
-     */
-    public static boolean isWearingAny(Entity entity, Item[] items) {
-        if (items != null) {
-            if (entity instanceof Player player) {
-                ItemStack helmet = player.getItemBySlot(EquipmentSlot.HEAD);
-                ItemStack chest = player.getItemBySlot(EquipmentSlot.CHEST);
-                ItemStack legs = player.getItemBySlot(EquipmentSlot.LEGS);
-                ItemStack boots = player.getItemBySlot(EquipmentSlot.FEET);
-
-                // 提取物品，安全处理null
-                Item helmetItem = helmet != null ? helmet.getItem() : null;
-                Item chestItem = chest != null ? chest.getItem() : null;
-                Item legsItem = legs != null ? legs.getItem() : null;
-                Item bootsItem = boots != null ? boots.getItem() : null;
-
-                for (Item item : items) {
-                    if (helmetItem == item || chestItem == item || legsItem == item || bootsItem == item)
-                        return true;
-                }
-            } else if (entity instanceof LivingEntity living) {
-                ItemStack helmet = living.getItemBySlot(EquipmentSlot.HEAD);
-                ItemStack chest = living.getItemBySlot(EquipmentSlot.CHEST);
-                ItemStack legs = living.getItemBySlot(EquipmentSlot.LEGS);
-                ItemStack boots = living.getItemBySlot(EquipmentSlot.FEET);
-
-                // 提取物品，安全处理null
-                Item helmetItem = helmet != null ? helmet.getItem() : null;
-                Item chestItem = chest != null ? chest.getItem() : null;
-                Item legsItem = legs != null ? legs.getItem() : null;
-                Item bootsItem = boots != null ? boots.getItem() : null;
-
-                for (Item item : items) {
-                    return helmetItem == item && chestItem == item && legsItem == item && bootsItem == item;
-                }
-            }
-        }
-        return false;
     }
 }

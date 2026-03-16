@@ -1,11 +1,10 @@
 package cheng.build.init;
 
 import cheng.build.Build;
-import cheng.build.block.FullbottlePurifierBlockEntity;
-import cheng.build.block.FullbottlePurifierBlockRenderer;
+import cheng.build.block.entity.FullbottlePurifierBlockEntity;
+import cheng.build.block.renderer.FullbottlePurifierBlockRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;

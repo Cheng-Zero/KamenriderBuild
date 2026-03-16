@@ -1,5 +1,7 @@
 package cheng.build.block;
 
+import cheng.build.block.renderer.FullbottlePurifierBlockItemRenderer;
+import cheng.build.init.InitBlock;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.level.block.Block;
@@ -17,8 +19,8 @@ import java.util.function.Consumer;
 public class FullbottlePurifierBlockItem extends BlockItem implements IAnimatable {
 	public AnimationFactory factory = GeckoLibUtil.createFactory(this);
 
-	public FullbottlePurifierBlockItem(Block block, Properties settings) {
-		super(block, settings);
+	public FullbottlePurifierBlockItem() {
+		super(InitBlock.fullbottle_purifier.get(), new Properties());
 	}
 
 	private <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event) {

@@ -1,4 +1,12 @@
 {
+  "build_driver_equie": {
+    "sounds": [
+      {
+        "name": "kamenrider_build:build_driver_equie",
+        "stream": true
+      }
+    ]
+  },
   "tank": {
     "sounds": [
       {
@@ -19,14 +27,6 @@
     "sounds": [
       {
         "name": "kamenrider_build:best_match",
-        "stream": true
-      }
-    ]
-  },
-  "build_driver_equie": {
-    "sounds": [
-      {
-        "name": "kamenrider_build:build_driver_equie",
         "stream": true
       }
     ]

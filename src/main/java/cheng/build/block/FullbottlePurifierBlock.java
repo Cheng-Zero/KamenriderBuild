@@ -1,6 +1,6 @@
 package cheng.build.block;
 
-import cheng.build.bottle.bottles.SmashBottle;
+import cheng.build.block.entity.FullbottlePurifierBlockEntity;
 import cheng.build.init.InitModBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -27,7 +27,7 @@ public class FullbottlePurifierBlock extends BaseEntityBlock implements EntityBl
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
 
     public FullbottlePurifierBlock() {
-        super(BlockBehaviour.Properties.of(Material.STONE).sound(SoundType.STONE).strength(1f, 10f));
+        super(BlockBehaviour.Properties.of(Material.STONE).sound(SoundType.STONE).strength(1f, 10f).noOcclusion());
         this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH));
     }
     @Override

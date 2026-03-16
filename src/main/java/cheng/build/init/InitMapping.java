@@ -3,7 +3,7 @@ package cheng.build.init;
 import cheng.build.Build;
 import cheng.build.keybingds.ClearDriverKeybingd;
 import cheng.build.keybingds.ShakeBottleMessageKey;
-import cheng.build.keybingds.VortexLeverMessageKey;
+import cheng.build.keybingds.RotaryDriverMessageKey;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.api.distmarker.Dist;
@@ -21,13 +21,13 @@ import org.lwjgl.glfw.GLFW;
 public class InitMapping {
     public static final KeyMapping
             ShakeBottle = new KeyMapping("key.kamenrider_build.shake_bottle", GLFW.GLFW_KEY_C,"key.categories.kamenrider_build"),
-            VortexLever = new KeyMapping("key.kamenrider_build.vortex_lever", GLFW.GLFW_KEY_R,"key.categories.kamenrider_build"),
+            RotaryDriver = new KeyMapping("key.kamenrider_build.rotary_driver", GLFW.GLFW_KEY_R,"key.categories.kamenrider_build"),
             ClearDriver = new KeyMapping("key.kamenrider_build.clear_driver", GLFW.GLFW_KEY_X,"key.categories.kamenrider_build");
 
     @SubscribeEvent
     public static void registerKeyBindings(FMLClientSetupEvent event) {
         ClientRegistry.registerKeyBinding(ShakeBottle);
-        ClientRegistry.registerKeyBinding(VortexLever);
+        ClientRegistry.registerKeyBinding(RotaryDriver);
         ClientRegistry.registerKeyBinding(ClearDriver);
     }
 
@@ -44,11 +44,11 @@ public class InitMapping {
 
         }
         private static void VortexLever(InputEvent.KeyInputEvent event) {
-            if (event.getKey() != VortexLever.getKey().getValue()) return;
+            if (event.getKey() != RotaryDriver.getKey().getValue()) return;
             if (event.getAction() == GLFW.GLFW_PRESS) {
-                Build.PACKET_HANDLER.sendToServer(new VortexLeverMessageKey(0, 0));
+                Build.PACKET_HANDLER.sendToServer(new RotaryDriverMessageKey(0, 0));
             } else if (event.getAction() == GLFW.GLFW_RELEASE) {
-                Build.PACKET_HANDLER.sendToServer(new VortexLeverMessageKey(1, 0));
+                Build.PACKET_HANDLER.sendToServer(new RotaryDriverMessageKey(1, 0));
             }
         }
         private static void ShakeBottle(InputEvent.KeyInputEvent event) {

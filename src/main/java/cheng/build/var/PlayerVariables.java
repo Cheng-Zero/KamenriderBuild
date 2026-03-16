@@ -8,9 +8,9 @@ import net.minecraft.world.entity.Entity;
 import net.minecraftforge.network.PacketDistributor;
 
 /**
- * 这添加后需到
+ * 这添加后需到{@link cheng.build.var.PlayerVariablesSyncMessage}添加
  */
-public class PlayerVariables {
+public class PlayerVariables extends PlayerVariablesB{
 	public byte hazard_level = 1;
 
 	public void syncPlayerVariables(Entity entity) {

@@ -32,10 +32,14 @@ public class InitTab {
             l.add(InitItem.buildBaseArmor.get());
             l.add(InitItem.buildRabbatArmor.get());
             l.add(InitItem.buildTankArmor.get());
+            l.add(InitItem.buildGorillaArmor.get());
+            l.add(InitItem.buildDiamondArmor.get());
             l.add(InitItem.smash_bottle.get());
             l.add(InitItem.empty_bottle.get());
             l.add(InitItem.rabbat.get());
             l.add(InitItem.tank.get());
+            l.add(InitItem.gorilla.get());
+            l.add(InitItem.diamond.get());
             for (Item item : l)
                 pItems.add(new ItemStack(item));
         }

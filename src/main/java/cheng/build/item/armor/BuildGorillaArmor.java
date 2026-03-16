@@ -1,0 +1,46 @@
+package cheng.build.item.armor;
+
+import cheng.build.item.armor.base.OrganicMatterArmor;
+import cheng.build.init.InitSound;
+import com.google.common.collect.Multimap;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.entity.ai.attributes.Attribute;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.item.crafting.Ingredient;
+import software.bernie.geckolib3.core.manager.AnimationData;
+import software.bernie.geckolib3.core.manager.AnimationFactory;
+import software.bernie.geckolib3.util.GeckoLibUtil;
+
+import java.nio.charset.StandardCharsets;
+import java.util.List;
+import java.util.UUID;
+
+public class BuildGorillaArmor extends OrganicMatterArmor {
+    private final AnimationFactory factory = GeckoLibUtil.createFactory(this);
+    public BuildGorillaArmor() {
+        super(new easyArmor(0, 10,0,
+                InitSound.build_driver_equie, Ingredient.EMPTY,"",
+                5,0.2f), new Properties());
+    }
+
+    @Override
+    protected Multimap<Attribute, AttributeModifier> AttributeModifiermap() {
+        Multimap<Attribute, AttributeModifier> multimap = super.AttributeModifiermap();
+        multimap.put(Attributes.ATTACK_DAMAGE,attributeModifier("Gorilla","AttactDamage",10, AttributeModifier.Operation.ADDITION));
+        return multimap;
+    }
+
+    @Override
+    public void registerControllers(AnimationData data) {}
+
+    @Override
+    public AnimationFactory getFactory() {
+        return this.factory;
+    }
+
+    @Override
+    public List<MobEffectInstance> MobEffectInstanceList() {
+        return List.of();
+    }
+}

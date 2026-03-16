@@ -13,13 +13,17 @@ public class GeoModelPath {
             smash_bottle = bottle("smash_bottle","smash_bottle","smash_bottle"),
             RabbatBottle = bottle("rabbat_bottle"),
             TankBottle = bottle("tank_bottle"),
+            GorillaBottle = bottle("gorilla_bottle"),
+            DiamondBottle = bottle("diamond_bottle"),
             build_up = render("build_up_effect_entity", "build_up_effect_entity", "entity/build_up_effect_entity"),
             fullbottle_purifier = render("fullbottle_purifier", "fullbottle_purifier", "blocks/fullbottle_purifier"),
 
             BuildDriver = render("build_driver","build_driver","driver/build_driver"),
             BuildBase = render("base_armor","base_armor","armor/base_armor"),
             BuildRabbatArmor = render("rabbat_armor","rabbat_armor","armor/rabbat_armor"),
-            BuildTankArmor = render("tank_armor","tank_armor","armor/tank_armor");
+            BuildTankArmor = render("tank_armor","tank_armor","armor/tank_armor"),
+            BuildGorillaArmor = render("gorilla_armor","gorilla_armor","armor/gorilla_armor"),
+            BuildDiamondArmor = render("diamond_armor","diamond_armor","armor/diamond_armor");
 
     public static model bottle(String texture) {
         return bottle("bottle", "bottle", texture);
