@@ -4,6 +4,8 @@ import cheng.build.Build;
 import cheng.build.DelayedTask;
 import cheng.build.ItemHelper;
 import cheng.build.SoundUtil;
+import cheng.build.api.IFullBottle;
+import cheng.build.bottle.BottleRegistry;
 import cheng.build.data.ABaseData;
 import cheng.build.item.armor.BuildDriver;
 import cheng.build.item.bottle.bottle.Bottle;
@@ -18,6 +20,7 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ItemStack;
 
+import java.util.ServiceLoader;
 import java.util.UUID;
 
 public class BottleExecute extends ABaseData {
@@ -94,8 +97,10 @@ public class BottleExecute extends ABaseData {
             }
             // 否则正常播放音效
             else {
-                SoundUtil.playSound(player.level, player, fullBottle.getSoundEvent().get(), SoundSource.PLAYERS);
-                bestBatch();
+                playSound(fullBottle);
+                // 都不为空触发BestMatch
+                if (!(driverTag.getCompound(organic).isEmpty() && driverTag.getCompound(inorganic).isEmpty()))
+                    bestBatch();
             }
         }
     }
@@ -122,7 +127,8 @@ public class BottleExecute extends ABaseData {
         }
     }
     private void playSound(FullBottle fullBottle){
-        SoundUtil.playSound(player.level, player, fullBottle.getSoundEvent().get(), SoundSource.PLAYERS);
+        IFullBottle byItem = BottleRegistry.findByItem(fullBottle);
+        fullBottle.playsound(byItem,player);
     }
     private void bestBatch() {
         DelayedTask.run(player.level, 20, () -> {

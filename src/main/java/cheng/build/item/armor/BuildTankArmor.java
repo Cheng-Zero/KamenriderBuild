@@ -1,5 +1,6 @@
 package cheng.build.item.armor;
 
+import cheng.build.GeoModelPath;
 import cheng.build.item.armor.base.InorganicMatterArmor;
 import cheng.build.init.InitSound;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -16,6 +17,10 @@ public class BuildTankArmor extends InorganicMatterArmor {
         super(new easyArmor(0, 10,0,
                 InitSound.build_driver_equie, Ingredient.EMPTY,"",
                 5,0.2f), new Properties());
+    }
+    @Override
+    public GeoModelPath.model getAll() {
+        return GeoModelPath.BuildTankArmor;
     }
 
     @Override

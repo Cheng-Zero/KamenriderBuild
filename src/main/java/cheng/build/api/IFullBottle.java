@@ -1,18 +1,22 @@
 package cheng.build.api;
 
+import cheng.build.item.armor.base.BuildArmor;
+import cheng.build.item.bottle.bottle.FullBottle;
 import cheng.build.item.bottle.bottle_effect.BottleMobEffect;
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.sounds.SoundEvent;
+
+import java.util.ServiceLoader;
+import java.util.stream.StreamSupport;
 
 public interface IFullBottle extends IBottle{
+    FullBottle getFullBottle();
+
+    /// 药水效果
     BottleMobEffect BottleMobEffect();
 
-    default void apply(Player player, int time) {
-        int t = time / 20;
-        if (player.level.isClientSide()) return;
-        if (t <= 30) {
-            player.addEffect(new MobEffectInstance(BottleMobEffect(), time, 0, true, false));
-        } else
-            player.addEffect(new MobEffectInstance(BottleMobEffect(), 600, 0, true, false));
-    }
+    /// 音效
+    SoundEvent sound();
+
+    /// 返回 满装瓶对应的Build装甲
+    BuildArmor getBuildArmor();
 }

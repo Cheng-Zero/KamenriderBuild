@@ -2,9 +2,11 @@ package cheng.build.item.armor.base;
 
 import cheng.build.ArmorUseHandler;
 import cheng.build.ItemHelper;
+import cheng.build.client.model.ARMORModel;
+import cheng.build.client.renderer.BASEARMORRenderer;
+import cheng.build.client.renderer.BuildARMORRenderer;
 import cheng.build.item.armor.BuildBaseArmor;
 import com.google.common.collect.ArrayListMultimap;
-import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -39,27 +41,26 @@ public abstract class BuildArmor extends ARMOR{
         switch (pEquipmentSlot){
             case HEAD -> {
                 if (this instanceof OrganicMatterArmor) {
-                    if (!multimap.isEmpty()) {
-                        mo.putAll(AttributeModifiermap());
-                    }
+                    putattribute(multimap,mo);
                 }
             }
             case CHEST -> {
                 if (this instanceof InorganicMatterArmor){
-                    if (!multimap.isEmpty()) {
-                        mo.putAll(AttributeModifiermap());
-                    }
+                    putattribute(multimap,mo);
                 }
             }
             case FEET -> {
                 if (this instanceof BuildBaseArmor) {
-                    if (!multimap.isEmpty()) {
-                        mo.putAll(AttributeModifiermap());
-                    }
+                    putattribute(multimap,mo);
                 }
             }
         }
         return mo;
+    }
+    private void putattribute(Multimap<Attribute, AttributeModifier> multimap, Multimap<Attribute, AttributeModifier> mo){
+        if (!multimap.isEmpty()) {
+            mo.putAll(AttributeModifiermap());
+        }
     }
 
     protected Multimap<Attribute, AttributeModifier> AttributeModifiermap() {
@@ -114,7 +115,10 @@ public abstract class BuildArmor extends ARMOR{
         if (player instanceof ServerPlayer serverPlayer)
             ArmorUseHandler.loadArmor(serverPlayer);
     }
+
     protected AttributeModifier attributeModifier(String Armorname, String AttributeName, double pAmount, AttributeModifier.Operation operation){
-        return new AttributeModifier(UUID.nameUUIDFromBytes(("Build"+Armorname+"Armor"+AttributeName).getBytes(StandardCharsets.UTF_8)).toString(),pAmount, operation);
+        String s = "Build" + Armorname + "Armor" + AttributeName;
+        UUID uuid = UUID.nameUUIDFromBytes((s).getBytes(StandardCharsets.UTF_8));
+        return new AttributeModifier(uuid, s,pAmount, operation);
     }
 }

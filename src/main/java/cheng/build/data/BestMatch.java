@@ -8,6 +8,7 @@ import cheng.build.item.armor.BuildDriver;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -87,6 +88,6 @@ public record BestMatch(Item organicMatter, Item inorganicMatter, Supplier<Sound
     }
     public static void playSound(Player player) {
         ItemStack itemBySlot = player.getItemBySlot(EquipmentSlot.LEGS);
-        SoundUtil.playSound(player.level, player, getCurrentMatch(itemBySlot).sound.get(), SoundSource.PLAYERS);
+        SoundUtil.playSound(player.level,(Entity) player, getCurrentMatch(itemBySlot).sound.get(), SoundSource.PLAYERS);
     }
 }

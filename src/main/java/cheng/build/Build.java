@@ -1,5 +1,6 @@
 package cheng.build;
 
+import cheng.build.keybingds.GetHolderKeybingd;
 import cheng.build.player_animation.SetupAnimationsProcedure;
 import cheng.build.init.*;
 import cheng.build.keybingds.ClearDriverKeybingd;
@@ -83,6 +84,7 @@ public class Build {
             addNetworkMessage(ShakeBottleMessageKey.class, ShakeBottleMessageKey::buffer, ShakeBottleMessageKey::new, ShakeBottleMessageKey::handler);
             addNetworkMessage(RotaryDriverMessageKey.class, RotaryDriverMessageKey::buffer, RotaryDriverMessageKey::new, RotaryDriverMessageKey::handler);
             addNetworkMessage(ClearDriverKeybingd.class, ClearDriverKeybingd::buffer, ClearDriverKeybingd::new, ClearDriverKeybingd::handler);
+            addNetworkMessage(GetHolderKeybingd.class, GetHolderKeybingd::buffer, GetHolderKeybingd::new, GetHolderKeybingd::handler);
             addNetworkMessage(PlayerVariablesSyncMessage.class, PlayerVariablesSyncMessage::buffer, PlayerVariablesSyncMessage::new, PlayerVariablesSyncMessage::handler);
             LOGGER.info("Registered network messages for " + MODID);
         });

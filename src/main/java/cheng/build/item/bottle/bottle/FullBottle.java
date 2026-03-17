@@ -1,26 +1,20 @@
 package cheng.build.item.bottle.bottle;
 
+import cheng.build.SoundUtil;
 import cheng.build.api.IFullBottle;
-import cheng.build.item.bottle.bottle_effect.BottleMobEffect;
-import net.minecraft.sounds.SoundEvent;
-import net.minecraft.world.effect.MobEffect;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 import software.bernie.geckolib3.util.GeckoLibUtil;
 
-import java.util.function.Supplier;
-
-public abstract class FullBottle extends Bottle implements IFullBottle {
+public abstract class FullBottle extends Bottle {
     private final AnimationFactory factory = GeckoLibUtil.createFactory(this);
-    private final Supplier<BottleMobEffect> effect;
-    private final Supplier<SoundEvent> soundEvent;
 
-    public FullBottle(Properties pProperties, BottleType fullBottleType , Supplier<BottleMobEffect> effect, Supplier<SoundEvent> soundEvent) {
+    public FullBottle(Properties pProperties, BottleType fullBottleType) {
         super(pProperties,fullBottleType);
-        this.effect = effect;
-        this.soundEvent = soundEvent;
     }
 
     @Override
@@ -32,12 +26,18 @@ public abstract class FullBottle extends Bottle implements IFullBottle {
         return this.factory;
     }
 
-    public Supplier<SoundEvent> getSoundEvent() {
-        return soundEvent;
+    /// 添加药水效果
+    public void apply(IFullBottle iFullBottle, Player player, int time) {
+        int t = time / 20;
+        if (player.level.isClientSide()) return;
+        if (t <= 30) {
+            player.addEffect(new MobEffectInstance(iFullBottle.BottleMobEffect(), time, 0, true, false));
+        } else
+            player.addEffect(new MobEffectInstance(iFullBottle.BottleMobEffect(), 600, 0, true, false));
     }
 
-    @Override
-    public BottleMobEffect BottleMobEffect() {
-        return effect.get();
+    /// 播放音频
+    public void playsound(IFullBottle iFullBottle,Player player){
+        SoundUtil.playSound(player.level,(Entity) player,iFullBottle.sound(), SoundSource.PLAYERS);
     }
 }

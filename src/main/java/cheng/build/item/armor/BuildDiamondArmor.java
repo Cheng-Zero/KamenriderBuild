@@ -1,5 +1,6 @@
 package cheng.build.item.armor;
 
+import cheng.build.GeoModelPath;
 import cheng.build.item.armor.base.InorganicMatterArmor;
 import cheng.build.init.InitSound;
 import com.google.common.collect.Multimap;
@@ -22,6 +23,10 @@ public class BuildDiamondArmor extends InorganicMatterArmor {
                 5,0.2f), new Properties());
     }
 
+    @Override
+    public GeoModelPath.model getAll() {
+        return GeoModelPath.BuildDiamondArmor;
+    }
     @Override
     public void registerControllers(AnimationData data) {}
 

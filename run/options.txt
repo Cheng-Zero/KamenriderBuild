@@ -27,7 +27,7 @@ gamma:0.5
 renderDistance:12
 simulationDistance:12
 entityDistanceScaling:1.0
-guiScale:0
+guiScale:3
 particles:0
 maxFps:120
 difficulty:2
@@ -109,8 +109,9 @@ key_key.hotbar.7:key.keyboard.7
 key_key.hotbar.8:key.keyboard.8
 key_key.hotbar.9:key.keyboard.9
 key_key.kamenrider_build.shake_bottle:key.keyboard.c
-key_key.kamenrider_build.vortex_lever:key.keyboard.r
+key_key.kamenrider_build.rotary_driver:key.keyboard.r
 key_key.kamenrider_build.clear_driver:key.keyboard.x
+key_key.kamenrider_build.get_holder:key.keyboard.z
 key_ibeeditor.key.editor:key.keyboard.i
 key_ibeeditor.key.nbt_editor:key.keyboard.n
 key_ibeeditor.key.snbt_editor:key.keyboard.r

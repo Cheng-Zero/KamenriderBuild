@@ -1,6 +1,9 @@
 package cheng.build.item.bottle.bottles;
 
 import cheng.build.GeoModelPath;
+import cheng.build.init.InitItem;
+import cheng.build.item.armor.base.BuildArmor;
+import cheng.build.item.bottle.bottle.FullBottle;
 import cheng.build.item.bottle.bottle.OrganicMatterBottleItem;
 import cheng.build.init.InitMobEffect;
 import cheng.build.init.InitSound;
@@ -10,10 +13,12 @@ import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 import software.bernie.geckolib3.util.GeckoLibUtil;
 
+import java.util.function.Supplier;
+
 public class GorillaItem extends OrganicMatterBottleItem {
     private final AnimationFactory factory = GeckoLibUtil.createFactory(this);
     public GorillaItem() {
-        super(new Properties().stacksTo(1), InitMobEffect.rabbat_effect, InitSound.rabbat);
+        super(new Properties().stacksTo(1));
     }
 
     @Override
@@ -28,10 +33,5 @@ public class GorillaItem extends OrganicMatterBottleItem {
     @Override
     public AnimationFactory getFactory() {
         return this.factory;
-    }
-
-    @Override
-    public String getName() {
-        return "Gorilla";
     }
 }

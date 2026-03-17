@@ -1,5 +1,6 @@
 package cheng.build.item.armor;
 
+import cheng.build.GeoModelPath;
 import cheng.build.item.armor.base.BuildArmor;
 import cheng.build.init.InitSound;
 import com.google.common.collect.Multimap;
@@ -21,6 +22,10 @@ public class BuildBaseArmor extends BuildArmor {
         super(new easyArmor(0, 10,0,
                 InitSound.build_driver_equie, Ingredient.EMPTY,"",
                 5,0.2f), EquipmentSlot.FEET, new Properties());
+    }
+    @Override
+    public GeoModelPath.model getAll() {
+        return GeoModelPath.BuildBase;
     }
 
     @Override

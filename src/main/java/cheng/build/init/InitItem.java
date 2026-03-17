@@ -55,21 +55,6 @@ public class InitItem {
         catch (Exception e) {throw new RuntimeException(e);}
     }
 
-    public static Map<Class<? extends ARMOR>, Supplier<GeoArmorRenderer>> renderer_FOR_DATAGEN = Map.of(
-            BuildDriver.class, ()->driver(GeoModelPath.BuildDriver),
-            BuildBaseArmor.class, ()->armor(GeoModelPath.BuildBase),
-            BuildRabbatArmor.class, ()->armor(GeoModelPath.BuildRabbatArmor),
-            BuildTankArmor.class, ()->armor(GeoModelPath.BuildTankArmor),
-            BuildGorillaArmor.class, ()->armor(GeoModelPath.BuildGorillaArmor),
-            BuildDiamondArmor.class, ()->armor(GeoModelPath.BuildDiamondArmor)
-    );
-
-    private static BuildARMORRenderer armor(GeoModelPath.model model){
-        return new BuildARMORRenderer(model.model(),model.texture(),model.animation());
-    }
-    private static BuildDriverRenderer driver(GeoModelPath.model model){
-        return new BuildDriverRenderer(model.model(),model.texture(),model.animation());
-    }
     private static <T extends Item> RegistryObject<T> bottle(String name,Supplier<T> supplier){
         return registry(name+"_bottle",supplier);
     }

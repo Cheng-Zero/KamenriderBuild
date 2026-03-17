@@ -1,5 +1,6 @@
 package cheng.build.item.armor;
 
+import cheng.build.GeoModelPath;
 import cheng.build.item.armor.base.ARMOR;
 import cheng.build.init.InitSound;
 import net.minecraft.nbt.CompoundTag;
@@ -21,8 +22,6 @@ import software.bernie.geckolib3.util.GeckoLibUtil;
 public class BuildDriver extends ARMOR {
     private final AnimationFactory factory = GeckoLibUtil.createFactory(this);
     public static final String trigger = "trigger";
-    public static final ItemStack organicMatter_item = ItemStack.EMPTY;
-    public static final ItemStack inorganicMatter_item = ItemStack.EMPTY;
     public static final String organicMatter_item_Name = "organicMatter_item";
     public static final String inorganicMatter_item_Name = "inorganicMatter_item";
     public BuildDriver() {
@@ -35,6 +34,11 @@ public class BuildDriver extends ARMOR {
                         1,
                         1),
                 EquipmentSlot.LEGS, new Properties());
+    }
+
+    @Override
+    public GeoModelPath.model getAll() {
+        return GeoModelPath.BuildDriver;
     }
 
     @Override
@@ -67,9 +71,9 @@ public class BuildDriver extends ARMOR {
         if (!nbt.contains("isUse"))
             nbt.putBoolean("isUse", false);
         if (!nbt.contains(organicMatter_item_Name))
-            nbt.put(organicMatter_item_Name, savePiece(organicMatter_item));
+            nbt.put(organicMatter_item_Name, savePiece(ItemStack.EMPTY));
         if (!nbt.contains(inorganicMatter_item_Name))
-            nbt.put(inorganicMatter_item_Name, savePiece(inorganicMatter_item));
+            nbt.put(inorganicMatter_item_Name, savePiece(ItemStack.EMPTY));
         if (!nbt.contains(trigger))
             nbt.putString(trigger, "");
         return nbt;
@@ -101,6 +105,7 @@ public class BuildDriver extends ARMOR {
         }
         return tag;
     }
+
     public static ItemStack loadItem(CompoundTag parent, String key) {
         return parent.contains(key) ? ItemStack.of(parent.getCompound(key)) : ItemStack.EMPTY;
     }

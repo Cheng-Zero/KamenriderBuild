@@ -1,5 +1,6 @@
 package cheng.build.item.armor.base;
 
+import cheng.build.api.IModel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ArmorMaterial;
@@ -9,7 +10,7 @@ import org.jetbrains.annotations.NotNull;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.item.GeoArmorItem;
 
-public abstract class ARMOR extends GeoArmorItem implements IAnimatable {
+public abstract class ARMOR extends GeoArmorItem implements IAnimatable , IModel {
     public ARMOR(ArmorMaterial materialIn, EquipmentSlot slot, Properties builder) {
         super(materialIn, slot, builder);
     }

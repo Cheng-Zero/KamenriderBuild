@@ -1,5 +1,6 @@
 package cheng.build.item.armor;
 
+import cheng.build.GeoModelPath;
 import cheng.build.item.armor.base.OrganicMatterArmor;
 import cheng.build.init.InitSound;
 import com.google.common.collect.Multimap;
@@ -24,6 +25,10 @@ public class BuildGorillaArmor extends OrganicMatterArmor {
                 5,0.2f), new Properties());
     }
 
+    @Override
+    public GeoModelPath.model getAll() {
+        return GeoModelPath.BuildGorillaArmor;
+    }
     @Override
     protected Multimap<Attribute, AttributeModifier> AttributeModifiermap() {
         Multimap<Attribute, AttributeModifier> multimap = super.AttributeModifiermap();

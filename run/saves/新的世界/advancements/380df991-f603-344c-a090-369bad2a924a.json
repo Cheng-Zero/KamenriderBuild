@@ -1,4 +1,22 @@
 {
+  "minecraft:recipes/tools/fishing_rod": {
+    "criteria": {
+      "has_string": "2026-03-17 00:42:46 +0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/combat/bow": {
+    "criteria": {
+      "has_string": "2026-03-17 00:42:46 +0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/redstone/tnt": {
+    "criteria": {
+      "has_gunpowder": "2026-03-17 00:35:53 +0800"
+    },
+    "done": true
+  },
   "minecraft:adventure/kill_a_mob": {
     "criteria": {
       "minecraft:slime": "2026-03-10 03:12:28 +0800"
@@ -26,6 +44,12 @@
   "minecraft:recipes/misc/emerald_from_smelting_deepslate_emerald_ore": {
     "criteria": {
       "has_deepslate_emerald_ore": "2026-03-10 19:47:22 +0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/decorations/loom": {
+    "criteria": {
+      "has_string": "2026-03-17 00:42:46 +0800"
     },
     "done": true
   },
@@ -83,6 +107,12 @@
     },
     "done": true
   },
+  "minecraft:recipes/decorations/candle": {
+    "criteria": {
+      "has_string": "2026-03-17 00:42:46 +0800"
+    },
+    "done": true
+  },
   "minecraft:recipes/decorations/lime_stained_glass_pane_from_glass_pane": {
     "criteria": {
       "has_glass_pane": "2026-03-10 19:47:20 +0800"
@@ -125,15 +155,39 @@
     },
     "done": true
   },
+  "minecraft:recipes/transportation/birch_boat": {
+    "criteria": {
+      "in_water": "2026-03-17 00:48:31 +0800"
+    },
+    "done": true
+  },
   "minecraft:recipes/building_blocks/iron_block": {
     "criteria": {
       "has_iron_ingot": "2026-03-13 18:58:27 +0800"
     },
     "done": true
   },
+  "minecraft:recipes/misc/red_dye_from_poppy": {
+    "criteria": {
+      "has_poppy": "2026-03-17 00:49:57 +0800"
+    },
+    "done": true
+  },
   "minecraft:recipes/tools/iron_shovel": {
     "criteria": {
       "has_iron_ingot": "2026-03-13 18:58:27 +0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/transportation/acacia_boat": {
+    "criteria": {
+      "in_water": "2026-03-17 00:48:31 +0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/brewing/fermented_spider_eye": {
+    "criteria": {
+      "has_spider_eye": "2026-03-17 00:49:31 +0800"
     },
     "done": true
   },
@@ -179,6 +233,24 @@
     },
     "done": true
   },
+  "minecraft:recipes/transportation/jungle_boat": {
+    "criteria": {
+      "in_water": "2026-03-17 00:48:31 +0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/transportation/spruce_boat": {
+    "criteria": {
+      "in_water": "2026-03-17 00:48:31 +0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/misc/firework_rocket_simple": {
+    "criteria": {
+      "has_gunpowder": "2026-03-17 00:35:53 +0800"
+    },
+    "done": true
+  },
   "minecraft:recipes/building_blocks/oak_planks": {
     "criteria": {
       "has_logs": "2026-03-12 16:14:07 +0800"
@@ -191,10 +263,26 @@
     },
     "done": true
   },
+  "minecraft:recipes/building_blocks/white_wool_from_string": {
+    "criteria": {
+      "has_string": "2026-03-17 00:42:46 +0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/transportation/dark_oak_boat": {
+    "criteria": {
+      "in_water": "2026-03-17 00:48:31 +0800"
+    },
+    "done": true
+  },
   "minecraft:adventure/kill_all_mobs": {
     "criteria": {
       "minecraft:skeleton": "2026-03-12 19:20:59 +0800",
-      "minecraft:slime": "2026-03-10 03:12:28 +0800"
+      "minecraft:ravager": "2026-03-17 00:49:00 +0800",
+      "minecraft:spider": "2026-03-17 00:34:40 +0800",
+      "minecraft:creeper": "2026-03-17 00:34:39 +0800",
+      "minecraft:slime": "2026-03-10 03:12:28 +0800",
+      "minecraft:zombie": "2026-03-17 00:34:30 +0800"
     },
     "done": false
   },
@@ -262,6 +350,12 @@
   "minecraft:recipes/misc/bucket": {
     "criteria": {
       "has_iron_ingot": "2026-03-13 18:58:27 +0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/redstone/tripwire_hook": {
+    "criteria": {
+      "has_string": "2026-03-17 00:42:46 +0800"
     },
     "done": true
   },
@@ -352,6 +446,12 @@
   "minecraft:recipes/combat/crossbow": {
     "criteria": {
       "has_iron_ingot": "2026-03-13 18:58:27 +0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/transportation/oak_boat": {
+    "criteria": {
+      "in_water": "2026-03-17 00:48:31 +0800"
     },
     "done": true
   },
