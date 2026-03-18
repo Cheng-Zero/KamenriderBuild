@@ -1,4 +1,4 @@
-package cheng.build.bottle;
+package cheng.build.rider_syteam.bottle;
 
 import cheng.build.api.IInorganicMatterBottle;
 import cheng.build.init.InitItem;

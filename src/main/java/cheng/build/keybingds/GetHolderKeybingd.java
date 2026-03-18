@@ -1,8 +1,6 @@
 package cheng.build.keybingds;
 
 import cheng.build.Build;
-import cheng.build.KeyProgram.ClearKeyProgram.ClearDriver;
-import cheng.build.client.hud.BuildDriverFullBottleHolder;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Player;
@@ -52,7 +50,7 @@ public class GetHolderKeybingd {
                 if (mc.player != null && mc.screen == null) {
                 // 打开选择界面
                 if (type == 0) {
-                    BuildDriverFullBottleHolder.getInstance().open();
+//                    BuildDriverFullBottleHolder.getInstance().open();
                 }
                 Build.LOGGER.debug("按键打开GUI");
             }else {

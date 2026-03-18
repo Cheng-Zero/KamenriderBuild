@@ -1,6 +1,7 @@
-package cheng.build.bottle;
+package cheng.build.rider_syteam.bottle;
 
-import cheng.build.api.IOrganicMatterBottle;
+import cheng.build.api.IFullBottle;
+import cheng.build.api.IInorganicMatterBottle;
 import cheng.build.init.InitItem;
 import cheng.build.init.InitMobEffect;
 import cheng.build.init.InitSound;
@@ -11,28 +12,30 @@ import net.minecraft.sounds.SoundEvent;
 
 import java.util.function.Supplier;
 
-public class Gorilla implements IOrganicMatterBottle {
+public class Diamond implements IFullBottle {
 
     @Override
     public String getName() {
-        return "Gorilla";
+        return "Diamond";
     }
+
     @Override
     public FullBottle getFullBottle() {
-        return InitItem.gorilla.get();
+        return InitItem.diamond.get();
     }
+
     @Override
     public BuildArmor getBuildArmor() {
-        return InitItem.buildGorillaArmor.get();
+        return InitItem.buildDiamondArmor.get();
     }
 
     @Override
     public BottleMobEffect BottleMobEffect() {
-        return InitMobEffect.gorilla.get();
+        return InitMobEffect.diamond_effect.get();
     }
 
     @Override
     public SoundEvent sound() {
-        return InitSound.gorilla.get();
+        return InitSound.diamond.get();
     }
 }

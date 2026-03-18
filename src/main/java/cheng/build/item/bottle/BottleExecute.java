@@ -3,9 +3,9 @@ package cheng.build.item.bottle;
 import cheng.build.Build;
 import cheng.build.DelayedTask;
 import cheng.build.ItemHelper;
-import cheng.build.SoundUtil;
 import cheng.build.api.IFullBottle;
-import cheng.build.bottle.BottleRegistry;
+import cheng.build.rider_syteam.BestMatchRegistry;
+import cheng.build.rider_syteam.BottleRegistry;
 import cheng.build.data.ABaseData;
 import cheng.build.item.armor.BuildDriver;
 import cheng.build.item.bottle.bottle.Bottle;
@@ -13,14 +13,11 @@ import cheng.build.item.bottle.bottle.FullBottle;
 import cheng.build.item.bottle.bottles.EmptyBottleItem;
 import cheng.build.item.bottle.bottle.InorganicMatterBottleItem;
 import cheng.build.item.bottle.bottle.OrganicMatterBottleItem;
-import cheng.build.data.BestMatch;
 import net.minecraft.network.chat.TranslatableComponent;
-import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ItemStack;
 
-import java.util.ServiceLoader;
 import java.util.UUID;
 
 public class BottleExecute extends ABaseData {
@@ -133,8 +130,8 @@ public class BottleExecute extends ABaseData {
     private void bestBatch() {
         DelayedTask.run(player.level, 20, () -> {
             // 是否触发BestMatch
-            if (BestMatch.isBestMatch(player))
-                BestMatch.playSound(player);
+            if (BestMatchRegistry.isBestMatch(player))
+                BestMatchRegistry.playBestMatchSound(player);
         });
     }
 

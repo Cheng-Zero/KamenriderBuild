@@ -8,6 +8,7 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraftforge.items.ItemStackHandler;
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
@@ -21,6 +22,7 @@ import software.bernie.geckolib3.util.GeckoLibUtil;
 
 public class BuildDriver extends ARMOR {
     private final AnimationFactory factory = GeckoLibUtil.createFactory(this);
+    public ItemStackHandler inventory = new ItemStackHandler(3);
     public static final String trigger = "trigger";
     public static final String organicMatter_item_Name = "organicMatter_item";
     public static final String inorganicMatter_item_Name = "inorganicMatter_item";
@@ -76,6 +78,7 @@ public class BuildDriver extends ARMOR {
             nbt.put(inorganicMatter_item_Name, savePiece(ItemStack.EMPTY));
         if (!nbt.contains(trigger))
             nbt.putString(trigger, "");
+        inventory.serializeNBT();
         return nbt;
     }
 
@@ -108,5 +111,9 @@ public class BuildDriver extends ARMOR {
 
     public static ItemStack loadItem(CompoundTag parent, String key) {
         return parent.contains(key) ? ItemStack.of(parent.getCompound(key)) : ItemStack.EMPTY;
+    }
+
+    public ItemStackHandler getInventory() {
+        return inventory;
     }
 }

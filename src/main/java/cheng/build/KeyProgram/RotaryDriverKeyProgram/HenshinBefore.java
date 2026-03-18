@@ -1,36 +1,14 @@
 package cheng.build.KeyProgram.RotaryDriverKeyProgram;
 
-import cheng.build.ArmorUseHandler;
 import cheng.build.Build;
 import cheng.build.DelayedTask;
-import cheng.build.api.IFullBottle;
-import cheng.build.api.IInorganicMatterBottle;
-import cheng.build.api.IOrganicMatterBottle;
-import cheng.build.bottle.BottleRegistry;
 import cheng.build.item.armor.BuildDriver;
-import cheng.build.data.BottleArmor;
 import cheng.build.entity.BuildUpEffectEntity;
 import cheng.build.entity.EffectEntity;
-import cheng.build.entity.InorganicEntity;
-import cheng.build.entity.OrganicEntity;
-import cheng.build.data.BestMatch;
-import cheng.build.init.InitItem;
-import cheng.build.item.bottle.bottle.FullBottle;
-import cheng.build.item.bottle.bottle_effect.BottleMobEffect;
-import cheng.build.item.bottle.bottles.DiamondItem;
-import cheng.build.item.bottle.bottles.GorillaItem;
-import cheng.build.item.bottle.bottles.RabbatItem;
-import cheng.build.item.bottle.bottles.TankItem;
 import cheng.build.player_animation.PlayerAnimationUtil;
+import cheng.build.rider_syteam.HenshinUtil;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ItemStack;
-
-import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.ServiceLoader;
 
 public class HenshinBefore extends RotaryDriver {
     protected void Henshin(){
@@ -55,76 +33,21 @@ public class HenshinBefore extends RotaryDriver {
     protected void stop(){
         ItemStack inorganic = loadItem(driverTag, BuildDriver.inorganicMatter_item_Name);
         ItemStack organic = loadItem(driverTag, BuildDriver.organicMatter_item_Name);
+        HenshinUtil util = new HenshinUtil();
+        util.update(player);
+
         boolean onFullBottle = organic.isEmpty() && inorganic.isEmpty();
+
         if (!onFullBottle && driverTag.getBoolean("isUse")) {
             Build.LOGGER.info("按键抬起成功");
             if (player instanceof ServerPlayer serverPlayer)
                 PlayerAnimationUtil.playanimation(serverPlayer, "animation.round", false);
-            summon();
-            if (effect() instanceof BuildUpEffectEntity)
-                DelayedTask.chain(player.level)
-                        .then(45, () -> {
-                            effect().setAnimation(Animation_build_up);
-                        })
-                        .then(10, () -> {
-                            effect().setAnimation(Animation_build_up_close);
-                            EquieBottleArmor();
-                        })
-                        .then(30, () -> effect().setAnimation(Animation_build_up_over))
-                        .then(32, () -> effect().setdiscard(player))
-                        .start();
+
+            util.summonEffectEntity(true);
+
+            util.Summon(Animation_build_up,Animation_build_up_close,Animation_build_up_over);
 
             driverTag.putBoolean("isUse", false);
-        }
-    }
-
-    private void summon() {
-        ItemStack inorganic = loadItem(driverTag, BuildDriver.inorganicMatter_item_Name);
-        ItemStack organic = loadItem(driverTag, BuildDriver.organicMatter_item_Name);
-
-        List<IFullBottle> allBottles = BottleRegistry.getAllBottles();
-
-        allBottles.stream()
-                .filter(bottle -> bottle.getFullBottle().equals(inorganic.getItem()))
-                .findFirst()
-                .ifPresent(bottlee ->
-                        {
-                            InorganicEntity inorganicEntity = new InorganicEntity(player.level, BestMatch.isBestMatch(player), bottlee.getBuildArmor().getTexture());
-                            DelayedTask.chain(player.level)
-                                    .then(45, () -> InorganicEntity.addEntity(inorganicEntity, player)).then(15, inorganicEntity::discard)
-                                    .start();
-                        }
-                );
-        allBottles.stream()
-                .filter(bottle -> bottle.getFullBottle().equals(organic.getItem()))
-                .findFirst()
-                .ifPresent(bottle ->
-                {
-                    OrganicEntity organicEntity = new OrganicEntity(player.level, BestMatch.isBestMatch(player), bottle.getBuildArmor().getTexture());
-                    DelayedTask.chain(player.level)
-                            .then(45, () -> OrganicEntity.addEntity(organicEntity, player))
-                            .then(15, organicEntity::discard)
-                            .start();
-                });
-    }
-
-    private void EquieBottleArmor(){
-        ItemStack inorganic = loadItem(driverTag, BuildDriver.inorganicMatter_item_Name);
-        ItemStack organic = loadItem(driverTag, BuildDriver.organicMatter_item_Name);
-        boolean onFullBottle = organic.isEmpty() && inorganic.isEmpty();
-        // 根据 枚举里的 枚举来判断和设置
-        if (player instanceof ServerPlayer serverPlayer)
-            ArmorUseHandler.saveArmor(serverPlayer);
-        for (BottleArmor bottleArmor :BottleArmor.bottleArmorList()) {
-            if (bottleArmor.bottle().equals(inorganic.getItem()) && !onFullBottle) {
-                player.setItemSlot(EquipmentSlot.CHEST, new ItemStack(bottleArmor.armorItem()));
-            }
-            if (bottleArmor.bottle().equals(organic.getItem()) && !onFullBottle) {
-                player.setItemSlot(EquipmentSlot.HEAD, new ItemStack(bottleArmor.armorItem()));
-            }
-            if (!onFullBottle) {
-                player.setItemSlot(EquipmentSlot.FEET, new ItemStack(InitItem.buildBaseArmor.get()));
-            }
         }
     }
 

@@ -2,14 +2,12 @@ package cheng.build.KeyProgram;
 
 import cheng.build.Build;
 import cheng.build.api.IFullBottle;
-import cheng.build.bottle.BottleRegistry;
+import cheng.build.rider_syteam.BottleRegistry;
 import cheng.build.data.ABaseData;
 import cheng.build.item.bottle.bottle.FullBottle;
 import cheng.build.item.bottle.bottle.Bottle;
 import cheng.build.player_animation.PlayerAnimationUtil;
 import net.minecraft.server.level.ServerPlayer;
-
-import java.util.ServiceLoader;
 
 public class ShakeBottle extends ABaseData {
     public static int CurrunStartTime = 0;
