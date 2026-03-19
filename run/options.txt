@@ -111,7 +111,6 @@ key_key.hotbar.9:key.keyboard.9
 key_key.kamenrider_build.shake_bottle:key.keyboard.c
 key_key.kamenrider_build.rotary_driver:key.keyboard.r
 key_key.kamenrider_build.clear_driver:key.keyboard.x
-key_key.kamenrider_build.get_holder:key.keyboard.z
 key_ibeeditor.key.editor:key.keyboard.i
 key_ibeeditor.key.nbt_editor:key.keyboard.n
 key_ibeeditor.key.snbt_editor:key.keyboard.r

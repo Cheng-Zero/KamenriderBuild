@@ -1,7 +1,6 @@
 package cheng.build.rider_syteam.bottle;
 
 import cheng.build.api.IFullBottle;
-import cheng.build.api.IInorganicMatterBottle;
 import cheng.build.init.InitItem;
 import cheng.build.init.InitMobEffect;
 import cheng.build.init.InitSound;
@@ -9,8 +8,6 @@ import cheng.build.item.armor.base.BuildArmor;
 import cheng.build.item.bottle.bottle.FullBottle;
 import cheng.build.item.bottle.bottle_effect.BottleMobEffect;
 import net.minecraft.sounds.SoundEvent;
-
-import java.util.function.Supplier;
 
 public class Diamond implements IFullBottle {
 

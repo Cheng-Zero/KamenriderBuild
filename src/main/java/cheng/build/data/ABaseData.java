@@ -1,5 +1,6 @@
 package cheng.build.data;
 
+import cheng.build.item.armor.BuildDriver;
 import cheng.build.item.armor.base.BuildArmor;
 import cheng.build.init.InitItem;
 import net.minecraft.nbt.CompoundTag;
@@ -12,46 +13,53 @@ import net.minecraft.world.item.ItemStack;
 
 public class ABaseData {
     protected Player player;
-    protected ItemStack mainStack, offStack, helmetStack, chestplateStack, leggingsStack, bootsStack;
+    public ItemStack mainStack, offStack, helmetStack, chestplateStack, leggingsStack, bootsStack;
     protected Item main, off, helmet, chestplate, leggings, boots, driver;
-    protected CompoundTag driverTag;
+    public CompoundTag driverTag;
     protected boolean equieDriver;
 
     // 更新数据
     public void update(Player player) {
-        if (player != null) {
-            this.player = player;
-            this.mainStack = player.getItemBySlot(EquipmentSlot.MAINHAND);
-            this.offStack = player.getItemBySlot(EquipmentSlot.OFFHAND);
-            this.helmetStack = player.getItemBySlot(EquipmentSlot.HEAD);
-            this.chestplateStack = player.getItemBySlot(EquipmentSlot.CHEST);
-            this.leggingsStack = player.getItemBySlot(EquipmentSlot.LEGS);
-            this.bootsStack = player.getItemBySlot(EquipmentSlot.FEET);
-            this.main = mainStack.getItem();
-            this.off = offStack.getItem();
-            this.helmet = helmetStack.getItem();
-            this.chestplate = chestplateStack.getItem();
-            this.leggings = leggingsStack.getItem();
-            this.boots = bootsStack.getItem();
-            this.driver = InitItem.buildDriver.get();
-            updateTag();
-            this.equieDriver = leggings.equals(driver);
-        } else {
-            this.mainStack = ItemStack.EMPTY;
-            this.offStack = ItemStack.EMPTY;
-            this.helmetStack = ItemStack.EMPTY;
-            this.chestplateStack = ItemStack.EMPTY;
-            this.leggingsStack = ItemStack.EMPTY;
-            this.bootsStack = ItemStack.EMPTY;
-            this.main = null;
-            this.off = null;
-            this.helmet = null;
-            this.chestplate = null;
-            this.leggings = null;
-            this.boots = null;
-            this.driver = null;
-            this.equieDriver = false;
+        if (player == null) {
+            clearData();
+            return;
         }
+        this.player = player;
+        this.mainStack = player.getItemBySlot(EquipmentSlot.MAINHAND);
+        this.offStack = player.getItemBySlot(EquipmentSlot.OFFHAND);
+        this.helmetStack = player.getItemBySlot(EquipmentSlot.HEAD);
+        this.chestplateStack = player.getItemBySlot(EquipmentSlot.CHEST);
+        this.leggingsStack = player.getItemBySlot(EquipmentSlot.LEGS);
+        this.bootsStack = player.getItemBySlot(EquipmentSlot.FEET);
+
+        this.main = mainStack.getItem();
+        this.off = offStack.getItem();
+        this.helmet = helmetStack.getItem();
+        this.chestplate = chestplateStack.getItem();
+        this.leggings = leggingsStack.getItem();
+        this.boots = bootsStack.getItem();
+        this.driver = InitItem.buildDriver.get();
+
+        updateTag();
+
+        this.equieDriver = leggings.equals(driver);
+    }
+    private void clearData() {
+        this.player = null;
+        this.mainStack = ItemStack.EMPTY;
+        this.offStack = ItemStack.EMPTY;
+        this.helmetStack = ItemStack.EMPTY;
+        this.chestplateStack = ItemStack.EMPTY;
+        this.leggingsStack = ItemStack.EMPTY;
+        this.bootsStack = ItemStack.EMPTY;
+        this.main = null;
+        this.off = null;
+        this.helmet = null;
+        this.chestplate = null;
+        this.leggings = null;
+        this.boots = null;
+        this.driver = null;
+        this.equieDriver = false;
     }
 
     protected enum ClientMessageEnum {
@@ -65,7 +73,7 @@ public class ABaseData {
         }
     }
 
-    private void updateTag() {
+    protected void updateTag() {
         this.driverTag = leggingsStack.getTag();
         if (driverTag == null) {
             this.driverTag = leggingsStack.getOrCreateTag();
@@ -91,6 +99,15 @@ public class ABaseData {
     protected ItemStack loadItem(CompoundTag parent, String key) {
         return parent.contains(key) ? ItemStack.of(parent.getCompound(key)) : ItemStack.EMPTY;
     }
+
+    protected ItemStack getOrganicBottle() {
+        return loadItem(driverTag, BuildDriver.organicMatter_item_Name);
+    }
+
+    protected ItemStack getInorganicBottle() {
+        return loadItem(driverTag, BuildDriver.inorganicMatter_item_Name);
+    }
+
     protected boolean isHenshin(){
         return helmet instanceof BuildArmor && chestplate instanceof BuildArmor && boots instanceof BuildArmor;
     }

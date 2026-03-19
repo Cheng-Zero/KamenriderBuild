@@ -1,4 +1,4 @@
-package cheng.build.KeyProgram.ClearKeyProgram;
+package cheng.build.program.ClearKeyProgram;
 
 public class HandleHenshin extends ClearDriver{
 }

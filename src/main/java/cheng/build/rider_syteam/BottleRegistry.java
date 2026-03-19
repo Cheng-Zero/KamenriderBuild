@@ -39,14 +39,12 @@ public class BottleRegistry {
         Build.LOGGER.info("开始加载 IFullBottle 服务提供者...");
 
         ServiceLoader<IFullBottle> loader = ServiceLoader.load(IFullBottle.class);
-        int count = 0;
 
         for (IFullBottle provider : loader) {
             registerProvider(provider);
-            count++;
         }
 
-        Build.LOGGER.info("IFullBottle 加载完成，共 {} 个", count);
+        Build.LOGGER.info("IFullBottle 加载完成，共 {} 个", loader.stream().count());
         loaded = true;
     }
 
@@ -84,17 +82,19 @@ public class BottleRegistry {
 
     // 便捷的匿名类注册方法
     public static synchronized IFullBottle register(
-            FullBottle fullBottle,
-            BottleMobEffect effect,
-            SoundEvent sound,
-            BuildArmor armor,
-            String name) {
+            String name,FullBottle fullBottle,
+            BottleMobEffect effect, SoundEvent sound,
+            BuildArmor armor) {
 
         if (frozen) {
             throw new IllegalStateException("不能在注册表冻结后注册新的瓶子");
         }
 
         IFullBottle provider = new IFullBottle() {
+            @Override
+            public String getName() {
+                return name;
+            }
             @Override
             public FullBottle getFullBottle() {
                 return fullBottle;
@@ -113,11 +113,6 @@ public class BottleRegistry {
             @Override
             public BuildArmor getBuildArmor() {
                 return armor;
-            }
-
-            @Override
-            public String getName() {
-                return name;
             }
         };
 
@@ -141,6 +136,18 @@ public class BottleRegistry {
         if (stack == null || stack.isEmpty()) return null;
         ensureLoaded();
         return BOTTLE_MAP.get(stack.getItem());
+    }
+
+    // 在 BottleRegistry 类中添加
+    public static IFullBottle findByArmorItem(Item armorItem) {
+        if (armorItem == null) return null;
+        ensureLoaded();
+
+        // 遍历所有瓶子，找到护甲匹配的
+        return BOTTLES.stream()
+                .filter(bottle -> bottle.getBuildArmor() == armorItem)
+                .findFirst()
+                .orElse(null);
     }
 
     public static List<IFullBottle> getAllBottles() {

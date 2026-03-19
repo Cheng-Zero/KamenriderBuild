@@ -1,5 +1,6 @@
 package cheng.build.entity;
 
+import cheng.build.Build;
 import cheng.build.GeoModelPath;
 import cheng.build.init.InitEntity;
 import net.minecraft.nbt.CompoundTag;
@@ -83,6 +84,7 @@ public class EffectEntity extends EffectEntityPredecessor {
         this.entityData.set(animations, Animation.toString());
     }
     public void setAnimation(String name){
+        Build.LOGGER.debug("设置当前实体{}动画为{}",this,name);
         this.entityData.set(Animation,name);
     }
     // 数据获取

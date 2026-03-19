@@ -1,9 +1,10 @@
-package cheng.build.KeyProgram.ClearKeyProgram;
+package cheng.build.program.ClearKeyProgram;
 
 import cheng.build.ArmorUseHandler;
 import cheng.build.ItemHelper;
 import cheng.build.item.armor.BuildDriver;
 import cheng.build.data.ABaseData;
+import cheng.build.program.RotaryDriverKeyProgram.RotaryDriver;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
 
@@ -39,10 +40,15 @@ public class ClearDriver extends ABaseData {
             }else if (!driverTag.getCompound(organicMatter_item_Name).isEmpty()) {
                 setTagAndTagItem(organicMatter_item_Name);
             }else if (isHenshin()) {
-                if (player instanceof ServerPlayer serverPlayer)
-                 ArmorUseHandler.loadArmor(serverPlayer);
-            }else
+                {
+                    if (player instanceof ServerPlayer serverPlayer)
+                        ArmorUseHandler.loadArmor(serverPlayer);
+                    RotaryDriver.reset();
+                }
+            }else {
                 ClientMessage(ClientMessageEnum.Air);
+                RotaryDriver.reset();
+            }
         }
         else if (!player.isShiftKeyDown()){
             if (!driverTag.getCompound(organicMatter_item_Name).isEmpty()){
@@ -50,10 +56,15 @@ public class ClearDriver extends ABaseData {
             }else if (!driverTag.getCompound(inorganicMatter_item_Name).isEmpty()) {
                 setTagAndTagItem(inorganicMatter_item_Name);
             }else if (isHenshin()) {
-                if (player instanceof ServerPlayer serverPlayer)
-                    ArmorUseHandler.loadArmor(serverPlayer);
-            }else
+                {
+                    if (player instanceof ServerPlayer serverPlayer)
+                        ArmorUseHandler.loadArmor(serverPlayer);
+                    RotaryDriver.reset();
+                }
+            }else {
                 ClientMessage(ClientMessageEnum.Air);
+                RotaryDriver.reset();
+            }
         }
     }
 

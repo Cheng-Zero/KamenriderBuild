@@ -1,6 +1,6 @@
 package cheng.build.keybingds;
 
-import cheng.build.KeyProgram.ClearKeyProgram.ClearDriver;
+import cheng.build.program.ClearKeyProgram.ClearDriver;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
@@ -9,29 +9,24 @@ import net.minecraftforge.network.NetworkEvent;
 import java.util.Objects;
 import java.util.function.Supplier;
 
-public class ClearDriverKeybingd {
-    private final int type;
-    private final int pressedms;
-
+public class ClearDriverKeybingd extends ModKeybindings {
     public ClearDriverKeybingd(int type, int pressedms) {
-        this.type = type;
-        this.pressedms = pressedms;
+        super(type, pressedms);
     }
 
     public ClearDriverKeybingd(FriendlyByteBuf buffer) {
-        this.type = buffer.readInt();
-        this.pressedms = buffer.readInt();
+        super(buffer);
     }
 
-    public static void buffer(ClearDriverKeybingd message, FriendlyByteBuf buffer) {
-        buffer.writeInt(message.type);
-        buffer.writeInt(message.pressedms);
+    // 直接调用父类的encode方法
+    public static void encode(ClearDriverKeybingd message, FriendlyByteBuf buffer) {
+        message.encode(buffer);  // 调用父类的encode
     }
 
     public static void handler(ClearDriverKeybingd message, Supplier<NetworkEvent.Context> contextSupplier) {
         NetworkEvent.Context context = contextSupplier.get();
         context.enqueueWork(() -> {
-            pressAction(Objects.requireNonNull(context.getSender()), message.type, message.pressedms);
+            pressAction(Objects.requireNonNull(context.getSender()), message.getType(), message.getPressedms());
         });
         context.setPacketHandled(true);
     }

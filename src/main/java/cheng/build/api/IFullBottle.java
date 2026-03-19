@@ -5,10 +5,9 @@ import cheng.build.item.bottle.bottle.FullBottle;
 import cheng.build.item.bottle.bottle_effect.BottleMobEffect;
 import net.minecraft.sounds.SoundEvent;
 
-import java.util.ServiceLoader;
-import java.util.stream.StreamSupport;
+public interface IFullBottle {
+    String getName();
 
-public interface IFullBottle extends IBottle{
     FullBottle getFullBottle();
 
     /// 药水效果

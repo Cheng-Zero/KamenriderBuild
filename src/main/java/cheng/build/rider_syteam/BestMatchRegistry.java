@@ -48,11 +48,9 @@ public class BestMatchRegistry {
         Build.LOGGER.info("开始加载 IBestMatch 服务提供者...");
 
         ServiceLoader<IBestMatch> loader = ServiceLoader.load(IBestMatch.class);
-        int count = 0;
 
         for (IBestMatch provider : loader) {
             registerProvider(provider);
-            count++;
         }
 
         Build.LOGGER.info("IBestMatch 加载完成，共 {} 个", loader.stream().count());
@@ -214,12 +212,18 @@ public class BestMatchRegistry {
         loaded = false;
         frozen = false;
     }
+
     enum BestMatchType{
-        BEST_MATCH(InitSound.best_match.get());
+        BEST_MATCH(InitSound.best_match.get()),
+        SUPER_BEST_MATCH(InitSound.super_best_match.get());
         private final SoundEvent soundEvent;
 
         BestMatchType(SoundEvent soundEvent) {
             this.soundEvent = soundEvent;
+        }
+
+        public SoundEvent getSoundEvent() {
+            return soundEvent;
         }
     }
 }

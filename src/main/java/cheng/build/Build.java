@@ -83,7 +83,7 @@ public class Build {
             // 确保在网络线程中注册
             addNetworkMessage(ShakeBottleMessageKey.class, ShakeBottleMessageKey::buffer, ShakeBottleMessageKey::new, ShakeBottleMessageKey::handler);
             addNetworkMessage(RotaryDriverMessageKey.class, RotaryDriverMessageKey::buffer, RotaryDriverMessageKey::new, RotaryDriverMessageKey::handler);
-            addNetworkMessage(ClearDriverKeybingd.class, ClearDriverKeybingd::buffer, ClearDriverKeybingd::new, ClearDriverKeybingd::handler);
+            addNetworkMessage(ClearDriverKeybingd.class, ClearDriverKeybingd::encode, ClearDriverKeybingd::new, ClearDriverKeybingd::handler);
             addNetworkMessage(GetHolderKeybingd.class, GetHolderKeybingd::buffer, GetHolderKeybingd::new, GetHolderKeybingd::handler);
             addNetworkMessage(PlayerVariablesSyncMessage.class, PlayerVariablesSyncMessage::buffer, PlayerVariablesSyncMessage::new, PlayerVariablesSyncMessage::handler);
             LOGGER.info("Registered network messages for " + MODID);
