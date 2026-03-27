@@ -3,8 +3,6 @@ package cheng.build.api;
 import net.minecraft.world.entity.LivingEntity;
 
 public interface ISkill {
-    /// 名称
-    String getDisplayName();
     /// 冷却
     int getCooldowns();
     /// 使用方法

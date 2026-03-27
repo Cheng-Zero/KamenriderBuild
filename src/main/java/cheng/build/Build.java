@@ -6,7 +6,7 @@ import cheng.build.init.*;
 import cheng.build.keybingds.ClearDriverKeybingd;
 import cheng.build.keybingds.ShakeBottleMessageKey;
 import cheng.build.keybingds.RotaryDriverMessageKey;
-import cheng.build.var.PlayerVariablesSyncMessage;
+import cheng.build.var.PlayerVariablesMessage;
 import com.mojang.logging.LogUtils;
 import dev.kosmx.playerAnim.minecraftApi.PlayerAnimationAccess;
 import net.minecraft.network.FriendlyByteBuf;
@@ -85,7 +85,7 @@ public class Build {
             addNetworkMessage(RotaryDriverMessageKey.class, RotaryDriverMessageKey::buffer, RotaryDriverMessageKey::new, RotaryDriverMessageKey::handler);
             addNetworkMessage(ClearDriverKeybingd.class, ClearDriverKeybingd::encode, ClearDriverKeybingd::new, ClearDriverKeybingd::handler);
             addNetworkMessage(GetHolderKeybingd.class, GetHolderKeybingd::buffer, GetHolderKeybingd::new, GetHolderKeybingd::handler);
-            addNetworkMessage(PlayerVariablesSyncMessage.class, PlayerVariablesSyncMessage::buffer, PlayerVariablesSyncMessage::new, PlayerVariablesSyncMessage::handler);
+            addNetworkMessage(PlayerVariablesMessage.class, PlayerVariablesMessage::buffer, PlayerVariablesMessage::new, PlayerVariablesMessage::handler);
             LOGGER.info("Registered network messages for " + MODID);
         });
     }

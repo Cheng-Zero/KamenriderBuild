@@ -38,14 +38,12 @@ public class EventBusVariableHandlers {
 		player.revive();
 		PlayerVariables original = player.getCapability(PLAYER_VARIABLES_CAPABILITY, null).orElse(new PlayerVariables());
 		PlayerVariables clone = entity.getCapability(PLAYER_VARIABLES_CAPABILITY, null).orElse(new PlayerVariables());
-		if (!event.isWasDeath()) {
-			clone.hazard_level = original.hazard_level;
-		}
+		if (!event.isWasDeath()) {}
+		clone.hazard_level = original.hazard_level;
 	}
 
 	/**
 	 * 同步变量
-	 * @param event 监听
 	 */
 	private static void sync(PlayerEvent event){
 		event.getEntity().getCapability(PLAYER_VARIABLES_CAPABILITY, null).orElse(new PlayerVariables()).syncPlayerVariables(event.getEntity());

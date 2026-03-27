@@ -48,7 +48,6 @@ public class ArmorUseHandler {
         Build.LOGGER.info("同步成功");
     }
     private static ItemStack loadItem(CompoundTag parent, String key) {
-        Build.LOGGER.info("物品{}",ItemStack.of(parent.getCompound(key)));
         return parent.contains(key) ? ItemStack.of(parent.getCompound(key)) : ItemStack.EMPTY;
     }
 }

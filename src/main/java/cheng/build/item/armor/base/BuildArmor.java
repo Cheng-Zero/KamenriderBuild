@@ -1,14 +1,17 @@
 package cheng.build.item.armor.base;
 
 import cheng.build.ArmorUseHandler;
+import cheng.build.Build;
 import cheng.build.ItemHelper;
 import cheng.build.client.model.ARMORModel;
 import cheng.build.client.renderer.BASEARMORRenderer;
 import cheng.build.client.renderer.BuildARMORRenderer;
 import cheng.build.item.armor.BuildBaseArmor;
+import cheng.build.program.RotaryDriverKeyProgram.RotaryDriver;
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -85,6 +88,7 @@ public abstract class BuildArmor extends ARMOR{
                     e.isAmbient(), e.isVisible(), e.showIcon()));
         }
         if (isEquieBuildArmor()) return;
+        RotaryDriver.setCurrentMode(RotaryDriver.DriverMode.IDLE);
         resetArmor();
         ItemHelper.removeItem(player, this);
     }
@@ -111,6 +115,11 @@ public abstract class BuildArmor extends ARMOR{
     }
     // 恢复盔甲
     private void resetArmor(){
+        for(MobEffectInstance mobEffectInstance :MobEffectInstanceList()) {
+            MobEffect effect = mobEffectInstance.getEffect();
+            Build.LOGGER.debug("清除Buff{}",effect);
+            player.removeEffect(effect);
+        }
         // 加载保存在玩家数据中的盔甲
         if (player instanceof ServerPlayer serverPlayer)
             ArmorUseHandler.loadArmor(serverPlayer);

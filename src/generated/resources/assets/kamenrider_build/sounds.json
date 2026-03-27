@@ -1,4 +1,44 @@
 {
+  "best_match_gorilla_diamond": {
+    "sounds": [
+      {
+        "name": "kamenrider_build:best_match_gorilla_diamond",
+        "stream": true
+      }
+    ]
+  },
+  "best_match_rabbat_tank": {
+    "sounds": [
+      {
+        "name": "kamenrider_build:best_match_rabbat_tank",
+        "stream": true
+      }
+    ]
+  },
+  "shake_bottle": {
+    "sounds": [
+      {
+        "name": "kamenrider_build:shake_bottle",
+        "stream": true
+      }
+    ]
+  },
+  "diamond": {
+    "sounds": [
+      {
+        "name": "kamenrider_build:diamond",
+        "stream": true
+      }
+    ]
+  },
+  "gorilla": {
+    "sounds": [
+      {
+        "name": "kamenrider_build:gorilla",
+        "stream": true
+      }
+    ]
+  },
   "tank": {
     "sounds": [
       {
@@ -51,46 +91,6 @@
     "sounds": [
       {
         "name": "kamenrider_build:experimental_form",
-        "stream": true
-      }
-    ]
-  },
-  "best_match_gorilla_diamond": {
-    "sounds": [
-      {
-        "name": "kamenrider_build:best_match_gorilla_diamond",
-        "stream": true
-      }
-    ]
-  },
-  "best_match_rabbat_tank": {
-    "sounds": [
-      {
-        "name": "kamenrider_build:best_match_rabbat_tank",
-        "stream": true
-      }
-    ]
-  },
-  "shake_bottle": {
-    "sounds": [
-      {
-        "name": "kamenrider_build:shake_bottle",
-        "stream": true
-      }
-    ]
-  },
-  "diamond": {
-    "sounds": [
-      {
-        "name": "kamenrider_build:diamond",
-        "stream": true
-      }
-    ]
-  },
-  "gorilla": {
-    "sounds": [
-      {
-        "name": "kamenrider_build:gorilla",
         "stream": true
       }
     ]

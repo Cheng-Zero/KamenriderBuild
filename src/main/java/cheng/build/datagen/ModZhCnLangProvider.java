@@ -36,5 +36,10 @@ public class ModZhCnLangProvider extends BaseUtf8LanguageProvider {
         add(InitItem.fullbottle_purifier.get(),"满装瓶净化机");
         add("block.kamenrider_build.fullbottle_purifier.start","净化开始");
         add("block.kamenrider_build.fullbottle_purifier.stop","净化停止");
+
+        add("commands.kamenrider_build.hazard_level.success.self","已将自己的危险等级设置为%s");
+        add("commands.kamenrider_build.hazard_level.success.other","已将%s的危险等级设置为%s");
+        add("commands.kamenrider_build.hazard_level.changed","你的危险等级已更新为%s");
+        add("commands.kamenrider_build.hazard_level.get","%s的危险等级为%s");
     }
 }

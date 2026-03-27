@@ -2,6 +2,7 @@ package cheng.build.var;
 
 import cheng.build.Build;
 import net.minecraft.core.Direction;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
@@ -24,11 +25,12 @@ public class ModVariables {
     });
 
 	@Mod.EventBusSubscriber
-	private static class PlayerVariablesProvider implements ICapabilitySerializable<Tag> {
+	private static class PlayerVariablesProvider implements ICapabilitySerializable<CompoundTag> {
 		@SubscribeEvent
 		public static void onAttachCapabilities(AttachCapabilitiesEvent<Entity> event) {
-			if (event.getObject() instanceof Player && !(event.getObject() instanceof FakePlayer))
+			if (event.getObject() instanceof Player && !(event.getObject() instanceof FakePlayer)) {
 				event.addCapability(new ResourceLocation(Build.MODID, "player_variables"), new PlayerVariablesProvider());
+			}
 		}
 
 		private final PlayerVariables playerVariables = new PlayerVariables();
@@ -40,12 +42,12 @@ public class ModVariables {
 		}
 
 		@Override
-		public Tag serializeNBT() {
+		public CompoundTag serializeNBT() {
 			return playerVariables.writeNBT();
 		}
 
 		@Override
-		public void deserializeNBT(Tag nbt) {
+		public void deserializeNBT(CompoundTag nbt) {
 			playerVariables.readNBT(nbt);
 		}
 	}

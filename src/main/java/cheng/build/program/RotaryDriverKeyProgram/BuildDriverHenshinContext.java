@@ -10,7 +10,11 @@ import cheng.build.rider_syteam.HenshinUtil;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.ItemStack;
 
+import java.util.UUID;
+
 public class BuildDriverHenshinContext extends RotaryDriver implements IHenshin{
+    private static UUID HenshinStart;
+    private static UUID HenshinStop;
 
     protected static final String
             Animation_start = "start",
@@ -25,6 +29,7 @@ public class BuildDriverHenshinContext extends RotaryDriver implements IHenshin{
         boolean empty =
                 driverTag.getCompound(BuildDriver.organicMatter_item_Name).isEmpty() ||
                         driverTag.getCompound(BuildDriver.inorganicMatter_item_Name).isEmpty();
+        setCurrentMode(DriverMode.HENSHIN_START);
         if (hasBuildUpEntity()) return;
 
         if (player instanceof ServerPlayer serverPlayer)
@@ -37,7 +42,7 @@ public class BuildDriverHenshinContext extends RotaryDriver implements IHenshin{
 
         effect().setAnimation(Animation_start);
 
-        DelayedTask.chain(player.level)
+        HenshinStart = DelayedTask.chain(player.level)
                 .then(40, () -> effect().setAnimation(Animation_standby_start))
                 .then(1, () -> effect().setAnimation(Animation_standbying))
                 .start();
@@ -53,27 +58,25 @@ public class BuildDriverHenshinContext extends RotaryDriver implements IHenshin{
 
         boolean onFullBottle = organic.isEmpty() && inorganic.isEmpty();
 
+        setCurrentMode(DriverMode.IDLE);
+
         if (!onFullBottle && driverTag.getBoolean("isUse")) {
-            Build.LOGGER.info("按键抬起成功");
-            if (player instanceof ServerPlayer serverPlayer)
-                PlayerAnimationUtil.playanimation(serverPlayer, "animation.round", false);
-
             util.summonEffectEntity(true);
-
             util.Summon(Animation_build_up,Animation_build_up_close,Animation_build_up_over);
-
-            setDriverInUse(false);
-
-            RotaryDriver.setCurrentMode(DriverMode.HENSHIN_LATER);
+            RotaryDriver.setCurrentMode(DriverMode.HENSHIN_START);
         }
+        setDriverInUse(false);
+        if (player instanceof ServerPlayer serverPlayer)
+            PlayerAnimationUtil.playanimation(serverPlayer, "animation.round", false);
     }
 
     @Override
     public void startRound() {
         if (driverTag.getBoolean("isUse"))return;
         CurrunStartTime = (int) player.level.getGameTime();
-        driverTag.putBoolean("isUse", true);
+        setDriverInUse(true);
         PlayerAnimationUtil.playanimation(player,"animation.round",true);
+        RotaryDriver.setCurrentMode(DriverMode.HENSHIN_LATER);
     }
 
     @Override
@@ -92,8 +95,12 @@ public class BuildDriverHenshinContext extends RotaryDriver implements IHenshin{
             ifIshandleFormSwitch();
 
         PlayerAnimationUtil.playanimation(player,"animation.round",false);
+        RotaryDriver.setCurrentMode(DriverMode.HENSHIN_START);
+        setDriverInUse(false);
+    }
 
-        driverTag.putBoolean("isUse", false);
+    private void FinshiSkill(){
+
     }
 
     /// 有BuildUp实体就返回，不进行操作
@@ -103,6 +110,7 @@ public class BuildDriverHenshinContext extends RotaryDriver implements IHenshin{
                 return true;
         return false;
     }
+
     private void ifIshandleFormSwitch(){
         HenshinUtil util = new HenshinUtil();
         util.update(player);

@@ -2,7 +2,13 @@ package cheng.build.datagen;
 
 import cheng.build.init.InitItem;
 import cheng.build.init.InitMapping;
+import net.minecraft.Util;
+import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.level.GameRules;
 import net.minecraftforge.common.data.LanguageProvider;
 
 public class ModEnUsLangProvider extends LanguageProvider {
@@ -35,5 +41,10 @@ public class ModEnUsLangProvider extends LanguageProvider {
         add(InitItem.fullbottle_purifier.get(),"FullBottlePurifier");
         add("block.kamenrider_build.fullbottle_purifier.start","Purification started");
         add("block.kamenrider_build.fullbottle_purifier.stop","Purification stopped");
+
+        add("commands.kamenrider_build.hazard_level.success.self","Set own hazard level to %s");
+        add("commands.kamenrider_build.hazard_level.success.other","Set %s's hazard level to %s");
+        add("commands.kamenrider_build.hazard_level.changed","Your hazard level has been updated to %s");
+        add("commands.kamenrider_build.hazard_level.get","%s's hazard level to %s");
     }
 }
