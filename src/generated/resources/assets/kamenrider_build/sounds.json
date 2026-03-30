@@ -1,24 +1,8 @@
 {
-  "best_match_gorilla_diamond": {
+  "gorilla": {
     "sounds": [
       {
-        "name": "kamenrider_build:best_match_gorilla_diamond",
-        "stream": true
-      }
-    ]
-  },
-  "best_match_rabbat_tank": {
-    "sounds": [
-      {
-        "name": "kamenrider_build:best_match_rabbat_tank",
-        "stream": true
-      }
-    ]
-  },
-  "shake_bottle": {
-    "sounds": [
-      {
-        "name": "kamenrider_build:shake_bottle",
+        "name": "kamenrider_build:gorilla",
         "stream": true
       }
     ]
@@ -31,50 +15,34 @@
       }
     ]
   },
-  "gorilla": {
+  "shake_bottle": {
     "sounds": [
       {
-        "name": "kamenrider_build:gorilla",
+        "name": "kamenrider_build:shake_bottle",
         "stream": true
       }
     ]
   },
-  "tank": {
+  "best_match_rabbat_tank": {
     "sounds": [
       {
-        "name": "kamenrider_build:tank",
+        "name": "kamenrider_build:best_match_rabbat_tank",
         "stream": true
       }
     ]
   },
-  "rabbat": {
+  "best_match_gorilla_diamond": {
     "sounds": [
       {
-        "name": "kamenrider_build:rabbat",
+        "name": "kamenrider_build:best_match_gorilla_diamond",
         "stream": true
       }
     ]
   },
-  "best_match": {
+  "experimental_form": {
     "sounds": [
       {
-        "name": "kamenrider_build:best_match",
-        "stream": true
-      }
-    ]
-  },
-  "build_driver_equie": {
-    "sounds": [
-      {
-        "name": "kamenrider_build:build_driver_equie",
-        "stream": true
-      }
-    ]
-  },
-  "super_best_match": {
-    "sounds": [
-      {
-        "name": "kamenrider_build:super_best_match",
+        "name": "kamenrider_build:experimental_form",
         "stream": true
       }
     ]
@@ -87,10 +55,42 @@
       }
     ]
   },
-  "experimental_form": {
+  "super_best_match": {
     "sounds": [
       {
-        "name": "kamenrider_build:experimental_form",
+        "name": "kamenrider_build:super_best_match",
+        "stream": true
+      }
+    ]
+  },
+  "build_driver_equie": {
+    "sounds": [
+      {
+        "name": "kamenrider_build:build_driver_equie",
+        "stream": true
+      }
+    ]
+  },
+  "best_match": {
+    "sounds": [
+      {
+        "name": "kamenrider_build:best_match",
+        "stream": true
+      }
+    ]
+  },
+  "rabbat": {
+    "sounds": [
+      {
+        "name": "kamenrider_build:rabbat",
+        "stream": true
+      }
+    ]
+  },
+  "tank": {
+    "sounds": [
+      {
+        "name": "kamenrider_build:tank",
         "stream": true
       }
     ]

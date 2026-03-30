@@ -14,12 +14,18 @@ public class ModDataGenerator {
         DataGenerator generator = event.getGenerator();
         ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
         String modid = Build.MODID;
-        generator.addProvider(new ModModelsProvider(generator, modid,existingFileHelper));
+        if (event.includeClient()) {
+            generator.addProvider(new ModModelsProvider(generator, modid, existingFileHelper));
 
-        generator.addProvider(new SoundProvider(generator, modid,existingFileHelper));
+            generator.addProvider(new SoundProvider(generator, modid, existingFileHelper));
 
-        generator.addProvider(new ModEnUsLangProvider(generator, modid,"en_us"));
-        generator.addProvider(new ModZhCnLangProvider(generator, modid,"zh_cn"));
+            generator.addProvider(new ModLangProvider.ModEnUsLangProvider(generator, modid));
+            generator.addProvider(new ModLangProvider.ModZhCnLangProvider(generator, modid));
+        }
+        if (event.includeServer()) {
+            // 注册战利品表生成器
+            generator.addProvider(new ModLootTableProvider(generator));
+        }
 //        generator.addProvider(new BlockStates(generator,Build.MODID,existingFileHelper));
     }
 }

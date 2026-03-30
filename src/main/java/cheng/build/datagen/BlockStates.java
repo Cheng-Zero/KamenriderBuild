@@ -1,5 +1,6 @@
 package cheng.build.datagen;
 
+import cheng.build.init.InitBlock;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
@@ -12,5 +13,7 @@ public class BlockStates extends BlockStateProvider {
 
     @Override
     protected void registerStatesAndModels() {
+
     }
+
 }

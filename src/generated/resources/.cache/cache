@@ -1,4 +1,5 @@
-71382de33bf3ab425e2d87e857c6d54f6ae12a91 assets/kamenrider_build/lang/en_us.json
+461b62f76d4ae8207abfcd6002dfc39b9dc5f108 assets/kamenrider_build/lang/en_us.json
+9c5cd235af924d7c7ae621c4ecf51da5b639bc0a assets/kamenrider_build/lang/zh_cn.json
 6218814cd9275fba2acfc0c40715da752504176c assets/kamenrider_build/models/item/build_driver.json
 658d57978009258ca5e5b9d17931aa09274bfd42 assets/kamenrider_build/models/item/diamond_bottle.json
 44be3306fb3508d73de751986335d803c159d5a0 assets/kamenrider_build/models/item/empty_bottle.json
@@ -6,4 +7,5 @@
 9ebb302368d95ad0491b432e95f3b351d3d568b0 assets/kamenrider_build/models/item/rabbat_bottle.json
 c8be9321bc577ba8938e75d0145ac99f55092aa2 assets/kamenrider_build/models/item/smash_bottle.json
 f5396fce9a56077d682dd09a07977dd4cd750e41 assets/kamenrider_build/models/item/tank_bottle.json
-ec915a9def093937734fe8687433e94f33a517f4 assets/kamenrider_build/sounds.json
+e11f5ca3f3841a0ec99fc707ac8d11effb05359f assets/kamenrider_build/sounds.json
+bf0760844930cc9e8a45076b0baa7231a324f8d8 data/kamenrider_build/loot_tables/blocks/fullbottle_purifier.json

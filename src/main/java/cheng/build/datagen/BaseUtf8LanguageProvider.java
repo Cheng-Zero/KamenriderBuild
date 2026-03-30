@@ -25,41 +25,47 @@ import java.util.Objects;
 import java.util.TreeMap;
 import java.util.function.Supplier;
 
+@SuppressWarnings("deprecation")
 public abstract class BaseUtf8LanguageProvider implements DataProvider {
-    private static final Gson GSON = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create();
+    private static final Gson GSON = (new GsonBuilder()).setPrettyPrinting().disableHtmlEscaping().create();
     private final Map<String, String> data = new TreeMap<>();
-    private final DataGenerator generator;
+    private final DataGenerator gen;
     private final String modid;
     private final String locale;
 
     public BaseUtf8LanguageProvider(DataGenerator gen, String modid, String locale) {
-        this.generator = gen;
+        this.gen = gen;
         this.modid = modid;
         this.locale = locale;
-        addTranslations();
     }
 
     protected abstract void addTranslations();
 
     @Override
     public void run(HashCache cache) throws IOException {
-        Path target = this.generator.getOutputFolder()
-            .resolve("assets/" + modid + "/lang/" + locale + ".json");
-
-        // 确保目标目录存在
-        Files.createDirectories(target.getParent());
-
-        JsonElement json = GSON.toJsonTree(data);
-
-        // 使用 UTF-8 编码写入文件
-        try (BufferedWriter writer = Files.newBufferedWriter(target,
-                java.nio.charset.StandardCharsets.UTF_8)) {
-            GSON.toJson(json, writer);
-        }
+        addTranslations();
+        if (!data.isEmpty())
+            save(cache, data, this.gen.getOutputFolder().resolve("assets/" + modid + "/lang/" + locale + ".json"));
     }
+
     @Override
     public String getName() {
-        return "UTF-8 Languages: " + locale;
+        return "Languages: " + locale;
+    }
+
+    private void save(HashCache cache, Object object, Path target) throws IOException {
+        String data = GSON.toJson(object);
+        // BYD转义需要两次才能全部生成
+//        if (locale.equals("en_us")) {
+//            data = JavaUnicodeEscaper.outsideOf(0, 0x7f).translate(data); // Escape unicode after the fact so that it's not double escaped by GSON
+//        }
+        String hash = DataProvider.SHA1.hashUnencodedChars(data).toString();
+
+        if (!Objects.equals(cache.getHash(target), hash) || !Files.exists(target)) {
+            Files.createDirectories(target.getParent());
+            Files.writeString(target, data, StandardCharsets.UTF_8);
+            cache.putNew(target, hash);
+        }
     }
 
     public void addBlock(Supplier<? extends Block> key, String name) {
@@ -93,6 +99,16 @@ public abstract class BaseUtf8LanguageProvider implements DataProvider {
     public void add(Enchantment key, String name) {
         add(key.getDescriptionId(), name);
     }
+
+    /*
+    public void addBiome(Supplier<? extends Biome> key, String name) {
+        add(key.get(), name);
+    }
+
+    public void add(Biome key, String name) {
+        add(key.getTranslationKey(), name);
+    }
+    */
 
     public void addEffect(Supplier<? extends MobEffect> key, String name) {
         add(key.get(), name);

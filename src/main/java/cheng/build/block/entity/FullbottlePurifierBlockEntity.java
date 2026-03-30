@@ -9,6 +9,8 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.world.Containers;
+import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -42,12 +44,26 @@ public class FullbottlePurifierBlockEntity extends BlockEntity implements IAnima
         @Override
         protected void onContentsChanged(int slot) {
             super.onContentsChanged(slot);
+            setChanged();
             // 当物品变化时，通知客户端更新
             if (level != null && !level.isClientSide) {
                 level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), 3);
             }
         }
     };
+    public void drops() {
+        // 创建一个临时容器，大小与机器槽位数量一致
+        SimpleContainer inventory = new SimpleContainer(this.inventory.getSlots());
+
+        // 将 itemHandler 中的每个槽位内容复制到临时容器中
+        for (int i = 0; i < this.inventory.getSlots(); i++) {
+            inventory.setItem(i, this.inventory.getStackInSlot(i));
+        }
+
+        // 将容器中的物品掉落到世界
+        Containers.dropContents(this.level, this.worldPosition, inventory);
+    }
+
     private boolean Processing = false;
     private int Progress = 0;
     private String animation = "close";
@@ -63,7 +79,7 @@ public class FullbottlePurifierBlockEntity extends BlockEntity implements IAnima
         tag.putString("animation",this.animation);
         return tag;
     }
-    // 载入物品存储NBT
+    // 读取物品存储NBT
     @Override
     public void load(CompoundTag pTag) {
         super.load(pTag);
@@ -203,7 +219,6 @@ public class FullbottlePurifierBlockEntity extends BlockEntity implements IAnima
     }
 
     private static final Random RANDOM = new Random();
-
     /**
      * 从配置中随机选择一个物品
      */

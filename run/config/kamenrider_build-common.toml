@@ -1,0 +1,8 @@
+
+["满瓶净化机"]
+	#满瓶净化机的净化表
+	items = ["kamenrider_build:rabbat_bottle", "kamenrider_build:tank_bottle"]
+	#满瓶净化机需要的净化时间
+	#Range: 5.0 ~ 1.7976931348623157E308
+	Tick = 500.0
+
