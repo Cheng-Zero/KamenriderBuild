@@ -6,6 +6,8 @@ import cheng.build.ItemHelper;
 import cheng.build.client.model.ARMORModel;
 import cheng.build.client.renderer.BASEARMORRenderer;
 import cheng.build.client.renderer.BuildARMORRenderer;
+import cheng.build.data.DataManager;
+import cheng.build.data.PlayerBuildData;
 import cheng.build.item.armor.BuildBaseArmor;
 import cheng.build.program.RotaryDriverKeyProgram.RotaryDriver;
 import com.google.common.collect.ArrayListMultimap;
@@ -88,7 +90,8 @@ public abstract class BuildArmor extends ARMOR{
                     e.isAmbient(), e.isVisible(), e.showIcon()));
         }
         if (isEquieBuildArmor()) return;
-        RotaryDriver.setCurrentMode(RotaryDriver.DriverMode.IDLE);
+        PlayerBuildData data = DataManager.get(player);
+        data.setCurrentMode(PlayerBuildData.TransformMode.IDLE);
         resetArmor();
         ItemHelper.removeItem(player, this);
     }

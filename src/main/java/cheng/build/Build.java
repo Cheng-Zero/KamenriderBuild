@@ -1,12 +1,12 @@
 package cheng.build;
 
 import cheng.build.keybingds.GetHolderKeybingd;
+import cheng.build.network.PlayerBuildDataSyncPacket;
 import cheng.build.player_animation.SetupAnimationsProcedure;
 import cheng.build.init.*;
 import cheng.build.keybingds.ClearDriverKeybingd;
 import cheng.build.keybingds.ShakeBottleMessageKey;
 import cheng.build.keybingds.RotaryDriverMessageKey;
-import cheng.build.var.PlayerVariablesMessage;
 import com.mojang.logging.LogUtils;
 import dev.kosmx.playerAnim.minecraftApi.PlayerAnimationAccess;
 import net.minecraft.network.FriendlyByteBuf;
@@ -39,6 +39,7 @@ public class Build {
 
     public Build() {
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
+        IEventBus forgeBus = MinecraftForge.EVENT_BUS;
 
         bus.addListener(this::registerMessage);
         bus.addListener(this::onClientSetup);
@@ -47,7 +48,7 @@ public class Build {
 
         init(bus);
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.SPEC);
-        MinecraftForge.EVENT_BUS.register(this);
+        forgeBus.register(this);
         GeckoLib.initialize();
     }
 
@@ -85,7 +86,8 @@ public class Build {
             addNetworkMessage(RotaryDriverMessageKey.class, RotaryDriverMessageKey::buffer, RotaryDriverMessageKey::new, RotaryDriverMessageKey::handler);
             addNetworkMessage(ClearDriverKeybingd.class, ClearDriverKeybingd::encode, ClearDriverKeybingd::new, ClearDriverKeybingd::handler);
             addNetworkMessage(GetHolderKeybingd.class, GetHolderKeybingd::buffer, GetHolderKeybingd::new, GetHolderKeybingd::handler);
-            addNetworkMessage(PlayerVariablesMessage.class, PlayerVariablesMessage::buffer, PlayerVariablesMessage::new, PlayerVariablesMessage::handler);
+            addNetworkMessage(PlayerBuildDataSyncPacket.class, PlayerBuildDataSyncPacket::encode, PlayerBuildDataSyncPacket::new, PlayerBuildDataSyncPacket::handle);
+
             LOGGER.info("Registered network messages for " + MODID);
         });
     }

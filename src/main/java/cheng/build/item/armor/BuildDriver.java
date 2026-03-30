@@ -1,14 +1,12 @@
 package cheng.build.item.armor;
 
-import cheng.build.GeoModelPath;
-import cheng.build.item.armor.base.ARMOR;
 import cheng.build.init.InitSound;
+import cheng.build.item.armor.base.BaseDriver;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraftforge.items.ItemStackHandler;
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
@@ -20,9 +18,8 @@ import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 import software.bernie.geckolib3.util.GeckoLibUtil;
 
-public class BuildDriver extends ARMOR {
+public class BuildDriver extends BaseDriver {
     private final AnimationFactory factory = GeckoLibUtil.createFactory(this);
-    public ItemStackHandler inventory = new ItemStackHandler(3);
     public static final String trigger = "trigger";
     public static final String organicMatter_item_Name = "organicMatter_item";
     public static final String inorganicMatter_item_Name = "inorganicMatter_item";
@@ -36,11 +33,6 @@ public class BuildDriver extends ARMOR {
                         1,
                         1),
                 EquipmentSlot.LEGS, new Properties());
-    }
-
-    @Override
-    public GeoModelPath.model getAll() {
-        return GeoModelPath.BuildDriver;
     }
 
     @Override
@@ -64,11 +56,6 @@ public class BuildDriver extends ARMOR {
         }
     }
 
-    @Override
-    public @Nullable CompoundTag getShareTag(ItemStack stack) {
-        return super.getShareTag(stack);
-    }
-
     public CompoundTag tag(CompoundTag nbt){
         if (!nbt.contains("isUse"))
             nbt.putBoolean("isUse", false);
@@ -78,7 +65,6 @@ public class BuildDriver extends ARMOR {
             nbt.put(inorganicMatter_item_Name, savePiece(ItemStack.EMPTY));
         if (!nbt.contains(trigger))
             nbt.putString(trigger, "");
-        inventory.serializeNBT();
         return nbt;
     }
 
@@ -99,21 +85,5 @@ public class BuildDriver extends ARMOR {
     @Override
     public AnimationFactory getFactory() {
         return this.factory;
-    }
-
-    public static CompoundTag savePiece(ItemStack item) {
-        CompoundTag tag = new CompoundTag();
-        if (!item.isEmpty()) {
-            item.save(tag);
-        }
-        return tag;
-    }
-
-    public static ItemStack loadItem(CompoundTag parent, String key) {
-        return parent.contains(key) ? ItemStack.of(parent.getCompound(key)) : ItemStack.EMPTY;
-    }
-
-    public ItemStackHandler getInventory() {
-        return inventory;
     }
 }

@@ -14,15 +14,17 @@ public class ArmorUseHandler {
             helmet = "helmet",
             chestplate = "chestplate",
             boots = "boots";
-    public static void saveArmor(ServerPlayer player) {
-        if (player == null || player.level.isClientSide()) return;
+    public static void saveArmor(Player player) {
+        if (player instanceof ServerPlayer serverPlayer) {
+            if (serverPlayer == null || serverPlayer.level.isClientSide()) return;
 
-        CompoundTag armorData = new CompoundTag();
+            CompoundTag armorData = new CompoundTag();
 
-        armorData.put(helmet, saveArmorPiece(player.getInventory().getArmor(3)));
-        armorData.put(chestplate, saveArmorPiece(player.getInventory().getArmor(2)));
-        armorData.put(boots, saveArmorPiece(player.getInventory().getArmor(0)));
-        player.getPersistentData().put(HenshinArmorNbt, armorData);
+            armorData.put(helmet, saveArmorPiece(serverPlayer.getInventory().getArmor(3)));
+            armorData.put(chestplate, saveArmorPiece(serverPlayer.getInventory().getArmor(2)));
+            armorData.put(boots, saveArmorPiece(serverPlayer.getInventory().getArmor(0)));
+            serverPlayer.getPersistentData().put(HenshinArmorNbt, armorData);
+        }
     }
 
     private static CompoundTag saveArmorPiece(ItemStack item) {
@@ -33,19 +35,20 @@ public class ArmorUseHandler {
         return tag;
     }
 
-    public static void loadArmor(ServerPlayer serverPlayer) {
-        if (!serverPlayer.getPersistentData().contains(HenshinArmorNbt)) {
-            return;
-        }
-        CompoundTag armorData = serverPlayer.getPersistentData().getCompound(HenshinArmorNbt);
+    public static void loadArmor(Player player) {
+        if (player instanceof ServerPlayer serverPlayer) {
+            if (!serverPlayer.getPersistentData().contains(HenshinArmorNbt)) {
+                return;
+            }
+            CompoundTag armorData = serverPlayer.getPersistentData().getCompound(HenshinArmorNbt);
 
-        serverPlayer.getInventory().setItem(39, loadItem(armorData, helmet));
-        serverPlayer.getInventory().setItem(38, loadItem(armorData, chestplate));
-        serverPlayer.getInventory().setItem(36, loadItem(armorData, boots));
-        // 强制同步到客户端
-        serverPlayer.inventoryMenu.broadcastChanges();
-        serverPlayer.getPersistentData().remove(HenshinArmorNbt);
-        Build.LOGGER.info("同步成功");
+            serverPlayer.getInventory().setItem(39, loadItem(armorData, helmet));
+            serverPlayer.getInventory().setItem(38, loadItem(armorData, chestplate));
+            serverPlayer.getInventory().setItem(36, loadItem(armorData, boots));
+            // 强制同步到客户端
+            serverPlayer.inventoryMenu.broadcastChanges();
+            serverPlayer.getPersistentData().remove(HenshinArmorNbt);
+        }
     }
     private static ItemStack loadItem(CompoundTag parent, String key) {
         return parent.contains(key) ? ItemStack.of(parent.getCompound(key)) : ItemStack.EMPTY;

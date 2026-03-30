@@ -2,11 +2,11 @@ package cheng.build.program.ClearKeyProgram;
 
 import cheng.build.ArmorUseHandler;
 import cheng.build.ItemHelper;
+import cheng.build.data.DataManager;
+import cheng.build.data.PlayerBuildData;
 import cheng.build.item.armor.BuildDriver;
 import cheng.build.data.ABaseData;
-import cheng.build.program.RotaryDriverKeyProgram.RotaryDriver;
-import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.nbt.CompoundTag;
 
 import java.util.Objects;
 
@@ -14,72 +14,66 @@ import static cheng.build.item.armor.BuildDriver.inorganicMatter_item_Name;
 import static cheng.build.item.armor.BuildDriver.organicMatter_item_Name;
 
 public class ClearDriver extends ABaseData {
-    private boolean isUse;
-
-    @Override
-    public void update(Player player) {
-        super.update(player);
-        if (player!= null){
-            isUse = driverTag.getBoolean("isUse");
-        }else {
-            isUse = true;
-        }
-    }
-
+    String
+            organicMatter = organicMatter_item_Name,
+            inorganicMatter = inorganicMatter_item_Name;
     public void clear(){
-        if (!baseBoolean() && !equieDriver) return;
+        PlayerBuildData data = DataManager.get(player);
+        CompoundTag driverTag = data.getDriverTag();
+        // 基础判断：玩家不为null 非客户端执行
+        boolean baseBoolean = player != null && !player.level.isClientSide();
 
-        if (isUse)return;
-        if (driverTag.get(inorganicMatter_item_Name) == null)return;
-        if (driverTag.get(organicMatter_item_Name) == null)return;
+        if (!baseBoolean && !data.isEquieDriver()) return;
+
+        if (data.isDriverInUse())return;
+        if (driverTag.get(inorganicMatter) == null)return;
+        if (driverTag.get(organicMatter) == null)return;
 
         if (player.isShiftKeyDown()) {
 
-            if (!driverTag.getCompound(inorganicMatter_item_Name).isEmpty()){
-                setTagAndTagItem(inorganicMatter_item_Name);
-            }else if (!driverTag.getCompound(organicMatter_item_Name).isEmpty()) {
-                setTagAndTagItem(organicMatter_item_Name);
-            }else if (isHenshin()) {
-                {
-                    if (player instanceof ServerPlayer serverPlayer)
-                        ArmorUseHandler.loadArmor(serverPlayer);
-                    RotaryDriver.reset();
-                }
-            }else {
-                ClientMessage(ClientMessageEnum.Air);
-                RotaryDriver.reset();
+            if (!driverTag.getCompound(inorganicMatter).isEmpty()) {
+                setTagAndTagItem(inorganicMatter);
+                return;
             }
+            if (!driverTag.getCompound(organicMatter).isEmpty()) {
+                setTagAndTagItem(organicMatter);
+                return;
+            }
+
+            if (data.isHenshin()) {
+                ArmorUseHandler.loadArmor(player);
+                data.setCurrentMode(PlayerBuildData.TransformMode.IDLE);
+                return;
+            }
+
+            data.ClientMessage(PlayerBuildData.ClientMessageEnum.Air);
+            data.setCurrentMode(PlayerBuildData.TransformMode.IDLE);
+
         }
         else if (!player.isShiftKeyDown()){
-            if (!driverTag.getCompound(organicMatter_item_Name).isEmpty()){
-                setTagAndTagItem(organicMatter_item_Name);
-            }else if (!driverTag.getCompound(inorganicMatter_item_Name).isEmpty()) {
-                setTagAndTagItem(inorganicMatter_item_Name);
-            }else if (isHenshin()) {
-                {
-                    if (player instanceof ServerPlayer serverPlayer)
-                        ArmorUseHandler.loadArmor(serverPlayer);
-                    RotaryDriver.reset();
-                }
-            }else {
-                ClientMessage(ClientMessageEnum.Air);
-                RotaryDriver.reset();
+            if (!driverTag.getCompound(organicMatter).isEmpty()){
+                setTagAndTagItem(organicMatter);
+                return;
             }
+            if (!driverTag.getCompound(inorganicMatter).isEmpty()) {
+                setTagAndTagItem(inorganicMatter);
+                return;
+            }
+            if (data.isHenshin()) {
+                ArmorUseHandler.loadArmor(player);
+                data.setCurrentMode(PlayerBuildData.TransformMode.IDLE);
+                return;
+            }
+            data.ClientMessage(PlayerBuildData.ClientMessageEnum.Air);
+            data.setCurrentMode(PlayerBuildData.TransformMode.IDLE);
         }
     }
 
     private void setTagAndTagItem(String itemTag){
+        PlayerBuildData data = DataManager.get(player);
+        CompoundTag driverTag = data.getDriverTag();
         ItemHelper.giveItem(player, BuildDriver.loadItem(Objects.requireNonNull(driverTag),itemTag));
-        ClearTag(itemTag);
-    }
-
-    /// 基础判断：玩家不为null 非客户端执行
-    private boolean baseBoolean(){
-        return player != null && !player.level.isClientSide();
-    }
-
-    private void ClearTag(String tagName){
-        driverTag.putString(tagName, "");
+        driverTag.putString(itemTag, "");
         player.getInventory().setChanged();
         player.inventoryMenu.broadcastChanges();
     }

@@ -1,12 +1,10 @@
 package cheng.build.events;
 
-import cheng.build.var.ModVariables;
-import cheng.build.var.PlayerVariables;
+import cheng.build.data.DataManager;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.event.entity.living.LivingFallEvent;
 import net.minecraftforge.event.entity.living.LivingHealEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
@@ -40,9 +38,7 @@ public class HazardLevelListener {
         float amount = event.getAmount(); // 治疗量
 
         if (entity instanceof Player player) {
-            LazyOptional<PlayerVariables> capability = player.getCapability(ModVariables.PLAYER_VARIABLES_CAPABILITY, null);
-            PlayerVariables playerVariables = capability.orElse(new PlayerVariables());
-            float hazardLevel = (float) playerVariables.hazard_level;
+            float hazardLevel = (float) DataManager.get(player).hazard_level;
 
             float finalHeal = hazardLevel + amount;
             if (finalHeal <= 10){
@@ -58,9 +54,7 @@ public class HazardLevelListener {
         float distance = event.getDistance();           // 摔落距离（格数）
 
         if (entity instanceof Player player) {
-            LazyOptional<PlayerVariables> capability = player.getCapability(ModVariables.PLAYER_VARIABLES_CAPABILITY, null);
-            PlayerVariables playerVariables = capability.orElse(new PlayerVariables());
-            float hazardLevel = (float) playerVariables.hazard_level;
+            float hazardLevel = (float) DataManager.get(player).hazard_level;
 
             float finalDistance = distance - (hazardLevel);
             // 修改摔落距离
@@ -86,9 +80,8 @@ public class HazardLevelListener {
 
         // 如果攻击实体是玩家
         if (entity instanceof Player player){
-            LazyOptional<PlayerVariables> capability = player.getCapability(ModVariables.PLAYER_VARIABLES_CAPABILITY, null);
             // 获取危险等级
-            hazardLevel = (float) capability.orElse(new PlayerVariables()).hazard_level;
+            hazardLevel = (float) DataManager.get(player).hazard_level;
             float finalAmount = amount * hazardLevel;
             // 设置返回伤害
             event.setAmount(finalAmount);
@@ -96,8 +89,7 @@ public class HazardLevelListener {
         }
         // 如果被攻击实体是玩家
         else if (entityLiving instanceof Player player){
-            LazyOptional<PlayerVariables> capability = player.getCapability(ModVariables.PLAYER_VARIABLES_CAPABILITY, null);
-            hazardLevel = (float) capability.orElse(new PlayerVariables()).hazard_level;
+            hazardLevel = (float) DataManager.get(player).hazard_level;
             float finalAmount = ((100 - hazardLevel) / 100) * amount;
             event.setAmount(finalAmount);
 //            Build.LOGGER.debug("最终受伤值：{}", finalAmount);
@@ -110,9 +102,7 @@ public class HazardLevelListener {
         LivingEntity entityLiving = event.getEntityLiving();
         float strength = event.getStrength();
         if (entityLiving instanceof Player player) {
-            LazyOptional<PlayerVariables> capability = player.getCapability(ModVariables.PLAYER_VARIABLES_CAPABILITY, null);
-            PlayerVariables playerVariables = capability.orElse(new PlayerVariables());
-            float hazardLevel = (float) playerVariables.hazard_level;
+            float hazardLevel = (float) DataManager.get(player).hazard_level;
 
             float finalAmount = ((100 - hazardLevel) / 100) * strength;
             // 修改摔落距离

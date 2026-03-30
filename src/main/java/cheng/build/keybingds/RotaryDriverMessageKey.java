@@ -40,10 +40,11 @@ public class RotaryDriverMessageKey extends ModKeybindings{
             RotaryDriver rotaryDriver = new RotaryDriver();
             rotaryDriver.update(entity);
             rotaryDriver.setiHenshin();
-            if (type == 0)
+            if (type == 0) {
                 rotaryDriver.handleRoundStart();
-            if (type==1)
+            }else if (type == 1){
                 rotaryDriver.handleRoundStop();
+            }
         }
     }
 }

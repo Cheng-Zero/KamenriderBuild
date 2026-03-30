@@ -1,28 +1,21 @@
 package cheng.build.command;
 
-import cheng.build.var.ModVariables;
-import cheng.build.var.PlayerVariables;
+import cheng.build.data.DataManager;
 import com.mojang.brigadier.arguments.FloatArgumentType;
-import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import net.minecraft.Util;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
 import net.minecraft.commands.arguments.EntityArgument;
-import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.GameRules;
-import net.minecraft.world.level.GameType;
-import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-
-import java.util.Random;
 
 @Mod.EventBusSubscriber
 public class HazardCommand {
@@ -52,12 +45,8 @@ public class HazardCommand {
             // 获取实体
             ServerPlayer player = EntityArgument.getPlayer(context,"player");
             float argument = FloatArgumentType.getFloat(context, "argument");
-                LazyOptional<PlayerVariables> player_capability = player.getCapability(ModVariables.PLAYER_VARIABLES_CAPABILITY, null);
-                player_capability.ifPresent(c-> {
-                    c.hazard_level = argument;
-                    c.syncPlayerVariables(player);
-                });
-                logSetHazardLevel(context.getSource(),player,argument);
+            DataManager.get(player).setHazardLevel(argument);
+            logSetHazardLevel(context.getSource(),player,argument);
         } catch (RuntimeException | CommandSyntaxException ignored) {}
         return 1;
     }
@@ -68,8 +57,7 @@ public class HazardCommand {
         try {
             // 获取实体
             ServerPlayer player = EntityArgument.getPlayer(context,"player");
-            LazyOptional<PlayerVariables> player_capability = player.getCapability(ModVariables.PLAYER_VARIABLES_CAPABILITY, null);
-            double hazardLevel = player_capability.orElse(new PlayerVariables()).hazard_level;
+            double hazardLevel = DataManager.get(player).hazard_level;
             context.getSource().sendSuccess(new TranslatableComponent("commands.kamenrider_build.hazard_level.get",player.getName(),hazardLevel),true);
         } catch (RuntimeException | CommandSyntaxException ignored) {}
 
@@ -83,8 +71,7 @@ public class HazardCommand {
             // 获取实体
             Entity entity = context.getSource().getEntity();
             if (entity instanceof Player player) {
-                LazyOptional<PlayerVariables> player_capability = player.getCapability(ModVariables.PLAYER_VARIABLES_CAPABILITY, null);
-                double hazardLevel = player_capability.orElse(new PlayerVariables()).hazard_level;
+                double hazardLevel = DataManager.get(player).hazard_level;
                 float randomOffset = (float) (Math.random() - 0.5);  // -0.5 到 0.5
                 double v = hazardLevel + randomOffset;
                 // 加一位小数，以返回需要的

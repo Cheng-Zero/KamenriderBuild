@@ -2,8 +2,10 @@ package cheng.build.entity;
 
 import cheng.build.DelayedTask;
 import cheng.build.GeoModelPath;
+import cheng.build.data.DataManager;
+import cheng.build.data.PlayerBuildData;
 import cheng.build.item.armor.BuildDriver;
-import cheng.build.rider_syteam.HenshinUtil;
+import cheng.build.program.RotaryDriverKeyProgram.RotaryDriverBase;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -18,16 +20,20 @@ public class OrganicEntity extends EffectEntity{
         this.setTexture(texrure);
         this.setAnimations(new ResourceLocation("kamenrider_build:animations/build_henshin.animation.json"));
 
-        HenshinUtil util = new HenshinUtil();
+        RotaryDriverBase util = new RotaryDriverBase() {};
         util.update(player);
 
+        var helmetStack = player.getItemBySlot(EquipmentSlot.HEAD);
+        var chestplateStack = player.getItemBySlot(EquipmentSlot.CHEST);
+        PlayerBuildData data = DataManager.get(player);
+        CompoundTag driverTag = data.getDriverTag();
         ItemStack
-                inorganic = loadItem(util.driverTag, BuildDriver.inorganicMatter_item_Name),
-                organic = loadItem(util.driverTag, BuildDriver.organicMatter_item_Name);
+                inorganic = loadItem(driverTag, BuildDriver.inorganicMatter_item_Name),
+                organic = loadItem(driverTag, BuildDriver.organicMatter_item_Name);
 
         boolean c =
-                util.CurrentFormNotBottle(inorganic,util.chestplateStack) &&
-                        util.CurrentFormNotBottle(organic,util.helmetStack);
+                util.CurrentFormNotBottle(inorganic,chestplateStack) &&
+                util.CurrentFormNotBottle(organic,helmetStack);
 
         if (isBestMatch || c){
             this.setAnimation("summon");

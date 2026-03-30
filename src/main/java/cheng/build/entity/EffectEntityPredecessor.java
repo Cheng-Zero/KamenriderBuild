@@ -59,8 +59,10 @@ public abstract class EffectEntityPredecessor extends BaseGeoEntity {
     private double pushRange = 6.0;      // 影响范围
     @Override
     protected void doPush(Entity entityIn) {
+
         entityIn.invulnerableTime = 0;
-        entityIn.hurt(DamageSource.LIGHTNING_BOLT,0.1f);
+        entityIn.hurt(DamageSource.LIGHTNING_BOLT, 0.1f);
+
         // 计算排斥方向（从当前实体指向目标实体）
         double dx = entityIn.getX() - this.getX();
         double dz = entityIn.getZ() - this.getZ();

@@ -13,6 +13,6 @@ public class InitMobEffect {
     public static final RegistryObject<BottleMobEffect>
             rabbat_effect = register.register("rabbat_bottle",()->new RabbatMobEffect(MobEffectCategory.NEUTRAL,-39271)),
             tank_effect = register.register("tank_bottle",()->new TankMobEffect(MobEffectCategory.NEUTRAL,-13421569)),
-            gorilla = register.register("gorilla_bottle",()->new GorillaMobEffect(MobEffectCategory.NEUTRAL,4866583)),
+            gorilla_effect = register.register("gorilla_bottle",()->new GorillaMobEffect(MobEffectCategory.NEUTRAL,4866583)),
             diamond_effect = register.register("diamond_bottle",()->new DiamondMobEffect(MobEffectCategory.NEUTRAL,13828095));
 }

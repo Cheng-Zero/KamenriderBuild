@@ -1,7 +1,7 @@
 package cheng.build.message;
 
 import cheng.build.Build;
-import cheng.build.var.PlayerVariablesMessage;
+import cheng.build.network.PlayerBuildDataSyncPacket;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
