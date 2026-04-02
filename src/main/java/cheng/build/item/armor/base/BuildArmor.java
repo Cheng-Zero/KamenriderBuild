@@ -102,6 +102,8 @@ public abstract class BuildArmor extends ARMOR{
         if (pEntity instanceof Player player) {
             this.player = player;
             if (isEquieBuildArmor()) return;
+            PlayerBuildData data = DataManager.get(player);
+            data.setCurrentMode(PlayerBuildData.TransformMode.IDLE);
             resetArmor();
             ItemHelper.removeItem(player, this);
         }

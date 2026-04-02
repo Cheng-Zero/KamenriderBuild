@@ -1,28 +1,22 @@
 package cheng.build.init;
 
-import cheng.build.GeoModelPath;
 import cheng.build.item.armor.*;
-import cheng.build.item.armor.base.ARMOR;
 import cheng.build.item.armor.base.BuildArmor;
 import cheng.build.block.FullbottlePurifierBlockItem;
 import cheng.build.item.bottle.bottle.InorganicMatterBottleItem;
 import cheng.build.item.bottle.bottle.OrganicMatterBottleItem;
-import cheng.build.client.renderer.BuildARMORRenderer;
-import cheng.build.client.renderer.BuildDriverRenderer;
 import cheng.build.item.bottle.bottles.*;
+import cheng.cheng_util.ChengRegistriesUtil;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
-import software.bernie.geckolib3.renderers.geo.GeoArmorRenderer;
 
-import java.util.Map;
 import java.util.function.Supplier;
 
 import static cheng.build.Build.MODID;
 
 public class InitItem {
-    public static final DeferredRegister<Item> register = DeferredRegister.create(ForgeRegistries.ITEMS, MODID);
+    public static final DeferredRegister<Item> register = ChengRegistriesUtil.deferredItemRegister(MODID);
     public static final RegistryObject<BuildDriver> buildDriver = registry("build_driver", BuildDriver::new);
     public static final RegistryObject<FullbottlePurifierBlockItem> fullbottle_purifier = registry("fullbottle_purifier", FullbottlePurifierBlockItem::new);
 
@@ -51,11 +45,11 @@ public class InitItem {
                     ;
 
     private static <T extends Item> RegistryObject<T> registry(String name,Supplier<T> supplier){
-        try{ return register.register(name,supplier);}
-        catch (Exception e) {throw new RuntimeException(e);}
+        return ChengRegistriesUtil.registerItem(register,name,supplier);
     }
 
     private static <T extends Item> RegistryObject<T> bottle(String name,Supplier<T> supplier){
         return registry(name+"_bottle",supplier);
     }
+
 }

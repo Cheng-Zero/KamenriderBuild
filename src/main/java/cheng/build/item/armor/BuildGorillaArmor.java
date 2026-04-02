@@ -9,6 +9,7 @@ import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraftforge.common.ForgeMod;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 import software.bernie.geckolib3.util.GeckoLibUtil;
@@ -33,6 +34,8 @@ public class BuildGorillaArmor extends OrganicMatterArmor {
     protected Multimap<Attribute, AttributeModifier> AttributeModifiermap() {
         Multimap<Attribute, AttributeModifier> multimap = super.AttributeModifiermap();
         multimap.put(Attributes.ATTACK_DAMAGE,attributeModifier("Gorilla","AttactDamage",10, AttributeModifier.Operation.ADDITION));
+        multimap.put(ForgeMod.ATTACK_RANGE.get(),attributeModifier("Gorilla","AttackRange",0.2, AttributeModifier.Operation.ADDITION));
+        multimap.put(ForgeMod.REACH_DISTANCE.get(),attributeModifier("Gorilla","ReachDistance",0.2, AttributeModifier.Operation.ADDITION));
         return multimap;
     }
 
